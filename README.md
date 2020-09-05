@@ -20,6 +20,13 @@ cd ~
 calcfetch
 ```
 
+Features:
+- Package manager and package count detection
+- Support across all nerdfonts
+- Uptime detection that is actually good
+- Unlike neofetch, it uses almost no resources
+- Portable
+
 Know issue(s):
 
-- In Cool-Retro-Term, the coffee icon shows up as a Chinese character. To fix this, replace the current coffee icon with `nf-fa-coffee` from [Nerdfont's Cheat Sheet](https://www.nerdfonts.com/cheat-sheet)
+- In Cool-Retro-Term, the coffee icon shows up as a Chinese character. To fix this, replace the current coffee icon with `nf-fa-coffee` from [Nerdfont's Cheat Sheet](https://www.nerdfonts.com/cheat-sheet). This issue only seems to occur on Cool-Retro-Term, CalcFetch was tested in Gnome terminal, Deepin terminal, Kitty, and Alacritty and didn't have this problem. 
