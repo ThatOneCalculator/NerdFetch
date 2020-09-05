@@ -1,8 +1,8 @@
-#!/bin/bash
-host="$(hostname)"
-source /etc/os-release
-os=$PRETTY_NAME
+#!/usr/bin/env bash
 kernel="$(uname -r)"
+host="$(hostname)"
+. /etc/os-release
+os=$PRETTY_NAME
 
 manager=$(command which nix-env yum dnf rpm xbps-query apt zypper pacman apk cpm)
 manager=${manager##*/}
@@ -19,53 +19,49 @@ case $manager in
     apk) packages="$(apk list --installed | wc -l)";;
     *) packages="idk"
 esac
-shell="$(basename "$SHELL")"
+
+shell=${SHELL##*/}
+
 while :; do
     location="$(readlink "/proc/${ppid:-$$}/exe")"
     case $location in
-        *sh) :;;
+        *sh) ;;
         *) break;;
     esac
     ppid=$(grep -i ppid "/proc/${ppid:-$$}/status" | grep -o '[0-9]\+')
 done
 term="${location##*/}"
-# echo $term
 
 ## UPTIME DETECTION
 
-s=$(< /proc/uptime)
-s=${s/.*}
-d="$((s / 60 / 60 / 24)) days"
-h="$((s / 60 / 60 % 24)) hours"
-m="$((s / 60 % 60)) mins"
+IFS=. read -r s _ < /proc/uptime
+d="$((s / 60 / 60 / 24))"
+h="$((s / 60 / 60 % 24))"
+m="$((s / 60 % 60))"
 
-# Remove plural if < 2.
-((${d/ *} == 1)) && d=${d/s}
-((${h/ *} == 1)) && h=${h/s}
-((${m/ *} == 1)) && m=${m/s}
+# Plurals
+[ "$d" -gt 1 ] && dp=s
+[ "$h" -gt 1 ] && hp=s
+[ "$m" -gt 1 ] && mp=s
 
 # Hide empty fields.
-((${d/ *} == 0)) && unset d
-((${h/ *} == 0)) && unset h
-((${m/ *} == 0)) && unset m
-
-uptime=${d:+$d, }${h:+$h, }$m
-uptime=${uptime%', '}
-uptime=${uptime:-$s secs}
+[ "$d" = 0 ] && d=
+[ "$h" = 0 ] && h=
+[ "$m" = 0 ] && m=
 
 # Make the output of uptime smaller.
 case $uptime_shorthand in
-    on) ;;
-
     tiny)
-        uptime=${uptime/ days/d}
-        uptime=${uptime/ day/d}
-        uptime=${uptime/ hours/h}
-        uptime=${uptime/ hour/h}
-        uptime=${uptime/ mins/m}
-        uptime=${uptime/ min/m}
-        uptime=${uptime/ secs/s}
-        uptime=${uptime//,}
+        [ "$d" ] && uptime="${d}d, "
+        [ "$h" ] && uptime="$uptime${h}h, "
+        [ "$m" ] && uptime="$uptime${m}m"
+        uptime=${uptime%, }
+    ;;
+    *)
+        [ "$d" ] && uptime="$d day$dp, "
+        [ "$h" ] && uptime="$uptime$h hour$hp, "
+        [ "$m" ] && uptime="$uptime$m min$mp"
+        uptime=${uptime%, }
     ;;
 esac
 
@@ -96,16 +92,16 @@ memstat="${mem_used}/${mem_full} MB"
 
 ## DEFINE COLORS
 
-bold="$(tput bold)"
-black="$(tput setaf 0)"
-red="$(tput setaf 1)"
-green="$(tput setaf 2)"
-yellow="$(tput setaf 3)"
-blue="$(tput setaf 4)"
-magenta="$(tput setaf 5)"
-cyan="$(tput setaf 6)"
-white="$(tput setaf 7)"
-reset="$(tput sgr0)"
+bold=$'\033[1m'
+black=$'\033[30m'
+red=$'\033[31m'
+green=$'\033[32m'
+yellow=$'\033[33m'
+blue=$'\033[34m'
+magenta=$'\033[35m'
+cyan=$'\033[36m'
+white=$'\033[37m'
+reset=$'\033[0m'
 
 # you can change these
 lc="${reset}${bold}${magenta}"      # labels
