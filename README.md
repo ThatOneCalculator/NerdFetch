@@ -10,7 +10,7 @@ Dependencies:
 To install and run:
 
 ```sh
-git clone https://github.com/thatonecalculator/calcfetch.git
+git clone https://github.com/ThatOneCalculator/CalcFetch.git
 cd calcfetch
 sudo cp calcfetch ~/.local/bin/
 sudo chmod +x ~/.local/bin/calcfetch 
