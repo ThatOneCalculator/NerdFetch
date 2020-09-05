@@ -112,7 +112,7 @@ lc="${reset}${bold}${magenta}"      # labels
 nc="${reset}${bold}${yellow}"       # user
 hn="${reset}${bold}${blue}"         # hostname
 ic="${reset}${green}"               # info
-c0="${reset}${black}"         # first color
+c0="${reset}${black}"               # first color
 c1="${reset}${white}"               # second color
 c2="${reset}${yellow}"              # third color
 
