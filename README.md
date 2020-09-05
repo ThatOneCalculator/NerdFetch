@@ -1,6 +1,8 @@
 # CalcFetch
  A simple Linux fetch script using Nerdfonts
 
+![Screenshot](https://cdn.discordapp.com/attachments/671117418189422594/751940350314283048/unknown.png)
+
 Dependencies:
 
 - [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
@@ -10,8 +12,8 @@ Dependencies:
 To install and run:
 
 ```sh
-git clone https://github.com/thatonecalculator/calcfetch.git
-cd calcfetch
+git clone https://github.com/ThatOneCalculator/CalcFetch.git
+cd CalcFetch/
 sudo cp calcfetch ~/.local/bin/
 sudo chmod +x ~/.local/bin/calcfetch 
 cd ~
