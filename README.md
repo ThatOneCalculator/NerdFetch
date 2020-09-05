@@ -1,7 +1,7 @@
 # CalcFetch
  A simple Linux fetch script using Nerdfonts
 
-![Screenshot](https://cdn.discordapp.com/attachments/671117418189422594/751940350314283048/unknown.png)
+![Screenshot](https://i.imgur.com/VFuV7S5.png)
 
 Dependencies:
 
