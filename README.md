@@ -13,7 +13,7 @@ To install and run:
 
 ```sh
 git clone https://github.com/ThatOneCalculator/CalcFetch.git
-cd calcfetch
+cd CalcFetch/
 sudo cp calcfetch ~/.local/bin/
 sudo chmod +x ~/.local/bin/calcfetch 
 cd ~
