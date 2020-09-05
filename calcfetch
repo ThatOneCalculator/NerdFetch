@@ -1,0 +1,168 @@
+#!/bin/bash
+host="$(hostname)"
+source /etc/os-release
+os=$PRETTY_NAME
+kernel="$(uname -r)"
+#weather="${$(curl -s wttr.in\?format=1):0:1}"
+
+manager=$(command which nix-env yum dnf rpm xbps-query apt zypper pacman apk cpm)
+manager=${manager##*/}
+case $manager in
+    cpm) packages="$(cpm C)";;
+    apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
+    rpm) packages="$(rpm -qa --last| wc -l)";;
+    yum) packages="$(yum list installed | wc -l)";;
+    dnf) packages="$(dnf list installed | wc -l)";;
+    zypper) packages="$(zypper se | wc -l)";;
+    pacman) packages="$(pacman -Q | wc -l)";;
+    xbps-query) packages="$(xbps-query -l | wc -l)";;
+    nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
+    apk) packages="$(apk list --installed | wc -l)";;
+    *) packages="idk"
+esac
+# echo $manager
+# echo $packages
+shell="$(basename "$SHELL")"
+while :; do
+    location="$(readlink "/proc/${ppid:-$$}/exe")"
+    case $location in
+        *sh) :;;
+        *) break;;
+    esac
+    ppid=$(grep -i ppid "/proc/${ppid:-$$}/status" | grep -o '[0-9]\+')
+done
+term="${location##*/}"
+# echo $term
+
+## UPTIME DETECTION
+
+s=$(< /proc/uptime)
+s=${s/.*}
+d="$((s / 60 / 60 / 24)) days"
+h="$((s / 60 / 60 % 24)) hours"
+m="$((s / 60 % 60)) mins"
+
+# Remove plural if < 2.
+((${d/ *} == 1)) && d=${d/s}
+((${h/ *} == 1)) && h=${h/s}
+((${m/ *} == 1)) && m=${m/s}
+
+# Hide empty fields.
+((${d/ *} == 0)) && unset d
+((${h/ *} == 0)) && unset h
+((${m/ *} == 0)) && unset m
+
+uptime=${d:+$d, }${h:+$h, }$m
+uptime=${uptime%', '}
+uptime=${uptime:-$s secs}
+
+# Make the output of uptime smaller.
+case $uptime_shorthand in
+    on) ;;
+
+    tiny)
+        uptime=${uptime/ days/d}
+        uptime=${uptime/ day/d}
+        uptime=${uptime/ hours/h}
+        uptime=${uptime/ hour/h}
+        uptime=${uptime/ mins/m}
+        uptime=${uptime/ min/m}
+        uptime=${uptime/ secs/s}
+        uptime=${uptime//,}
+    ;;
+esac
+
+## RAM DETECTION
+
+while IFS=':k '  read -r key val _; do
+    case $key in
+        MemTotal)
+            mem_used=$((mem_used + val))
+            mem_full=$val
+        ;;
+
+        Shmem)
+            mem_used=$((mem_used + val))
+        ;;
+
+        MemFree|Buffers|Cached|SReclaimable)
+            mem_used=$((mem_used - val))
+        ;;
+    esac
+done < /proc/meminfo
+
+mem_used=$((mem_used / 1024)) 
+mem_full=$((mem_full / 1024))
+
+memstat="${mem_used}/${mem_full} MB"
+# let memper=mem_used/mem_full
+
+## UI DETECTION
+
+if [ -n "${DE}" ]; then
+    ui="${DE}"
+    uitype='DE'
+elif [ -n "${WM}" ]; then
+    ui="${WM}"
+    uitype='WM'
+elif [ -n "${XDG_CURRENT_DESKTOP}" ]; then
+    ui="${XDG_CURRENT_DESKTOP}"
+    uitype='DE'
+elif [ -n "${DESKTOP_SESSION}" ]; then
+    ui="${DESKTOP_SESSION}"
+    uitype='DE'
+elif [ -f "${HOME}/.xinitrc" ]; then
+    ui="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2)"
+    uitype='WM'
+elif [ -f "${HOME}/.xsession" ]; then
+    ui="$(tail -n 1 "${HOME}/.xsession" | cut -d ' ' -f 2)"
+    uitype='WM'
+else
+    ui='unknown'
+    uitype='UI'
+fi
+
+## DEFINE COLORS
+
+bold="$(tput bold)"
+black="$(tput setaf 0)"
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
+yellow="$(tput setaf 3)"
+blue="$(tput setaf 4)"
+magenta="$(tput setaf 5)"
+cyan="$(tput setaf 6)"
+white="$(tput setaf 7)"
+brightblack="$(tput setaf 0)"
+brightred="$(tput setaf 1)"
+brightgreen="$(tput setaf 2)"
+brightyellow="$(tput setaf 3)"
+brightblue="$(tput setaf 4)"
+brightmagenta="$(tput setaf 5)"
+brightcyan="$(tput setaf 6)"
+brightwhite="$(tput setaf 7)"
+reset="$(tput sgr0)"
+
+# you can change these
+lc="${reset}${bold}${magenta}"      # labels
+nc="${reset}${bold}${yellow}"       # user
+hn="${reset}${bold}${blue}"         # hostname
+ic="${reset}${green}"               # info
+c0="${reset}${brightblack}"         # first color
+c1="${reset}${white}"               # second color
+c2="${reset}${yellow}"              # third color
+
+## OUTPUT
+
+#${weather}${reset}
+#${ui} (${uitype})${reset}
+cat <<EOF
+
+${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
+${c0}     (${c1}.. ${c0}\    ${lc}  ${ic}${os}${reset}
+${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
+${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat}
+${c0}   ( ${c1}|  | ${c0}/|  ${lc}  ${ic}${packages} (${manager})${reset}
+${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}  ${ic}${uptime}${reset}
+${c2}  \/${c0}-____${c2}\/${reset}   ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+EOF
