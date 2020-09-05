@@ -3,7 +3,6 @@ host="$(hostname)"
 source /etc/os-release
 os=$PRETTY_NAME
 kernel="$(uname -r)"
-#weather="${$(curl -s wttr.in\?format=1):0:1}"
 
 manager=$(command which nix-env yum dnf rpm xbps-query apt zypper pacman apk cpm)
 manager=${manager##*/}
@@ -20,8 +19,6 @@ case $manager in
     apk) packages="$(apk list --installed | wc -l)";;
     *) packages="idk"
 esac
-# echo $manager
-# echo $packages
 shell="$(basename "$SHELL")"
 while :; do
     location="$(readlink "/proc/${ppid:-$$}/exe")"
@@ -97,31 +94,6 @@ mem_full=$((mem_full / 1024))
 memstat="${mem_used}/${mem_full} MB"
 # let memper=mem_used/mem_full
 
-## UI DETECTION
-
-if [ -n "${DE}" ]; then
-    ui="${DE}"
-    uitype='DE'
-elif [ -n "${WM}" ]; then
-    ui="${WM}"
-    uitype='WM'
-elif [ -n "${XDG_CURRENT_DESKTOP}" ]; then
-    ui="${XDG_CURRENT_DESKTOP}"
-    uitype='DE'
-elif [ -n "${DESKTOP_SESSION}" ]; then
-    ui="${DESKTOP_SESSION}"
-    uitype='DE'
-elif [ -f "${HOME}/.xinitrc" ]; then
-    ui="$(tail -n 1 "${HOME}/.xinitrc" | cut -d ' ' -f 2)"
-    uitype='WM'
-elif [ -f "${HOME}/.xsession" ]; then
-    ui="$(tail -n 1 "${HOME}/.xsession" | cut -d ' ' -f 2)"
-    uitype='WM'
-else
-    ui='unknown'
-    uitype='UI'
-fi
-
 ## DEFINE COLORS
 
 bold="$(tput bold)"
@@ -133,14 +105,6 @@ blue="$(tput setaf 4)"
 magenta="$(tput setaf 5)"
 cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
-brightblack="$(tput setaf 0)"
-brightred="$(tput setaf 1)"
-brightgreen="$(tput setaf 2)"
-brightyellow="$(tput setaf 3)"
-brightblue="$(tput setaf 4)"
-brightmagenta="$(tput setaf 5)"
-brightcyan="$(tput setaf 6)"
-brightwhite="$(tput setaf 7)"
 reset="$(tput sgr0)"
 
 # you can change these
@@ -148,14 +112,12 @@ lc="${reset}${bold}${magenta}"      # labels
 nc="${reset}${bold}${yellow}"       # user
 hn="${reset}${bold}${blue}"         # hostname
 ic="${reset}${green}"               # info
-c0="${reset}${brightblack}"         # first color
+c0="${reset}${black}"         # first color
 c1="${reset}${white}"               # second color
 c2="${reset}${yellow}"              # third color
 
 ## OUTPUT
 
-#${weather}${reset}
-#${ui} (${uitype})${reset}
 cat <<EOF
 
 ${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
