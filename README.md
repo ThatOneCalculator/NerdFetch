@@ -30,4 +30,4 @@ Features:
 
 Know issue(s):
 
-- In Cool-Retro-Term, the coffee icon shows up as a Chinese character. To fix this, replace the current coffee icon with `nf-fa-coffee` from [Nerdfont's Cheat Sheet](https://www.nerdfonts.com/cheat-sheet). This issue only seems to occur on Cool-Retro-Term, CalcFetch was tested in Gnome terminal, Deepin terminal, Kitty, and Alacritty and didn't have this problem. 
+- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed.
