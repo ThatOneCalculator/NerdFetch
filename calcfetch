@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
+
+## OS/ENVIRONMENT INFO DETECTION
+
 kernel="$(uname -r)"
 host="$(hostname)"
 . /etc/os-release
 os=$PRETTY_NAME
+shell=${SHELL##*/}
+
+## PACKAGE MANAGER AND PACKAGES DETECTION
 
 manager=$(command which nix-env yum dnf rpm xbps-query apt zypper pacman apk cpm)
 manager=${manager##*/}
@@ -20,49 +26,32 @@ case $manager in
     *) packages="idk"
 esac
 
-shell=${SHELL##*/}
-
-while :; do
-    location="$(readlink "/proc/${ppid:-$$}/exe")"
-    case $location in
-        *sh) ;;
-        *) break;;
-    esac
-    ppid=$(grep -i ppid "/proc/${ppid:-$$}/status" | grep -o '[0-9]\+')
-done
-term="${location##*/}"
-
 ## UPTIME DETECTION
 
 IFS=. read -r s _ < /proc/uptime
 d="$((s / 60 / 60 / 24))"
 h="$((s / 60 / 60 % 24))"
 m="$((s / 60 % 60))"
-
 # Plurals
 [ "$d" -gt 1 ] && dp=s
 [ "$h" -gt 1 ] && hp=s
 [ "$m" -gt 1 ] && mp=s
-
 # Hide empty fields.
 [ "$d" = 0 ] && d=
 [ "$h" = 0 ] && h=
 [ "$m" = 0 ] && m=
-
 # Make the output of uptime smaller.
 case $uptime_shorthand in
     tiny)
         [ "$d" ] && uptime="${d}d, "
         [ "$h" ] && uptime="$uptime${h}h, "
         [ "$m" ] && uptime="$uptime${m}m"
-        uptime=${uptime%, }
-    ;;
+        uptime=${uptime%, };;
     *)
         [ "$d" ] && uptime="$d day$dp, "
         [ "$h" ] && uptime="$uptime$h hour$hp, "
         [ "$m" ] && uptime="$uptime$m min$mp"
-        uptime=${uptime%, }
-    ;;
+        uptime=${uptime%, };;
 esac
 
 ## RAM DETECTION
@@ -71,22 +60,13 @@ while IFS=':k '  read -r key val _; do
     case $key in
         MemTotal)
             mem_used=$((mem_used + val))
-            mem_full=$val
-        ;;
-
-        Shmem)
-            mem_used=$((mem_used + val))
-        ;;
-
-        MemFree|Buffers|Cached|SReclaimable)
-            mem_used=$((mem_used - val))
-        ;;
+            mem_full=$val;;
+        Shmem) mem_used=$((mem_used + val));;
+        MemFree|Buffers|Cached|SReclaimable) mem_used=$((mem_used - val));;
     esac
 done < /proc/meminfo
-
 mem_used=$((mem_used / 1024)) 
 mem_full=$((mem_full / 1024))
-
 memstat="${mem_used}/${mem_full} MB"
 # let memper=mem_used/mem_full
 
@@ -103,14 +83,15 @@ cyan=$'\033[36m'
 white=$'\033[37m'
 reset=$'\033[0m'
 
-# you can change these
-lc="${reset}${bold}${magenta}"      # labels
-nc="${reset}${bold}${yellow}"       # user
-hn="${reset}${bold}${blue}"         # hostname
-ic="${reset}${green}"               # info
-c0="${reset}${black}"               # first color
-c1="${reset}${white}"               # second color
-c2="${reset}${yellow}"              # third color
+## USER VARIABLES -- YOU CAN CHANGE THESE
+
+lc="${reset}${bold}${magenta}"  # labels
+nc="${reset}${bold}${yellow}"   # user
+hn="${reset}${bold}${blue}"     # hostname
+ic="${reset}${green}"           # info
+c0="${reset}${black}"           # first color
+c1="${reset}${white}"           # second color
+c2="${reset}${yellow}"          # third color
 
 ## OUTPUT
 
