@@ -14,8 +14,8 @@ To install and run:
 ```sh
 git clone https://github.com/ThatOneCalculator/CalcFetch.git
 cd CalcFetch/
-sudo cp calcfetch ~/.local/bin/
-sudo chmod +x ~/.local/bin/calcfetch
+sudo chmod +x calcfetch
+echo /bin/ ~/.local/bin/ | xargs -n 1 cp calcfetch
 cd ..
 sudo rm -r CalcFetch/
 calcfetch
