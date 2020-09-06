@@ -31,5 +31,5 @@ Features:
 
 Know issue(s):
 
-- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed.
+- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to nf-fa-coffee () from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
 - No support for macOS/BSD package managers/uptime calculations.
