@@ -7,7 +7,7 @@ Dependencies:
 
 - [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
 - Bash
-- Pretty much any Linux distro
+- Pretty much any Linux distro (or macOS/BSD, but...*)
 
 To install and run:
 
@@ -31,3 +31,4 @@ Features:
 Know issue(s):
 
 - In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed.
+- No support for macOS/BSD package managers/uptime calculations.
