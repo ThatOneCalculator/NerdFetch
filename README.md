@@ -28,10 +28,11 @@ Features:
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, and Android
+- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Gentoo, and Android
 
 Know issues:
 
 - In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to nf-fa-coffee from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
 - No support for BSD package managers/uptime calculations.
 - Completely breaks on Android due to the fact that /etc/os_release doesn't exist on Android
+- Gentoo with BusyBox seems to have issues detecting the package manager
