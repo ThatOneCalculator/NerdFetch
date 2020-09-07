@@ -108,7 +108,7 @@ case $OSTYPE in
 		mem_used="idk"
 esac
 memstat="${mem_used}/${mem_full} MB"\
-mempercent=$(($("$(echo "scale=2; ${mem_used}/${mem_full}" | bc -l )")*100))
+mempercent=$(($(echo "scale=2; ${mem_used}/${mem_full}" | bc -l )*100))
 
 ## DEFINE COLORS
 
@@ -140,7 +140,7 @@ cat <<EOF
 ${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
 ${c0}     (${c1}.. ${c0}\    ${lc}  ${ic}${os}${reset}
 ${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
-${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat} ( ${mempercent} %)
+${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat} ${mempercent}
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}  ${ic}${packages} (${manager})${reset}
 ${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}  ${ic}${uptime}${reset}
 ${c2}  \/${c0}-____${c2}\/${reset}   ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
