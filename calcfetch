@@ -24,7 +24,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum dnf rpm xbps-query apt brew port zypper pacman apk cpm)
+manager=$(which nix-env yum dnf rpm xbps-query apt brew port zypper pacman apk cpm)>/dev/null 2>&1
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
