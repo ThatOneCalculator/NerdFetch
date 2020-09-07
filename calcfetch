@@ -5,20 +5,20 @@
 kernel="$(uname -r)"
 host="$(hostname)"
 case $OSTYPE in
-    "linux-gnu"*)
-        . /etc/os-release
-        os=$PRETTY_NAME
-        shell=${SHELL##*/};;
-    "darwin"*)
-        while IFS='<>' read -r _ _ line _; do
-            case $line in
-                ProductVersion)
-                    IFS='<>' read -r _ _ mac_version _
-                    break;;
-            esac
-        done < /System/Library/CoreServices/SystemVersion.plist
-        os="macOS ${mac_version}";;
-    *) os="Idk"
+	"linux-gnu"*)
+		. /etc/os-release
+		os=$PRETTY_NAME
+		shell=${SHELL##*/};;
+	"darwin"*)
+		while IFS='<>' read -r _ _ line _; do
+			case $line in
+				ProductVersion)
+					IFS='<>' read -r _ _ mac_version _
+					break;;
+			esac
+		done < /System/Library/CoreServices/SystemVersion.plist
+		os="macOS ${mac_version}";;
+	*) os="Idk"
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
@@ -26,30 +26,30 @@ esac
 manager=$(command which nix-env yum dnf rpm xbps-query apt brew port zypper pacman apk cpm)
 manager=${manager##*/}
 case $manager in
-    cpm) packages="$(cpm C)";;
-    brew) packages="$(brew list | wc -l)";;
-    port) packages=$(($(port installed | wc -l)-1));;
-    apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
-    rpm) packages="$(rpm -qa --last| wc -l)";;
-    yum) packages="$(yum list installed | wc -l)";;
-    dnf) packages="$(dnf list installed | wc -l)";;
-    zypper) packages="$(zypper se | wc -l)";;
-    pacman) packages="$(pacman -Q | wc -l)";;
-    xbps-query) packages="$(xbps-query -l | wc -l)";;
-    nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
-    apk) packages="$(apk list --installed | wc -l)";;
-    *) packages="idk"
+	cpm) packages="$(cpm C)";;
+	brew) packages="$(brew list | wc -l)";;
+	port) packages=$(($(port installed | wc -l)-1));;
+	apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
+	rpm) packages="$(rpm -qa --last| wc -l)";;
+	yum) packages="$(yum list installed | wc -l)";;
+	dnf) packages="$(dnf list installed | wc -l)";;
+	zypper) packages="$(zypper se | wc -l)";;
+	pacman) packages="$(pacman -Q | wc -l)";;
+	xbps-query) packages="$(xbps-query -l | wc -l)";;
+	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
+	apk) packages="$(apk list --installed | wc -l)";;
+	*) packages="idk"
 esac
 
 ## UPTIME DETECTION
 
 case $OSTYPE in
-    "linux-gnu"*) IFS=. read -r s _ < /proc/uptime;;
-    *) 
-        s=$(sysctl -n kern.boottime)
-        s=${s#*=}
-        s=${s%,*}
-        s=$(($(date +%s) - s));;
+	"linux-gnu"*) IFS=. read -r s _ < /proc/uptime;;
+	*) 
+		s=$(sysctl -n kern.boottime)
+		s=${s#*=}
+		s=${s%,*}
+		s=$(($(date +%s) - s));;
 esac
 d="$((s / 60 / 60 / 24))"
 h="$((s / 60 / 60 % 24))"
@@ -64,46 +64,49 @@ m="$((s / 60 % 60))"
 [ "$m" = 0 ] && m=
 # Make the output of uptime smaller.
 case $uptime_shorthand in
-    tiny)
-        [ "$d" ] && uptime="${d}d, "
-        [ "$h" ] && uptime="$uptime${h}h, "
-        [ "$m" ] && uptime="$uptime${m}m"
-        uptime=${uptime%, };;
-    *)
-        [ "$d" ] && uptime="$d day$dp, "
-        [ "$h" ] && uptime="$uptime$h hour$hp, "
-        [ "$m" ] && uptime="$uptime$m min$mp"
-        uptime=${uptime%, };;
+	tiny)
+		[ "$d" ] && uptime="${d}d, "
+		[ "$h" ] && uptime="$uptime${h}h, "
+		[ "$m" ] && uptime="$uptime${m}m"
+		uptime=${uptime%, };;
+	*)
+		[ "$d" ] && uptime="$d day$dp, "
+		[ "$h" ] && uptime="$uptime$h hour$hp, "
+		[ "$m" ] && uptime="$uptime$m min$mp"
+		uptime=${uptime%, };;
 esac
 
 ## RAM DETECTION
 
-# case $OSTYPE in
-#     "linux-gnu"*)
-        while IFS=':k '  read -r key val _; do
-            case $key in
-                MemTotal)
-                    mem_used=$((mem_used + val))
-                    mem_full=$val;;
-                Shmem) mem_used=$((mem_used + val));;
-                MemFree|Buffers|Cached|SReclaimable) mem_used=$((mem_used - val));;
-            esac
-        done < /proc/meminfo
-        mem_used=$((mem_used / 1024)) 
-        mem_full=$((mem_full / 1024)) #;;
-#     "darwin"*)
-#         mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
-#         while IFS=:. read -r key val; do
-#             case $key in
-#                 *' wired'*|*' active'*|*' occupied'*)
-#                     mem_used=$((mem_used + ${val:-0}));;
-#             esac
-#             done <<-EOF
-#                 $(vm_stat)
-#                         EOF
+case $OSTYPE in
+	"linux-gnu"*)
+		while IFS=':k '  read -r key val _; do
+			case $key in
+				MemTotal)
+					mem_used=$((mem_used + val))
+					mem_full=$val;;
+				Shmem) mem_used=$((mem_used + val));;
+				MemFree|Buffers|Cached|SReclaimable) mem_used=$((mem_used - val));;
+			esac
+		done < /proc/meminfo
+		mem_used=$((mem_used / 1024)) 
+		mem_full=$((mem_full / 1024));;
+	"darwin"*)
+		mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
+		while IFS=:. read -r key val; do
+			case $key in
+				*' wired'*|*' active'*|*' occupied'*)
+					mem_used=$((mem_used + ${val:-0}));;
+			esac
+			done <<-EOF
+				$(vm_stat)
+						EOF
 
-#             mem_used=$((mem_used * 4 / 1024))
-# esac
+			mem_used=$((mem_used * 4 / 1024));;
+	*)
+		mem_full="idk"
+		mem_used="idk"
+esac
 memstat="${mem_used}/${mem_full} MB"
 # let memper=mem_used/mem_full
 
