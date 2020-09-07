@@ -1,15 +1,15 @@
-#!/usr/bin/env bash
-
+#!/bin/sh
 ## OS/ENVIRONMENT INFO DETECTION
 
 kernel="$(uname -r)"
 host="$(hostname)"
-case $OSTYPE in
-	"linux-gnu"*)
+ostype="$(uname)"
+case $ostype in
+	"Linux"*)
 		. /etc/os-release
 		os=$PRETTY_NAME
 		shell=${SHELL##*/};;
-	"darwin"*)
+	"Darwin"*)
 		while IFS='<>' read -r _ _ line _; do
 			case $line in
 				ProductVersion)
@@ -43,8 +43,8 @@ esac
 
 ## UPTIME DETECTION
 
-case $OSTYPE in
-	"linux-gnu"*) IFS=. read -r s _ < /proc/uptime;;
+case $ostype in
+	"Linux") IFS=. read -r s _ < /proc/uptime;;
 	*) 
 		s=$(sysctl -n kern.boottime)
 		s=${s#*=}
@@ -78,8 +78,8 @@ esac
 
 ## RAM DETECTION
 
-case $OSTYPE in
-	"linux-gnu"*)
+case $ostype in
+	"Linux")
 		while IFS=':k '  read -r key val _; do
 			case $key in
 				MemTotal)
@@ -91,7 +91,7 @@ case $OSTYPE in
 		done < /proc/meminfo
 		mem_used=$((mem_used / 1024)) 
 		mem_full=$((mem_full / 1024));;
-	"darwin"*)
+	"Darwin"*)
 		mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
 		while IFS=:. read -r key val; do
 			case $key in
