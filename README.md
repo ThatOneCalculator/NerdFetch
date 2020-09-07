@@ -28,7 +28,7 @@ Features:
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, macOS 10.14, and Arch Linux
+- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS (pre-sur), and Arch Linux
 
 Know issues:
 
