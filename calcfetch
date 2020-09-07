@@ -44,7 +44,7 @@ esac
 ## UPTIME DETECTION
 
 case $OSTYPE in
-    "linux-gnu"*) IFS=. read -r s _ < /proc/uptime
+    "linux-gnu"*) IFS=. read -r s _ < /proc/uptime;;
     *) 
         s=$(sysctl -n kern.boottime)
         s=${s#*=}
@@ -90,7 +90,7 @@ case $OSTYPE in
             esac
         done < /proc/meminfo
         mem_used=$((mem_used / 1024)) 
-        mem_full=$((mem_full / 1024))
+        mem_full=$((mem_full / 1024));;
     "darwin"*)
         mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
         while IFS=:. read -r key val; do
