@@ -27,7 +27,7 @@ Features:
 - Uptime detection that is actually good
 - Unlike neofetch, it uses almost no resources
 - Portable
-- Techically POSIX compliant
+- POSIX compliant
 
 Know issues:
 
