@@ -17,7 +17,7 @@ case $OSTYPE in
                     break;;
             esac
         done < /System/Library/CoreServices/SystemVersion.plist
-        os="macOS ${mac_version}"
+        os="macOS ${mac_version}";;
     *) os="Idk"
 esac
 
