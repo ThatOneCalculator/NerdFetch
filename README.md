@@ -7,7 +7,7 @@ Dependencies:
 
 - [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
 - Bash
-- Pretty much any Linux distro (or macOS/BSD, but...*)
+- Pretty much any Linux distro
 
 To install and run:
 
