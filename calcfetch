@@ -108,8 +108,8 @@ case $OSTYPE in
 		mem_used="idk"
 esac
 memstat="${mem_used}/${mem_full} MB"
-mempercent="$("scale=2; ${mem_used}/${mem_full}" | bc -l )"
-mempercent="echo $mempercent | cut -c2-"
+mempercent="$("${mem_used}/${mem_full}" | bc -l )"
+mempercent="echo $mempercent | cut -c2-4"
 
 ## DEFINE COLORS
 
