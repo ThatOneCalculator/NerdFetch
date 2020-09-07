@@ -5,7 +5,7 @@
 kernel="$(uname -r)"
 host="$(hostname)"
 case $OSTYPE in
-	"linux-gnu"*)
+	"linux-gnu")
 		. /etc/os-release
 		os=$PRETTY_NAME
 		shell=${SHELL##*/};;
@@ -44,7 +44,7 @@ esac
 ## UPTIME DETECTION
 
 case $OSTYPE in
-	"linux-gnu"*) IFS=. read -r s _ < /proc/uptime;;
+	"linux-gnu") IFS=. read -r s _ < /proc/uptime;;
 	*) 
 		s=$(sysctl -n kern.boottime)
 		s=${s#*=}
@@ -79,7 +79,7 @@ esac
 ## RAM DETECTION
 
 case $OSTYPE in
-	"linux-gnu"*)
+	"linux-gnu")
 		while IFS=':k '  read -r key val _; do
 			case $key in
 				MemTotal)
