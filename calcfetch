@@ -14,7 +14,7 @@ manager=$(command which nix-env yum dnf rpm xbps-query brew apt zypper pacman ap
 manager=${manager##*/}
 case $manager in
     cpm) packages="$(cpm C)";;
-    brew) packages="$(brew list | wc -l)"
+    brew) packages="$(brew list | wc -l)";;
     apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
     rpm) packages="$(rpm -qa --last| wc -l)";;
     yum) packages="$(yum list installed | wc -l)";;
