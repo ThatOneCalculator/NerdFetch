@@ -90,7 +90,7 @@ esac
             esac
         done < /proc/meminfo
         mem_used=$((mem_used / 1024)) 
-        mem_full=$((mem_full / 1024));;
+        mem_full=$((mem_full / 1024)) #;;
 #     "darwin"*)
 #         mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
 #         while IFS=:. read -r key val; do
