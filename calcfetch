@@ -1,4 +1,5 @@
 #!/bin/sh
+
 ## OS/ENVIRONMENT INFO DETECTION
 
 kernel="$(uname -r)"
@@ -23,7 +24,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(command which nix-env yum dnf rpm xbps-query apt brew port zypper pacman apk cpm)
+manager=$(command -v nix-env yum dnf rpm xbps-query apt brew port zypper pacman apk cpm)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
