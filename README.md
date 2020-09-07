@@ -1,5 +1,5 @@
 # CalcFetch
- A simple Linux/macOS fetch script using Nerdfonts
+ A POSIX Linux/macOS fetch script using Nerdfonts
 
 ![Screenshot](https://i.imgur.com/tlZt1X8.png)
 
@@ -27,7 +27,7 @@ Features:
 - Uptime detection that is actually good
 - Unlike neofetch, it uses almost no resources
 - Portable
-- Mostly POSIX compliant
+- POSIX compliant
 
 Know issues:
 
