@@ -95,11 +95,13 @@ case $OSTYPE in
         mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
         while IFS=:. read -r key val; do
             case $key in
-                *' wired'*|*' active'*|*' occupied'*) mem_used=$((mem_used + ${val:-0}));;
+                *' wired'*|*' active'*|*' occupied'*)
+                    mem_used=$((mem_used + ${val:-0}));;
             esac
             done <<-EOF
                 $(vm_stat)
                         EOF
+
             mem_used=$((mem_used * 4 / 1024))
 esac
 memstat="${mem_used}/${mem_full} MB"
