@@ -4,9 +4,22 @@
 
 kernel="$(uname -r)"
 host="$(hostname)"
-. /etc/os-release
-os=$PRETTY_NAME
-shell=${SHELL##*/}
+case $OSTYPE in
+    "linux-gnu"*)
+        . /etc/os-release
+        os=$PRETTY_NAME
+        shell=${SHELL##*/};;
+    "darwin"*)
+        while IFS='<>' read -r _ _ line _; do
+            case $line in
+                ProductVersion)
+                    IFS='<>' read -r _ _ mac_version _
+                    break;;
+            esac
+        done < /System/Library/CoreServices/SystemVersion.plist
+        os="macOS ${mac_version}"
+    *) os="Idk"
+esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
@@ -30,7 +43,14 @@ esac
 
 ## UPTIME DETECTION
 
-IFS=. read -r s _ < /proc/uptime
+case $OSTYPE in
+    "linux-gnu"*) IFS=. read -r s _ < /proc/uptime
+    *) 
+        s=$(sysctl -n kern.boottime)
+        s=${s#*=}
+        s=${s%,*}
+        s=$(($(date +%s) - s));;
+esac
 d="$((s / 60 / 60 / 24))"
 h="$((s / 60 / 60 % 24))"
 m="$((s / 60 % 60))"
@@ -58,17 +78,30 @@ esac
 
 ## RAM DETECTION
 
-while IFS=':k '  read -r key val _; do
-    case $key in
-        MemTotal)
-            mem_used=$((mem_used + val))
-            mem_full=$val;;
-        Shmem) mem_used=$((mem_used + val));;
-        MemFree|Buffers|Cached|SReclaimable) mem_used=$((mem_used - val));;
-    esac
-done < /proc/meminfo
-mem_used=$((mem_used / 1024)) 
-mem_full=$((mem_full / 1024))
+case $OSTYPE in
+    "linux-gnu"*)
+        while IFS=':k '  read -r key val _; do
+            case $key in
+                MemTotal)
+                    mem_used=$((mem_used + val))
+                    mem_full=$val;;
+                Shmem) mem_used=$((mem_used + val));;
+                MemFree|Buffers|Cached|SReclaimable) mem_used=$((mem_used - val));;
+            esac
+        done < /proc/meminfo
+        mem_used=$((mem_used / 1024)) 
+        mem_full=$((mem_full / 1024))
+    "darwin"*)
+        mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
+        while IFS=:. read -r key val; do
+            case $key in
+                *' wired'*|*' active'*|*' occupied'*) mem_used=$((mem_used + ${val:-0}));;
+            esac
+            done <<-EOF
+                $(vm_stat)
+                        EOF
+            mem_used=$((mem_used * 4 / 1024))
+esac
 memstat="${mem_used}/${mem_full} MB"
 # let memper=mem_used/mem_full
 
