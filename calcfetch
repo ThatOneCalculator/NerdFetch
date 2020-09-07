@@ -78,8 +78,8 @@ esac
 
 ## RAM DETECTION
 
-case $OSTYPE in
-    "linux-gnu"*)
+# case $OSTYPE in
+#     "linux-gnu"*)
         while IFS=':k '  read -r key val _; do
             case $key in
                 MemTotal)
@@ -91,19 +91,19 @@ case $OSTYPE in
         done < /proc/meminfo
         mem_used=$((mem_used / 1024)) 
         mem_full=$((mem_full / 1024));;
-    "darwin"*)
-        mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
-        while IFS=:. read -r key val; do
-            case $key in
-                *' wired'*|*' active'*|*' occupied'*)
-                    mem_used=$((mem_used + ${val:-0}));;
-            esac
-            done <<-EOF
-                $(vm_stat)
-                        EOF
+#     "darwin"*)
+#         mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
+#         while IFS=:. read -r key val; do
+#             case $key in
+#                 *' wired'*|*' active'*|*' occupied'*)
+#                     mem_used=$((mem_used + ${val:-0}));;
+#             esac
+#             done <<-EOF
+#                 $(vm_stat)
+#                         EOF
 
-            mem_used=$((mem_used * 4 / 1024))
-esac
+#             mem_used=$((mem_used * 4 / 1024))
+# esac
 memstat="${mem_used}/${mem_full} MB"
 # let memper=mem_used/mem_full
 
