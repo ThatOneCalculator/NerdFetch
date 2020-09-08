@@ -1,3 +1,7 @@
+# This clones the repo and installs it.
+# If you want to install it after cloning manually for some reason,
+# Skip the first 2 and last 3 lines.
+
 git clone https://github.com/ThatOneCalculator/CalcFetch.git
 cd CalcFetch/
 sudo chmod +x calcfetch
