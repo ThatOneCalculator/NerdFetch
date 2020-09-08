@@ -36,7 +36,7 @@ case $manager in
 	dnf) packages="$(dnf list installed | wc -l)";;
 	zypper) packages="$(zypper se | wc -l)";;
 	pacman) packages="$(pacman -Q | wc -l)";;
-	pkg|emerge) packages="$(ls -dl /var/db/pkg */* | wc -l)";;
+	pkg|emerge) packages="$(ls -dl /var/db/pkg/*/* | wc -l)";;
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
 	apk) packages="$(apk list --installed | wc -l)";;
