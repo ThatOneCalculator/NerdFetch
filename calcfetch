@@ -24,7 +24,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(whereis nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk cpm)>/dev/null 2>&1
+manager=$(whereis nix-env yum dnf rpm apt brew port zypper pacman xbps-query kiss pkg emerge apk cpm)>/dev/null 2>&1
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -36,6 +36,7 @@ case $manager in
 	dnf) packages="$(dnf list installed | wc -l)";;
 	zypper) packages="$(zypper se | wc -l)";;
 	pacman) packages="$(pacman -Q | wc -l)";;
+	kiss) packages="$(kiss list | wc -l)";;
 	pkg|emerge) packages="$(ls -dl /var/db/pkg/*/* | wc -l)";;
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
