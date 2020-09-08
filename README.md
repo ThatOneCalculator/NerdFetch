@@ -1,7 +1,7 @@
 # CalcFetch
  A POSIX Linux/macOS fetch script using Nerdfonts
 
-![Screenshot](https://i.imgur.com/tlZt1X8.png)
+![Screenshot](https://i.imgur.com/JMhheSk.png)
 
 ### Dependencies:
 
