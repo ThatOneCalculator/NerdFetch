@@ -10,7 +10,7 @@
 
 ### To install and run:
 
-Automatically: `curl https://0x0.st/i6y5.sh | sh`
+Automatically: `curl https://raw.githubusercontent.com/ThatOneCalculator/CalcFetch/master/install | sh`
 
 Manually:
 ```shusr/bin/env bash
