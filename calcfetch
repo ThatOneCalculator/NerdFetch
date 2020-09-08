@@ -24,7 +24,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query kiss pkg emerge apk brl cpm)>/dev/null 2>&1
+manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl cpm)>/dev/null 2>&1
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -112,8 +112,8 @@ case $ostype in
 		mem_used="idk"
 esac
 memstat="${mem_used}/${mem_full} MB"
-mempercent="$(echo "${mem_used}/${mem_full}" | bc -l )"
-mempercent="$(echo $mempercent | cut -c2-3)"
+mempercent="$(echo 100 ${mem_used} \* ${mem_full} / p | dc)"
+# mempercent="$(echo $mempercent | cut -c2-3)"
 
 ## DEFINE COLORS
 
