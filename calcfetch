@@ -24,7 +24,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl cpm)>/dev/null 2>&1
+manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl cpm 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -37,7 +37,7 @@ case $manager in
 	zypper) packages="$(zypper se | wc -l)";;
 	pacman) packages="$(pacman -Q | wc -l)";;
 	kiss) packages="$(kiss list | wc -l)";;
-	pkg|emerge) packages="$(ls -dl /var/db/pkg/*/* | wc -l)";;
+	pkg|emerge) packages="$(qlist -I | wc -l)";;
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
 	apk) packages="$(apk list --installed | wc -l)";;
@@ -148,5 +148,5 @@ ${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat} (${mempercent}%)
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}  ${ic}${packages} (${manager})${reset}
 ${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}  ${ic}${uptime}${reset}
-${c2}  \/${c0}-____${c2}\/${reset}   ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+${c2}  \/${c0}-____${c2}\/${reset}   ${lc}  ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
