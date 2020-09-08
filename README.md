@@ -11,6 +11,9 @@
 
 ### To install and run:
 
+Automatically: `curl https://0x0.st/i6y5.sh | sh`
+
+Manually:
 ```shusr/bin/env bash
 git clone https://github.com/ThatOneCalculator/CalcFetch.git
 cd CalcFetch/
