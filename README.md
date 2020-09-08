@@ -30,7 +30,7 @@ calcfetch
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Gentoo, and Android
+- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Gentoo, Kiss, and Android
 
 ### OSes supported:
 - Debian/Ubuntu based Linux
@@ -47,7 +47,7 @@ calcfetch
 
 ### Know issues:
 
-- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to nf-fa-coffee from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
 - No support for BSD package managers/uptime calculations.
-- Some wonky-ness on Gentoo
+- *Some wonkiness on Gentoo
 - Completely breaks on Android due to the fact that /etc/os_release doesn't exist on Android
+- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to nf-fa-coffee from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
