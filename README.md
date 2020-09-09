@@ -21,7 +21,7 @@ calcfetch
 ```
 
 ### Features:
-- Package manager and package count detection
+- Package manager and package count detection across many OSes
 - Support across all nerdfonts
 - Uptime detection that is actually good
 - Unlike neofetch, it uses almost no resources
