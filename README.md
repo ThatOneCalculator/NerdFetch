@@ -10,14 +10,11 @@
 
 ### To install and run:
 
-Automatically: `curl https://raw.githubusercontent.com/ThatOneCalculator/CalcFetch/master/install | sh`
-
-Manually:
-```shusr/bin/env bash
+Copy-paste this into your terminal:
+```sh
 git clone https://github.com/ThatOneCalculator/CalcFetch.git
 cd CalcFetch/
-sudo chmod +x calcfetch
-echo /bin/ ~/.local/bin/ | xargs -n 1 sudo cp calcfetch
+sudo install -m755 calcfetch /bin/calcfetch
 cd ..
 sudo rm -r CalcFetch/
 calcfetch
