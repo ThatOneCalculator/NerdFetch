@@ -27,7 +27,7 @@ calcfetch
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Gentoo, Kiss, EndeavorOS, and Android
+- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavorOS, and Android
 
 ### OSes supported:
 - Debian/Ubuntu based Linux
