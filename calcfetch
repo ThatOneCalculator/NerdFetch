@@ -24,7 +24,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl cpm 2>/dev/null)
+manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -42,6 +42,7 @@ case $manager in
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
 	apk) packages="$(apk list --installed | wc -l)";;
 	brl) packages="$(brl list | wc -l)";;
+	eopkg) packages="$(eopkg li | wc -l)";;
 	*) packages="idk"
 esac
 
