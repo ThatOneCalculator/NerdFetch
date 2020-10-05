@@ -19,7 +19,7 @@ cd CalcFetch/
 sudo install -m755 calcfetch /bin/calcfetch
 # go back and remove the download
 cd ..
-sudo rm -r CalcFetch/
+rm -rf CalcFetch/
 # run
 calcfetch
 ```
