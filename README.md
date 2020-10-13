@@ -53,4 +53,4 @@ nerdfetch
 - No support for BSD package managers/uptime calculations.
 - Completely breaks on Android due to the fact that /etc/os_release doesn't exist on Android
 - Weird spacing on macOS if you use brew given its complete weirdness
-- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to nf-fa-coffee from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
+- In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to `nf-fa-coffee` from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
