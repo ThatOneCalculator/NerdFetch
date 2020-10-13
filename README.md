@@ -1,4 +1,4 @@
-# CalcFetch
+# NerdFetch
  A POSIX Linux/macOS fetch script using Nerdfonts
 
 ![Screenshot](https://i.imgur.com/and9kuQ.png)
@@ -13,15 +13,16 @@
 Copy-paste this into your terminal:
 ```sh
 # clone repo
-git clone https://github.com/ThatOneCalculator/CalcFetch.git
+git clone https://github.com/ThatOneCalculator/NerdFetch.git
 # cd and install
-cd CalcFetch/
-sudo install -m755 calcfetch /bin/calcfetch
+cd NerdFetch/
+sudo chmod +x nerdfetch
+sudo install -m755 nerdfetch ~/.local/bin/nerdfetch
 # go back and remove the download
 cd ..
-rm -rf CalcFetch/
+rm -rf NerdFetch/
 # run
-calcfetch
+nerdfetch
 ```
 
 ### Features:
