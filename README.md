@@ -12,11 +12,10 @@
 
 Copy-paste this into your terminal:
 ```sh
-# clone repo
+# clone and go into repo
 git clone https://github.com/ThatOneCalculator/NerdFetch.git
-# cd and install
 cd NerdFetch/
-chmod +x nerdfetch
+# install
 install -m755 nerdfetch ~/.local/bin/nerdfetch
 # go back and remove the download
 cd ..
