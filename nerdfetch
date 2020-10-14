@@ -7,8 +7,7 @@ host="$(hostname)"
 ostype="$(uname)"
 case $ostype in
 	"Linux"*)
-		. /etc/os-release
-		os=$PRETTY_NAME
+		os="$(lsb_release -si)"
 		shell=${SHELL##*/};;
 	"Darwin"*)
 		while IFS='<>' read -r _ _ line _; do
