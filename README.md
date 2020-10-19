@@ -16,7 +16,7 @@ Copy-paste this into your terminal:
 git clone https://github.com/ThatOneCalculator/NerdFetch.git
 cd NerdFetch/
 # install
-install -m755 nerdfetch ~/.local/bin/nerdfetch
+sudo install -m755 nerdfetch /usr/bin/nerdfetch
 # go back and remove the download
 cd ..
 rm -rf NerdFetch/
