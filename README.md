@@ -10,7 +10,7 @@
 
 ### To install and run:
 
-#### [Automatically (Arch Linux)](https://aur.archlinux.org/packages/nerdfetch/):
+#### [Automatically (Arch Linux via the AUR)](https://aur.archlinux.org/packages/nerdfetch/):
 
 ```shell
 yay -S nerdfetch
