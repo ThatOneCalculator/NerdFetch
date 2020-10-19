@@ -4,7 +4,7 @@
 
 . /etc/os-release
 kernel="$(uname -r)"
-host="$(hostname)"
+host="$(cat /proc/sys/kernel/hostname)"
 ostype="$(uname)"
 case $ostype in
 	"Linux"*)
