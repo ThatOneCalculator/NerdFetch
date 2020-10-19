@@ -1,13 +1,4 @@
-# clone and go into repo
-git clone https://github.com/ThatOneCalculator/NerdFetch.git
-cd NerdFetch/
-# install
-sudo install -m755 nerdfetch /usr/bin/nerdfetch
-# go back and remove the download
-cd ..
-rm -rf NerdFetch/
-# run
-nerdfetch#!/bin/sh
+#!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
 
