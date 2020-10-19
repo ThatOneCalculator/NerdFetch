@@ -1,4 +1,13 @@
-#!/bin/sh
+# clone and go into repo
+git clone https://github.com/ThatOneCalculator/NerdFetch.git
+cd NerdFetch/
+# install
+sudo install -m755 nerdfetch /usr/bin/nerdfetch
+# go back and remove the download
+cd ..
+rm -rf NerdFetch/
+# run
+nerdfetch#!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
 
@@ -8,8 +17,7 @@ host="$(hostname)"
 ostype="$(uname)"
 case $ostype in
 	"Linux"*)
-		os="${PRETTY_NAME}
-i dont want to switch"
+		os="${PRETTY_NAME}"
 		shell=${SHELL##*/};;
 	"Darwin"*)
 		while IFS='<>' read -r _ _ line _; do
