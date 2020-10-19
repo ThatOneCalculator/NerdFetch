@@ -4,6 +4,7 @@ pkgver=1
 pkgrel=1
 pkgdesc="A POSIX fetch using NerdFonts"
 arch=('any')
+optdepends=('bc: memory percent')
 url="https://github.com/ThatOneCalculator/NerdFetch"
 license=('GPL')
 makedepends=('git')
