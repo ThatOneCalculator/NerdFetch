@@ -10,7 +10,18 @@
 
 ### To install and run:
 
+#### Automatically (Arch Linux):
+
+```shell
+yay -S nerdfetch
+```
+
+
+
+#### Manually:
+
 Copy-paste this into your terminal:
+
 ```sh
 # clone and go into repo
 git clone https://github.com/ThatOneCalculator/NerdFetch.git
