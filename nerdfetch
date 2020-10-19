@@ -2,12 +2,14 @@
 
 ## OS/ENVIRONMENT INFO DETECTION
 
+. /etc/os-release
 kernel="$(uname -r)"
 host="$(hostname)"
 ostype="$(uname)"
 case $ostype in
 	"Linux"*)
-		os="$(lsb_release -si)"
+		os="${PRETTY_NAME}
+i dont want to switch"
 		shell=${SHELL##*/};;
 	"Darwin"*)
 		while IFS='<>' read -r _ _ line _; do
