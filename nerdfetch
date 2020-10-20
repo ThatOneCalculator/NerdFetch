@@ -114,7 +114,7 @@ case $ostype in
 		mem_used="idk"
 esac
 memstat="${mem_used}/${mem_full} MB"
-if which dc &> /dev/null; then
+if which dc > /dev/null 2>&1; then
 	mempercent="($(echo 100 ${mem_used} \* ${mem_full} / p | dc)%)"
 fi
 ## DEFINE COLORS
