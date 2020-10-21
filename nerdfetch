@@ -23,8 +23,8 @@ case $ostype in
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
-
-manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl yay cpm eopkg 2>/dev/null)
+## changed from yay -Q to pacman -Q, not everybody has yay
+manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge apk kiss brl pacman cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -36,7 +36,7 @@ case $manager in
 	dnf) packages="$(dnf list installed | wc -l)";;
 	zypper) packages="$(zypper se | wc -l)";;
 	pacman) packages="$(pacman -Q | wc -l)";;
-	yay) packages="$(yay -Q | wc -l)";;
+	yay) packages="$(pacman -Q | wc -l)";;
 	kiss) packages="$(kiss list | wc -l)";;
 	pkg|emerge) packages="$(qlist -I | wc -l)";;
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
@@ -143,13 +143,27 @@ c2="${reset}${yellow}"          # third color
 
 ## OUTPUT
 
-cat <<EOF
 
-${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
-${c0}     (${c1}.. ${c0}\    ${lc}  ${ic}${os}${reset}
-${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
-${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat} ${mempercent}
-${c0}   ( ${c1}|  | ${c0}/|  ${lc}  ${ic}${packages} (${manager})${reset}
-${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}  ${ic}${uptime}${reset}
-${c2}  \/${c0}-____${c2}\/${reset}   ${lc}  ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+
+echo -e ' \e[H\e[2J
+           \e[0;36m.
+          \e[0;36m/ \
+         \e[0;36m/   \      \e[1;37m               #     \e[1;36m| *
+        \e[0;36m/^.   \     \e[1;37m a##e #%" a#"e 6##%  \e[1;36m| | |-^-. |   | \ /
+       \e[0;36m/  .-.  \    \e[1;37m.oOo# #   #    #  #  \e[1;36m| | |   | |   |  X
+      \e[0;36m/  (   ) _\   \e[1;37m%OoO# #   %#e" #  #  \e[1;36m| | |   | ^._.| / \ \e[0;37mTM
+     \e[1;36m/ _.~   ~._^\
+    \e[1; '
+
+
+
+##Old NerdFetch's Output
+cat <<EOF
+${c0}      ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
+${c0}      ${lc}  ${ic}${os}${reset}
+${c0}      ${lc}  ${ic}${kernel}${reset}
+${c0}      ${c0}${lc}  ${ic}${RAM}${memstat} ${mempercent}
+${c0}      ${c1}${c0}${lc}  ${ic}${packages} (${manager})${reset}
+${c2}  ${c0}${c1}${c0} ${c2}${c0} ${lc}    ${ic}${uptime}${reset}
+${c2}  ${c0}${c2}${reset}${lc}       ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
