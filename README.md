@@ -23,7 +23,7 @@ sudo scp nerdfetch /usr/bin/
 cd ..
 rm -rf NerdFetch/
 # run
-nerdfetch
+nerdfetch-ohio2
 ```
 ## Updating:
 # remove nerdfetch-ohio2
