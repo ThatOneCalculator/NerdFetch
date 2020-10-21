@@ -18,7 +18,7 @@ Copy-paste this into your terminal:
 git clone https://github.com/Ohio2/NerdFetch.git
 cd NerdFetch/
 # install 
-sudo scp nerdfetch /usr/bin/
+sudo scp nerdfetch /usr/local/bin/
 # go back and remove the download
 cd ..
 rm -rf NerdFetch/
