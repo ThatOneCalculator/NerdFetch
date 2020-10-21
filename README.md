@@ -25,10 +25,10 @@ rm -rf NerdFetch/
 # run
 nerdfetch-ohio2
 ```
-## Updating:
-# remove nerdfetch-ohio2
+#Updating:
+#remove nerdfetch-ohio2
 sudo rm /usr/bin/nerdfetch-ohio2
-# Follow To install and run.
+#Follow To install and run.
 ## Features:
 - Package manager and package count detection across many OSes
 - Support across all nerdfonts
