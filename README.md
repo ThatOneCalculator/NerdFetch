@@ -15,7 +15,7 @@ Copy-paste this into your terminal:
 
 ```sh
 # clone and go into repo
-git clone https://github.com/ThatOneCalculator/NerdFetch.git
+git clone https://github.com/Ohio2/NerdFetch.git
 cd NerdFetch/
 # install 
 sudo scp nerdfetch /usr/bin/
@@ -25,7 +25,10 @@ rm -rf NerdFetch/
 # run
 nerdfetch
 ```
-
+### Updating:
+# remove nerdfetch-ohio2
+sudo rm /usr/bin/nerdfetch-ohio2
+# Follow To install and run.
 ### Features:
 - Package manager and package count detection across many OSes
 - Support across all nerdfonts
