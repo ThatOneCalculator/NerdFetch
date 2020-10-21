@@ -11,24 +11,14 @@
 
 ### To install and run:
 
-#### [Automatically (Arch Linux via the AUR)](https://aur.archlinux.org/packages/nerdfetch/):
-
-```shell
-yay -S nerdfetch
-```
-
-
-
-#### Manually:
-
 Copy-paste this into your terminal:
 
 ```sh
 # clone and go into repo
 git clone https://github.com/ThatOneCalculator/NerdFetch.git
 cd NerdFetch/
-# install
-sudo install -m755 nerdfetch /usr/bin/nerdfetch
+# install 
+sudo scp nerdfetch /usr/bin/
 # go back and remove the download
 cd ..
 rm -rf NerdFetch/
@@ -59,8 +49,9 @@ nerdfetch
 - Solus Linux
 - macOS 10.x
 
-### Know issues:
+### Known issues:
 
+- Arch Only logo, but it ***should*** work normally, as i haven't tested it yet.
 - No support for BSD package managers/uptime calculations.
 - Completely breaks on Android due to the fact that /etc/os_release doesn't exist on Android
 - Weird spacing on macOS if you use brew given its complete weirdness
