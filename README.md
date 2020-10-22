@@ -18,6 +18,7 @@ Copy-paste this into your terminal:
 git clone https://github.com/Ohio2/NerdFetch.git
 cd NerdFetch/
 # install 
+chmod +x nerdfetch
 sudo scp nerdfetch /usr/local/bin/nerdfetch-ohio2
 # go back and remove the download
 cd ..
