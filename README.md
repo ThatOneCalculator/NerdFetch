@@ -18,17 +18,19 @@ Copy-paste this into your terminal:
 git clone https://github.com/Ohio2/NerdFetch.git
 cd NerdFetch/
 # install 
-sudo scp nerdfetch /usr/local/bin/
+sudo scp nerdfetch /usr/local/bin/nerdfetch-ohio2
 # go back and remove the download
 cd ..
 rm -rf NerdFetch/
 # run
 nerdfetch-ohio2
 ```
-#Updating:
+##Updating:
+```
 #remove nerdfetch-ohio2
 sudo rm /usr/bin/nerdfetch-ohio2
 #Follow To install and run.
+```
 ## Features:
 - Package manager and package count detection across many OSes
 - Support across all nerdfonts
