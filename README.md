@@ -41,9 +41,11 @@ sudo rm /usr/bin/nerdfetch-ohio2
 - Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, LilKirbsOS, and Android
 
 ### OSes supported:
-- Debian/Ubuntu based Linux
-- Arch based Linux
+- Ubuntu based Linux (Debi script)
+- Arch based Linux (normal script)
+- Other (Pengoo script)
 (Logos)
+
 
 ### Known issues:
 
