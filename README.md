@@ -41,20 +41,10 @@ sudo rm /usr/bin/nerdfetch-ohio2
 ### OSes supported:
 - Debian/Ubuntu based Linux
 - Arch based Linux
-- RPM based Linux
-- Fedora Linux
-- openSUSE Linux
-- Bedrock Linux
-- Alpine Linux
-- KISS Linux
-- Void Linux
-- Gentoo Linux
-- Solus Linux
-- macOS 10.x
+(Logos)
 
 ### Known issues:
 
-- Arch Only logo, but it ***should*** work normally, as i haven't tested it yet.
 - No support for BSD package managers/uptime calculations.
 - Completely breaks on Android due to the fact that /etc/os_release doesn't exist on Android
 - Weird spacing on macOS if you use brew given its complete weirdness
