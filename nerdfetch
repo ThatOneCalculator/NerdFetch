@@ -133,9 +133,9 @@ reset='[0m'
 
 ## USER VARIABLES -- YOU CAN CHANGE THESE
 
-lc="${reset}${bold}${magenta}"  # labels
-nc="${reset}${bold}${yellow}"   # user
-hn="${reset}${bold}${blue}"     # hostname
+lc="${reset}${bold}${cyan}"  # labels
+nc="${reset}${bold}${red}"   # user
+hn="${reset}${bold}${green}"     # hostname
 ic="${reset}${green}"           # info
 c0="${reset}${grey}"           # first color
 c1="${reset}${white}"           # second color
@@ -159,7 +159,7 @@ echo -e ' \e[H\e[2J
 
 ##Old NerdFetch's Output
 cat <<EOF
-${c0}      ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
+${c0}      ${nc}${USER}${reset} on ${reset}${hn}${host}${reset} 
 ${c0}      ${lc}  ${ic}${os}${reset}
 ${c0}      ${lc}  ${ic}${kernel}${reset}
 ${c0}      ${c0}${lc}  ${ic}${RAM}${memstat} ${mempercent}
