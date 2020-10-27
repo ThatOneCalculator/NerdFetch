@@ -1,4 +1,5 @@
-# Maintainer: Ohio2 
+# Maintainer: Ohio2 <sekmartyna4@gmail.com>
+# (forked from)Maintainer: ThatOneCalculator (Kainoa Kanter) <kainoakanter@gmail.com>
 pkgname="nerdfetch-ohio2"
 pkgver=r151.82dc230
 pkgrel=1
