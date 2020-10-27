@@ -10,7 +10,10 @@
 - Pretty much any Linux distro/macOS
 
 ### To install and run:
-
+### Arch based distros
+```makepkg -si
+```
+### Non-arch based distros:
 Copy-paste this into your terminal:
 
 ```sh
