@@ -10,9 +10,8 @@
 - Pretty much any Linux distro/macOS
 
 ### To install and run:
-### Arch based distros
-```makepkg -si
-```
+### Arch based distros: (COULD BE USED TO UPDATE ON ARCH-BASED!)
+```makepkg -si```
 ### Non-arch based distros:
 Copy-paste this into your terminal:
 
@@ -29,7 +28,7 @@ rm -rf NerdFetch/
 # run
 nerdfetch-ohio2
 ```
-##Updating:
+### Updating:
 ```
 #remove nerdfetch-ohio2
 sudo rm /usr/bin/nerdfetch-ohio2
