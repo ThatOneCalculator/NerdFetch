@@ -1,5 +1,5 @@
-# Maintainer: ThatOneCalculator (Kainoa Kanter) <kainoakanter@gmail.com>
-pkgname="nerdfetch"
+# Maintainer: Ohio2 
+pkgname="nerdfetch-ohio2"
 pkgver=r151.82dc230
 pkgrel=1
 pkgdesc="A POSIX fetch using NerdFonts"
