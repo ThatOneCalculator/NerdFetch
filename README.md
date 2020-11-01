@@ -56,6 +56,7 @@ nerdfetch
 - KISS Linux
 - Void Linux
 - Gentoo Linux
+- Exherbo Linux
 - Solus Linux
 - macOS 10.x
 
