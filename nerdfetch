@@ -28,7 +28,7 @@ manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg e
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
-	brew) packages="$(brew list | wc -l)";;
+	brew) packages="$(brew list --formula | wc -l)";;
 	port) packages=$(port installed | tot);;
 	apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
 	rpm) packages="$(rpm -qa --last| wc -l)";;
