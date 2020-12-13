@@ -47,7 +47,7 @@ case $manager in
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
 	apk) packages="$(apk list --installed | wc -l)";;
-	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q | wc -l 2>/dev/null)";;
+	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
 	eopkg) packages="$(eopkg li | wc -l)";;
 	*) packages="idk"
 esac
