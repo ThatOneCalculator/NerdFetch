@@ -8,7 +8,11 @@ host="$(cat /proc/sys/kernel/hostname)"
 ostype="$(uname)"
 case $ostype in
 	"Linux"*)
-		os="${PRETTY_NAME}"
+	        if [ -f /bedrock/etc/bedrock-release ]; then
+		 os="$(brl version)"
+		else
+		 os="${PRETTY_NAME}"
+		fi
 		shell=${SHELL##*/};;
 	"Darwin"*)
 		while IFS='<>' read -r _ _ line _; do
@@ -24,7 +28,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge cave apk kiss brl yay cpm eopkg 2>/dev/null)
+manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge cave apk kiss pmm yay cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -43,7 +47,7 @@ case $manager in
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
 	apk) packages="$(apk list --installed | wc -l)";;
-	brl) packages="$(brl list | wc -l)";;
+	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
 	eopkg) packages="$(eopkg li | wc -l)";;
 	*) packages="idk"
 esac
