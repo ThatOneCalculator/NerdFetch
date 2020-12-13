@@ -8,7 +8,11 @@ host="$(cat /proc/sys/kernel/hostname)"
 ostype="$(uname)"
 case $ostype in
 	"Linux"*)
-		os="${PRETTY_NAME}"
+	        if [ -f /bedrock/etc/bedrock-release ]; then
+		 os="$(brl version)"
+		else
+		 os="${PRETTY_NAME}"
+		fi
 		shell=${SHELL##*/};;
 	"Darwin"*)
 		while IFS='<>' read -r _ _ line _; do
