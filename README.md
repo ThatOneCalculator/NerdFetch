@@ -1,7 +1,8 @@
 # NerdFetch
  A POSIX Linux/macOS fetch script using Nerdfonts
 
-![Screenshot](https://i.imgur.com/and9kuQ.png)
+<!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
+![Screenshot](https://i.imgur.com/7wBa7Ak.png)
 
 ### Dependencies:
 
