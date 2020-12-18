@@ -28,8 +28,6 @@ case $ostype in
 			esac
 		done < /System/Library/CoreServices/SystemVersion.plist
 		os="macOS ${mac_version}";;
-	"android"*)
-		os="Android $(getprop ro.build.version.release)";;
 	*) os="Idk"
 esac
 
