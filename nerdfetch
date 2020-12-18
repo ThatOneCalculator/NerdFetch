@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
-if command -v getprop; then
- ostype=android
+if command -v getprop &> /dev/null; then
+ linuxtype=android
 else
  . /etc/os-release
  ostype="$(uname)"
@@ -13,6 +13,8 @@ case $ostype in
 	"Linux"*)
 	        if [ -f /bedrock/etc/bedrock-release ]; then
 		 os="$(brl version)"
+		elif [ linuxtype = android ]; then
+		 os="Android $(getprop ro.build.version.release)"
 		else
 		 os="${PRETTY_NAME}"
 		fi
