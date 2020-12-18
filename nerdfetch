@@ -5,8 +5,8 @@ if command -v getprop &> /dev/null; then
  linuxtype=android
 else
  . /etc/os-release
- ostype="$(uname)"
 fi
+ostype="$(uname)"
 kernel="$(uname -r)"
 host="$(cat /proc/sys/kernel/hostname)"
 case $ostype in
