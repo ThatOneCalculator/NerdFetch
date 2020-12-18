@@ -1,11 +1,15 @@
 #!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
-
-. /etc/os-release
+if ! command -v getprop &> /dev/null; then
+ . /etc/os-release
+ ostype="$(uname)"
+else
+ #this system is android
+ ostype=android
+fi
 kernel="$(uname -r)"
 host="$(cat /proc/sys/kernel/hostname)"
-ostype="$(uname)"
 case $ostype in
 	"Linux"*)
 	        if [ -f /bedrock/etc/bedrock-release ]; then
@@ -23,6 +27,8 @@ case $ostype in
 			esac
 		done < /System/Library/CoreServices/SystemVersion.plist
 		os="macOS ${mac_version}";;
+	"android"*)
+		os="Android $(getprop ro.build.version.release)";;
 	*) os="Idk"
 esac
 
