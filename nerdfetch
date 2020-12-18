@@ -1,12 +1,11 @@
 #!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
-if ! command -v getprop &> /dev/null; then
+if command -v getprop; then
+ ostype=android
+else
  . /etc/os-release
  ostype="$(uname)"
-else
- #this system is android
- ostype=android
 fi
 kernel="$(uname -r)"
 host="$(cat /proc/sys/kernel/hostname)"
