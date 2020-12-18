@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
-if command -v getprop &> /dev/null; then
+if command -v getprop > /dev/null; then
  linuxtype=android
 else
  . /etc/os-release
