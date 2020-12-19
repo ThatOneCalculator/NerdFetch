@@ -2,7 +2,7 @@
  A POSIX Linux/macOS fetch script using Nerdfonts
 
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
-![Screenshot](https://i.imgur.com/7wBa7Ak.png)
+![Screenshot](https://i.imgur.com/WROgGLt.png)
 
 ### Dependencies:
 
@@ -46,7 +46,7 @@ nerdfetch
 - POSIX compliant
 - Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, LilKirbsOS, and Android
 
-### OSes supported:
+### OSes fully supported:
 - Debian/Ubuntu based Linux
 - Arch based Linux
 - RPM based Linux
@@ -59,11 +59,13 @@ nerdfetch
 - Gentoo Linux
 - Exherbo Linux
 - Solus Linux
+
+### OSes partially supported:
 - macOS 10.x
 - Android
 
-### Know issues:
-
+### Known issues:
+- Issues with uptime on Android
 - No support for BSD package managers/uptime calculations.
 - Weird spacing on macOS if you use brew given its complete weirdness
 - In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to `nf-fa-coffee` from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
