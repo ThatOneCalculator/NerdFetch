@@ -3,17 +3,19 @@
 ## OS/ENVIRONMENT INFO DETECTION
 if command -v getprop > /dev/null; then
  linuxtype=android
+ host="$(getprop net.hostname)"
 else
  . /etc/os-release
+ host="$(cat /proc/sys/kernel/hostname)"
+ linuxtype=none
 fi
 ostype="$(uname)"
 kernel="$(uname -r)"
-host="$(cat /proc/sys/kernel/hostname)"
 case $ostype in
 	"Linux"*)
 	        if [ -f /bedrock/etc/bedrock-release ]; then
 		 os="$(brl version)"
-		elif [[ $linuxtype = android ]]; then
+		elif [ $linuxtype = android ]; then
 		 os="Android $(getprop ro.build.version.release)"
 		else
 		 os="${PRETTY_NAME}"
