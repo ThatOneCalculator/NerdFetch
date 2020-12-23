@@ -2,7 +2,7 @@
  A POSIX Linux/macOS fetch script using Nerdfonts
 
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
-![Screenshot](https://i.imgur.com/WROgGLt.png)
+![Screenshot](https://i.imgur.com/PPfnHqN.png)
 
 ### Dependencies:
 
