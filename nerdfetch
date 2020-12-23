@@ -2,23 +2,23 @@
 
 ## OS/ENVIRONMENT INFO DETECTION
 if command -v getprop > /dev/null; then
- linuxtype=android
- host="$(getprop net.hostname)"
+	linuxtype=android
+	host="$(getprop net.hostname)"
 else
- . /etc/os-release
- host="$(cat /proc/sys/kernel/hostname)"
- linuxtype=none
+	. /etc/os-release
+	host="$(cat /proc/sys/kernel/hostname)"
+	linuxtype=none
 fi
 ostype="$(uname)"
-kernel="$(uname -r)"
+kernel="$(echo $(uname -r) | cut -d'-' -f1-2)"
 case $ostype in
 	"Linux"*)
-	        if [ -f /bedrock/etc/bedrock-release ]; then
-		 os="$(brl version)"
+		if [ -f /bedrock/etc/bedrock-release ]; then
+			os="$(brl version)"
 		elif [ $linuxtype = android ]; then
-		 os="Android $(getprop ro.build.version.release)"
+			os="Android $(getprop ro.build.version.release)"
 		else
-		 os="${PRETTY_NAME}"
+			os="${PRETTY_NAME}"
 		fi
 		shell=${SHELL##*/};;
 	"Darwin"*)
@@ -62,7 +62,8 @@ esac
 ## UPTIME DETECTION
 
 case $ostype in
-	"Linux") IFS=. read -r s _ < /proc/uptime;;
+	"Linux")
+		IFS=. read -r s _ < /proc/uptime;;
 	*) 
 		s=$(sysctl -n kern.boottime)
 		s=${s#*=}
@@ -163,5 +164,5 @@ ${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat} ${mempercent}
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}  ${ic}${packages} (${manager})${reset}
 ${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}  ${ic}${uptime}${reset}
-${c2}  \/${c0}-____${c2}\/${reset}   ${lc}  ${black}███${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+${c2}  \/${c0}-____${c2}\/${reset}   ${lc}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
