@@ -61,7 +61,7 @@ nerdfetch
 - Solus Linux
 
 ### OSes partially supported:
-- macOS 10.x
+- macOS
 - Android
 
 ### Known issues:
