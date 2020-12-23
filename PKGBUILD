@@ -1,7 +1,7 @@
 # Maintainer: ThatOneCalculator (Kainoa Kanter) <kainoakanter@gmail.com>
 pkgname="nerdfetch"
-pkgver=1
-pkgrel=1
+pkgver=2
+pkgrel=2
 pkgdesc="A POSIX fetch using NerdFonts"
 arch=('any')
 optdepends=('bc: memory percent')
