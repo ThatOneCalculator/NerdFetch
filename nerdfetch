@@ -35,7 +35,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum dnf rpm apt brew port zypper pacman xbps-query pkg emerge cave apk kiss pmm yay cpm eopkg 2>/dev/null)
+manager=$(which nix-env yum zypper dnf rpm apt brew port pacman xbps-query pkg emerge cave apk kiss pmm yay cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
