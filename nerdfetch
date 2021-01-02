@@ -35,7 +35,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum zypper dnf rpm apt brew port pacman xbps-query pkg emerge cave apk kiss pmm yay cpm eopkg 2>/dev/null)
+manager=$(which nix-env yum zypper dnf rpm apt brew port pacman xbps-query pkg emerge cave apk kiss pmm slackpkg yay cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -56,7 +56,10 @@ case $manager in
 	apk) packages="$(apk list --installed | wc -l)";;
 	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
 	eopkg) packages="$(eopkg li | wc -l)";;
-	*) packages="idk"
+	slackpkg) packages="$(ls /var/log/packages | wc -l)";;
+	*)
+		packages="$(ls /usr/bin | wc -l)"
+		manager="/usr/bin";;
 esac
 
 ## UPTIME DETECTION
