@@ -61,9 +61,10 @@ nerdfetch
 - Exherbo Linux
 - Solus Linux
 - Slackware Linux*
+- macOS 10.x
+- macOS 11
 
 ### OSes partially supported:
-- macOS
 - Android
 
 ### Known issues:
