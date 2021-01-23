@@ -1,5 +1,5 @@
 # NerdFetch
- A POSIX Linux/macOS fetch script using Nerdfonts
+ A POSIX \*nix (Linux, macOS, \*BSD, etc) fetch script using Nerdfonts
 
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
 ![Screenshot](https://i.imgur.com/PPfnHqN.png)
