@@ -1,15 +1,20 @@
 #!/bin/sh
 
 ## OS/ENVIRONMENT INFO DETECTION
+
+ostype="$(uname)"
+
 if command -v getprop > /dev/null; then
 	linuxtype=android
 	host="$(getprop net.hostname)"
 else
 	. /etc/os-release
-	host="$(cat /proc/sys/kernel/hostname)"
+	case $ostype in
+		Linux*) host="$(cat /proc/sys/kernel/hostname)";;
+		*) host="host"
+	esac
 	linuxtype=none
 fi
-ostype="$(uname)"
 kernel="$(echo $(uname -r) | cut -d'-' -f1-2)"
 case $ostype in
 	"Linux"*)
