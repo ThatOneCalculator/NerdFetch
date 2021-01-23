@@ -47,7 +47,8 @@ nerdfetch
 - Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, LilKirbsOS, Slackware, and Android
 
 ### OSes fully supported:
-- Debian/Ubuntu based Linux
+- Debian based Linux
+- Ubuntu based Linux
 - Arch based Linux
 - RPM based Linux
 - Fedora Linux
