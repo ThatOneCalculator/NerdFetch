@@ -75,4 +75,4 @@ nerdfetch
 - \*In Slackware Linux, make sure to have /usr/sbin in PATH
 
 ### Want to discuss this project?
-[I have a Discord!](https://discord.gg/mJCW57GcX3)
+![](https://shields.io/badge/join-the%20discord-7289DA?logo=discord&style=for-the-badge&link=https://discord.gg/mJCW57GcX3)
