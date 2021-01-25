@@ -4,6 +4,8 @@
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
 ![Screenshot](https://i.imgur.com/PPfnHqN.png)
 
+[![](https://shields.io/badge/join-the%20discord-7289DA?logo=discord&style=for-the-badge)](https://discord.gg/mJCW57GcX3)
+
 ### Dependencies:
 
 - [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
@@ -17,7 +19,6 @@
 ```shell
 yay -S nerdfetch
 ```
-
 
 
 #### Manually:
@@ -74,5 +75,3 @@ nerdfetch
 - In [Cool-Retro-Term](https://github.com/Swordfish90/cool-retro-term), the coffee icon shows up as a Chinese character. To fix this, simply change the default font to a NerdFont you installed, or change the existing coffee icon to `nf-fa-coffee` from the [NerdFonts cheet sheet](https://www.nerdfonts.com/cheat-sheet).
 - \*In Slackware Linux, make sure to have /usr/sbin in PATH
 
-### Want to discuss this project?
-[![](https://shields.io/badge/join-the%20discord-7289DA?logo=discord&style=for-the-badge)](https://discord.gg/mJCW57GcX3)
