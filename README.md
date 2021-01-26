@@ -4,7 +4,7 @@
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
 ![Screenshot](https://i.imgur.com/PPfnHqN.png)
 
-[![](https://shields.io/badge/join-the%20discord-7289DA?logo=discord&style=for-the-badge)](https://discord.gg/mJCW57GcX3)
+[![Discord](https://discordapp.com/api/guilds/733856096963526667/embed.png?style=shield)](https://discord.gg/mG94DqX) 
 
 ### Dependencies:
 
