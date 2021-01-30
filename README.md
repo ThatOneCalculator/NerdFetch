@@ -2,7 +2,7 @@
  A POSIX \*nix (Linux, macOS, \*BSD, etc) fetch script using Nerdfonts
 
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
-![Screenshot](https://i.imgur.com/PPfnHqN.png)
+![Screenshot](https://cdn.discordapp.com/attachments/671117418189422594/805211131902820452/unknown.png)
 
 [![Discord](https://discordapp.com/api/guilds/733856096963526667/embed.png?style=shield)](https://discord.gg/mG94DqX) 
 
