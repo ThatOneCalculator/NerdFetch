@@ -45,15 +45,14 @@ nerdfetch
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, LilKirbsOS, Slackware, and Android
+- Tested on Pop!\_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, LilKirbsOS, Fedora, Slackware, and Android
 
 ### OSes fully supported:
 - Debian based Linux
 - Ubuntu based Linux
 - Arch based Linux
-- RPM based Linux
-- Fedora Linux
-- openSUSE Linux
+- RedHat based Linux
+- SUSE based Linux
 - Bedrock Linux
 - Alpine Linux
 - KISS Linux
