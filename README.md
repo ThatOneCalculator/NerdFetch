@@ -19,7 +19,7 @@
 ```shell
 yay -S nerdfetch
 ```
-
+Make sure to replace `yay` with whatever AUR helper you use. 
 
 #### Manually:
 
