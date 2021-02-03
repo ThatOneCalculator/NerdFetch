@@ -10,12 +10,12 @@ if command -v getprop > /dev/null; then
 else
 	. /etc/os-release
 	case $ostype in
-		Linux*) host="$(cat /proc/sys/kernel/hostname)";;
-		*) host="host"
+	Linux*) host="$(cat /proc/sys/kernel/hostname)";;
+	*) host="host"
 	esac
 	linuxtype=none
 fi
-kernel="$(echo $(uname -r) | cut -d'-' -f1-2)"
+kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
 		if [ -f /bedrock/etc/bedrock-release ]; then
@@ -40,7 +40,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env yum zypper dnf rpm apt brew port pacman xbps-query pkg emerge cave apk kiss pmm /usr/sbin/slackpkg yay cpm eopkg 2>/dev/null)
+manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
