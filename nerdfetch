@@ -40,7 +40,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay cpm eopkg 2>/dev/null)
+manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay paru cpm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
@@ -53,6 +53,7 @@ case $manager in
 	zypper) packages="$(zypper se | wc -l)";;
 	pacman) packages="$(pacman -Q | wc -l)";;
 	yay) packages="$(yay -Q | wc -l)";;
+	paru) packages="$(paru -Q | wc -l)";;
 	kiss) packages="$(kiss list | wc -l)";;
 	pkg|emerge) packages="$(qlist -I | wc -l)";;
 	cave) packages="$(cave show installed-slots | wc -l)";;
