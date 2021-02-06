@@ -38,6 +38,13 @@ rm -rf NerdFetch/
 nerdfetch
 ```
 
+#### Run once (curl):
+
+Note that this will not install the program.
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch)"
+```
+
 ### Features:
 - Package manager and package count detection across many OSes
 - Support across all nerdfonts
