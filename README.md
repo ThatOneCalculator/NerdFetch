@@ -42,7 +42,7 @@ nerdfetch
 
 Note that this will not install the program.
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch)"
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch | sh
 ```
 
 ### Features:
