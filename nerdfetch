@@ -65,7 +65,7 @@ case $manager in
 	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
 	*)
 		packages="$(ls /usr/bin | wc -l)"
-		manager="/usr/bin";;
+		manager="bin";;
 esac
 
 ## UPTIME DETECTION
