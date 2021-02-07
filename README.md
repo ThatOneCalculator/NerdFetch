@@ -73,6 +73,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 
 ### OSes partially supported:
 - Android
+- \*BSD
 
 ### Known issues:
 - Issues with uptime on Android
