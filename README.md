@@ -4,7 +4,7 @@
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
 ![Screenshot](https://linus-tech.tips/FKgAm_6Y7v.png)
 
-[![Discord](https://discordapp.com/api/guilds/733856096963526667/embed.png?style=banenr2)](https://discord.gg/mG94DqX) 
+[![Discord](https://discordapp.com/api/guilds/733856096963526667/embed.png)](https://discord.gg/mG94DqX) 
 
 ### Dependencies:
 
