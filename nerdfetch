@@ -39,10 +39,40 @@ case $ostype in
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
-
-managers=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay paru cpm eopkg 2>/dev/null)
-for manager in $managers
-do
+if [ "$1" = "-a" ]; then
+	managers=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay paru cpm eopkg 2>/dev/null)
+	for manager in $managers
+	do
+		manager=${manager##*/}
+		case $manager in
+			cpm) packages="$(cpm C)";;
+			brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
+			port) packages=$(port installed | tot);;
+			apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
+			rpm) packages="$(rpm -qa --last| wc -l)";;
+			yum) packages="$(yum list installed | wc -l)";;
+			dnf) packages="$(dnf list installed | wc -l)";;
+			zypper) packages="$(zypper se | wc -l)";;
+			pacman) packages="$(pacman -Q | wc -l)";;
+			yay) packages="$(yay -Q | wc -l)";;
+			paru) packages="$(paru -Q | wc -l)";;
+			kiss) packages="$(kiss list | wc -l)";;
+			pkg|emerge) packages="$(qlist -I | wc -l)";;
+			cave) packages="$(cave show installed-slots | wc -l)";;
+			xbps-query) packages="$(xbps-query -l | wc -l)";;
+			nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
+			apk) packages="$(apk list --installed | wc -l)";;
+			pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
+			eopkg) packages="$(eopkg li | wc -l)";;
+			/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
+		*)
+			packages="$(ls /usr/bin | wc -l)"
+			manager="bin";;
+	esac
+	tot="$tot$packages ($manager) "
+	done
+else
+	manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay paru cpm pmm eopkg 2>/dev/null)
 	manager=${manager##*/}
 	case $manager in
 		cpm) packages="$(cpm C)";;
@@ -65,12 +95,11 @@ do
 		pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
 		eopkg) packages="$(eopkg li | wc -l)";;
 		/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
-	*)
-		packages="$(ls /usr/bin | wc -l)"
-		manager="bin";;
-esac
-tot="$tot$packages ($manager) "
-done
+		*)
+			packages="$(ls /usr/bin | wc -l)"
+			manager="bin";;
+	esac
+fi
 
 ## UPTIME DETECTION
 
