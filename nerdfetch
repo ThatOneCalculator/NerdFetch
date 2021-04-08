@@ -97,8 +97,9 @@ else
 		/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
 		*)
 			packages="$(ls /usr/bin | wc -l)"
-			manager="bin";;
+			manager="bin";;	
 	esac
+	tot="$packages ($manager) "
 fi
 
 ## UPTIME DETECTION
