@@ -86,23 +86,18 @@ m="$((s / 60 % 60))"
 [ "$d" -gt 1 ] && dp=s
 [ "$h" -gt 1 ] && hp=s
 [ "$m" -gt 1 ] && mp=s
+[ "$s" -gt 1 ] && sp=s
 # Hide empty fields.
 [ "$d" = 0 ] && d=
 [ "$h" = 0 ] && h=
 [ "$m" = 0 ] && m=
+! [ "$m" == "" ] && s=
 # Make the output of uptime smaller.
-case $uptime_shorthand in
-	tiny)
-		[ "$d" ] && uptime="${d}d, "
-		[ "$h" ] && uptime="$uptime${h}h, "
-		[ "$m" ] && uptime="$uptime${m}m"
-		uptime=${uptime%, };;
-	*)
-		[ "$d" ] && uptime="$d day$dp, "
-		[ "$h" ] && uptime="$uptime$h hour$hp, "
-		[ "$m" ] && uptime="$uptime$m min$mp"
-		uptime=${uptime%, };;
-esac
+[ "$d" ] && uptime="$d day$dp, "
+[ "$h" ] && uptime="$uptime$h hour$hp, "
+[ "$m" ] && uptime="$uptime$m min$mp"
+[ "$s" ] && uptime="$uptime$s sec$sp"
+uptime=${uptime%, }
 
 ## RAM DETECTION
 
