@@ -5,7 +5,7 @@
 
 ### Dependencies:
 
-- [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
+- [Cozette](https://github.com/slavfox/Cozette)
 - bc (optional, but most systems already have this)
 - Pretty much any Linux distro/macOS
 
