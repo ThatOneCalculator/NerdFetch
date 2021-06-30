@@ -150,7 +150,7 @@ reset='[0m'
 
 ## USER VARIABLES -- YOU CAN CHANGE THESE
 
-lc="${reset}${bold}${magenta}"  # labels
+lc="${reset}${magenta}"  # labels
 nc="${reset}${bold}${yellow}"   # user
 hn="${reset}${bold}${blue}"     # hostname
 ic="${reset}${green}"           # info
@@ -168,5 +168,5 @@ ${c0}     (${c2}<> ${c0}|    ${lc}♥  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}  ${ic}${RAM}${memstat} ${mempercent}
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}  ${ic}${packages} (${manager})${reset}
 ${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}  ${ic}${uptime}${reset}
-${c2}  \/${c0}-____${c2}\/${reset}   ${lc}☁  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+${c2}  \/${c0}-____${c2}\/${reset}   ${lc}${bold}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
