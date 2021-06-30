@@ -1,11 +1,12 @@
 # NerdFetch
- A POSIX \*nix (Linux, macOS, \*BSD, etc) fetch script using Nerdfonts. Cozette edition.
+ A POSIX \*nix (Linux, macOS, \*BSD, etc) fetch script using Nerdfonts
 
-![Screenshot](https://media.discordapp.net/attachments/849523719582777367/859673512603156500/unknown.png)
+<!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
+![Screenshot](https://linus-sex.tips/YaceZlOLdx.png)
 
 ### Dependencies:
 
-- [Cozette](https://github.com/slavfox/Cozette)
+- [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
 - bc (optional, but most systems already have this)
 - Pretty much any Linux distro/macOS
 
