@@ -1,4 +1,4 @@
-# NerdFetch
+# NerdFetch: Cozette Edition
  A POSIX \*nix (Linux, macOS, \*BSD, etc) fetch script using Nerdfonts. Cozette edition.
 
 ![Screenshot](https://media.discordapp.net/attachments/849523719582777367/859673512603156500/unknown.png)
