@@ -15,7 +15,7 @@ else
 	esac
 	linuxtype=none
 fi
-kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
+kernel="$(uname -r | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
 		if [ -f /bedrock/etc/bedrock-release ]; then
@@ -40,33 +40,109 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query  emerge cave apk kiss pmm /usr/sbin/slackpkg yay paru cpm pmm eopkg 2>/dev/null)
-manager=${manager##*/}
-case $manager in
-	cpm) packages="$(cpm C)";;
-	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
-	port) packages=$(port installed | tot);;
-	apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
-	rpm) packages="$(rpm -qa --last| wc -l)";;
-	yum) packages="$(yum list installed | wc -l)";;
-	dnf) packages="$(dnf list installed | wc -l)";;
-	zypper) packages="$(zypper se | wc -l)";;
-	pacman) packages="$(pacman -Q | wc -l)";;
-	yay) packages="$(yay -Q | wc -l)";;
-	paru) packages="$(paru -Q | wc -l)";;
-	kiss) packages="$(kiss list | wc -l)";;
-	pkg|emerge) packages="$(qlist -I | wc -l)";;
-	cave) packages="$(cave show installed-slots | wc -l)";;
-	xbps-query) packages="$(xbps-query -l | wc -l)";;
-	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
-	apk) packages="$(apk list --installed | wc -l)";;
-	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
-	eopkg) packages="$(eopkg li | wc -l)";;
-	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
-	*)
-		packages="$(ls /usr/bin | wc -l)"
-		manager="bin";;
-esac
+has() { command -v "$1" 1>/dev/null 2>&1; }
+mngr() {
+	if [ -n "$manager" ]; then
+		manager="${manager}, $1"
+	else
+		manager="$1"
+	fi
+}
+pkgs() { packages="$((packages + $1))"; }
+packages=0
+
+has apk && {
+	mngr apk
+	pkgs "$(apk list --installed | wc -l)"
+}
+has apt && {
+	mngr apt
+	pkgs "$(dpkg-query -f '${binary:Package}\n' -W | wc -l)"
+}
+has brew && {
+	mngr brew
+	pkgs "$(printf '%s\n' "$(brew --cellar)"/* | wc -l)"
+}
+has cave && {
+	mngr cave
+	pkgs "$(cave show installed-slots | wc -l)"
+}
+has cpm && {
+	mngr cpm
+	pkgs "$(cpm C)"
+}
+has dnf && {
+	mngr dnf
+	pkgs "$(dnf list installed)"
+}
+has emerge && {
+	mngr emerge
+	pkgs "$(qlist -I | wc -l)"
+}
+has eopkg && {
+	mngr eopkg
+	pkgs "$(eopkg li | wc -l)"
+}
+has kiss && {
+	mngr kiss
+	pkgs "$(kiss list | wc -l)"
+}
+has nix-env && {
+	mngr nix-env
+	pkgs "$(nix-store -q --requisites /run/current-system/sw | wc -l)"
+}
+has pacman && {
+	mngr pacman
+	pkgs "$(pacman -Q | wc -l)"
+}
+has paru && {
+	mngr paru
+	pkgs "$(paru -Q | wc -l)"
+}
+has pkg && {
+	mngr pkg
+	pkgs "$(pkg info | wc -l)"
+}
+has pmm && {
+	mngr pmm
+	pkgs "$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l)"
+}
+has port && {
+	mngr port
+	pkgs "$(port installed | tot)"
+}
+has rpm && {
+	mngr rpm
+	pkgs "$(rpm -qa | wc -l)"
+}
+has xbps-query && {
+	mngr xbps-query
+	pkgs "$(xbps-query -l | wc -l)"
+}
+has yay && {
+	mngr yay
+	pkgs "$(yay -Q | wc -l)"
+}
+has yum && {
+	mngr yum
+	pkgs "$(yum list installed | wc -l)"
+}
+has zypper && {
+	mngr zypper
+	pkgs "$(zypper se | wc -l)"
+}
+has /usr/sin/slackpkg && {
+	mngr slackpkg
+	pkgs "$(ls /var/log/packages | wc -l)"
+}
+# If no package managers were found
+test "$packages" -eq 0 && {
+	manager=bin
+	packages="$(tr ':' ' ' <<-EOF | xargs ls | wc -l
+		$PATH
+		EOF
+	)"
+}
 
 ## UPTIME DETECTION
 
