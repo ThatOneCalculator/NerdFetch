@@ -13,13 +13,14 @@ fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
-		. /etc/os-release
 		host="$(cat /proc/sys/kernel/hostname)"
 		if [ -f /bedrock/etc/bedrock-release ]; then
 			os="$(brl version)"
+			. /etc/os-release
 		elif [ $linuxtype = android ]; then
 			os="Android $(getprop ro.build.version.release)"
 		else
+			. /etc/os-release
 			os="${PRETTY_NAME}"
 		fi
 		shell=${SHELL##*/};;
@@ -70,34 +71,38 @@ esac
 
 ## UPTIME DETECTION
 
-case $ostype in
-	"Linux")
-		IFS=. read -r s _ < /proc/uptime;;
-	*) 
-		s=$(sysctl -n kern.boottime)
-		s=${s#*=}
-		s=${s%,*}
-		s=$(($(date +%s) - s));;
-esac
-d="$((s / 60 / 60 / 24))"
-h="$((s / 60 / 60 % 24))"
-m="$((s / 60 % 60))"
-# Plurals
-[ "$d" -gt 1 ] && dp=s
-[ "$h" -gt 1 ] && hp=s
-[ "$m" -gt 1 ] && mp=s
-[ "$s" -gt 1 ] && sp=s
-# Hide empty fields.
-[ "$d" = 0 ] && d=
-[ "$h" = 0 ] && h=
-[ "$m" = 0 ] && m=
-[ "$m" != "" ] && s=
-# Make the output of uptime smaller.
-[ "$d" ] && uptime="$d day$dp, "
-[ "$h" ] && uptime="$uptime$h hour$hp, "
-[ "$m" ] && uptime="$uptime$m min$mp"
-[ "$s" ] && uptime="$uptime$s sec$sp"
-uptime=${uptime%, }
+if $linuxtype = android; then
+    uptime="$(uptime -p)"
+else
+    case $ostype in
+        "Linux")
+            IFS=. read -r s _ < /proc/uptime;;
+        *) 
+            s=$(sysctl -n kern.boottime)
+            s=${s#*=}
+            s=${s%,*}
+            s=$(($(date +%s) - s));;
+    esac
+    d="$((s / 60 / 60 / 24))"
+    h="$((s / 60 / 60 % 24))"
+    m="$((s / 60 % 60))"
+    # Plurals
+    [ "$d" -gt 1 ] && dp=s
+    [ "$h" -gt 1 ] && hp=s
+    [ "$m" -gt 1 ] && mp=s
+    [ "$s" -gt 1 ] && sp=s
+    # Hide empty fields.
+    [ "$d" = 0 ] && d=
+    [ "$h" = 0 ] && h=
+    [ "$m" = 0 ] && m=
+    [ "$m" != "" ] && s=
+    # Make the output of uptime smaller.
+    [ "$d" ] && uptime="$d day$dp, "
+    [ "$h" ] && uptime="$uptime$h hour$hp, "
+    [ "$m" ] && uptime="$uptime$m min$mp"
+    [ "$s" ] && uptime="$uptime$s sec$sp"
+    uptime=${uptime%, }
+fi
 
 ## RAM DETECTION
 
