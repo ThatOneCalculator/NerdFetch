@@ -14,7 +14,7 @@ kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
 		. /etc/os-release
-		host="$(cat /proc/sys/kernel/hostname)";;
+		host="$(cat /proc/sys/kernel/hostname)"
 		if [ -f /bedrock/etc/bedrock-release ]; then
 			os="$(brl version)"
 		elif [ $linuxtype = android ]; then
