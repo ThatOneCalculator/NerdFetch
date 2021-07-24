@@ -13,7 +13,7 @@ kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
 		if [ $linuxtype = android ]; then
-			host=${HOST}
+			host=$(hostname)
 			USER=${USERNAME}
 			os="Android $(getprop ro.build.version.release)"
 		else
