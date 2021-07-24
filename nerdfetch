@@ -8,16 +8,13 @@ if command -v getprop > /dev/null; then
 	linuxtype=android
 	host="$(getprop net.hostname)"
 else
-	. /etc/os-release
-	case $ostype in
-	Linux*) host="$(cat /proc/sys/kernel/hostname)";;
-	*) host="host"
-	esac
 	linuxtype=none
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
+		. /etc/os-release
+		host="$(cat /proc/sys/kernel/hostname)";;
 		if [ -f /bedrock/etc/bedrock-release ]; then
 			os="$(brl version)"
 		elif [ $linuxtype = android ]; then
@@ -27,6 +24,7 @@ case $ostype in
 		fi
 		shell=${SHELL##*/};;
 	"Darwin"*)
+		host="mac"
 		while IFS='<>' read -r _ _ line _; do
 			case $line in
 				ProductVersion)
@@ -35,7 +33,9 @@ case $ostype in
 			esac
 		done < /System/Library/CoreServices/SystemVersion.plist
 		os="macOS ${mac_version}";;
-	*) os="Idk"
+	*)
+		os="Idk"
+		host="host"
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
