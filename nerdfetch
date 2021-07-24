@@ -7,7 +7,7 @@ ostype="$(uname)"
 if command -v getprop > /dev/null; then
 	linuxtype=android
 	host="$(hostname)"
-	USER="$(USERNAME)"
+	USER="$(echo $USERNAME)"
 else
 	linuxtype=none
 fi
