@@ -74,7 +74,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - \*BSD
 
 ### Known issues:
-- Issues with uptime on Android
-- No support for BSD package managers/uptime calculations.
+- No username/hostname and no package count in Android
+- No username/hostname and no package count in \*BSD
 - \*In Slackware Linux, make sure to have /usr/sbin in PATH
 
