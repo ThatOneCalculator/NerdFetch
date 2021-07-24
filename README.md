@@ -74,7 +74,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - \*BSD
 
 ### Known issues:
-- No username/hostname and no package count in Android
-- No username/hostname and no package count in \*BSD
+- No username and no app count in Android
+- No hostname, no uptime and no package count in \*BSD
 - \*In Slackware Linux, make sure to have /usr/sbin in PATH
 
