@@ -72,7 +72,7 @@ esac
 ## UPTIME DETECTION
 
 if [ $linuxtype = android ]; then
-    uptime="$(uptime -p)"
+    uptime="$(echo $(uptime -p) | cut -c 4-)"
 else
     case $ostype in
         "Linux")
