@@ -14,7 +14,7 @@ case $ostype in
 	"Linux"*)
 		if [ $linuxtype = android ]; then
 			host=$(hostname)
-			USER=${USERNAME}
+			USER=$(bash -c "echo $USERNAME")
 			os="Android $(getprop ro.build.version.release)"
 		else
 			host="$(cat /proc/sys/kernel/hostname)"
