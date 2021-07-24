@@ -24,7 +24,7 @@ case $ostype in
 		fi
 		shell=${SHELL##*/};;
 	"Darwin"*)
-		host="mac"
+		host="$(hostname -f | sed -e 's/^[^.]*\.//')"
 		while IFS='<>' read -r _ _ line _; do
 			case $line in
 				ProductVersion)
