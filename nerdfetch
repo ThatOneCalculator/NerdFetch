@@ -6,23 +6,24 @@ ostype="$(uname)"
 
 if command -v getprop > /dev/null; then
 	linuxtype=android
-	host="$(echo $HOST)"
-	USER="$(echo $USERNAME)"
 else
 	linuxtype=none
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
-		host="$(cat /proc/sys/kernel/hostname)"
-		if [ -f /bedrock/etc/bedrock-release ]; then
-			os="$(brl version)"
-			. /etc/os-release
-		elif [ $linuxtype = android ]; then
+		if [ $linuxtype = android ]; then
+			host=${HOST}
+			USER=${USERNAME}
 			os="Android $(getprop ro.build.version.release)"
 		else
+			host="$(cat /proc/sys/kernel/hostname)"
 			. /etc/os-release
-			os="${PRETTY_NAME}"
+			if [ -f /bedrock/etc/bedrock-release ]; then
+				os="$(brl version)"
+			else
+				os="${PRETTY_NAME}"
+			fi
 		fi
 		shell=${SHELL##*/};;
 	"Darwin"*)
