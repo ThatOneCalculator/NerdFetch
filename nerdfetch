@@ -6,7 +6,8 @@ ostype="$(uname)"
 
 if command -v getprop > /dev/null; then
 	linuxtype=android
-	host="$(getprop net.hostname)"
+	host="$(hostname)"
+	USER="$(USERNAME)"
 else
 	linuxtype=none
 fi
