@@ -11,10 +11,10 @@
 
 ### To install and run:
 
-#### [Automatically (Arch Linux via the AUR)](https://aur.archlinux.org/packages/nerdfetch/):
+#### [Automatically (Arch Linux via the AUR)](https://aur.archlinux.org/packages/nerdfetch-cozette/):
 
 ```shell
-yay -S nerdfetch
+yay -S nerdfetch-cozette
 ```
 Make sure to replace `yay` with whatever AUR helper you use. 
 
@@ -26,6 +26,8 @@ Copy-paste this into your terminal:
 # clone and go into repo
 git clone https://github.com/ThatOneCalculator/NerdFetch.git
 cd NerdFetch/
+# change branch to the cozette version
+git checkout cozette
 # install
 sudo install -m755 nerdfetch /usr/bin/nerdfetch
 # go back and remove the download
@@ -39,17 +41,16 @@ nerdfetch
 
 Note that this will not install the program.
 ```sh
-curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch | sh
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/cozette/nerdfetch | sh
 ```
 
 ### Features:
 - Package manager and package count detection across many OSes
-- Support across all nerdfonts
 - Uptime detection that is actually good
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!\_OS, NixOS, Ubuntu, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, Exherbo, LilKirbsOS, Fedora, Slackware, and Android
+- Tested on Pop!\_OS, NixOS, Ubuntu, Peppermint, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, Exherbo, LilKirbsOS, Fedora, Slackware, and Android
 
 ### OSes fully supported:
 - Debian based Linux
