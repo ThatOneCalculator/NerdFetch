@@ -50,7 +50,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/cozette
 - Unlike neofetch, it uses almost no resources
 - Portable
 - POSIX compliant
-- Tested on Pop!\_OS, NixOS, Ubuntu, Peppermint, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, Exherbo, LilKirbsOS, Fedora, Slackware, and Android
+- Tested on Pop!\_OS, NixOS, Ubuntu, PeppermintOS, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, Exherbo, LilKirbsOS, Fedora, Slackware, and Android
 
 ### OSes fully supported:
 - Debian based Linux
