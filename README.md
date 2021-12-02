@@ -52,7 +52,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - POSIX compliant
 - Tested on Pop!\_OS, NixOS, Ubuntu, PeppermintOS, Alpine, Debian, macOS 10, Arch, Manjaro, Bedrock, Gentoo, Kiss, EndeavourOS, ArcoLinux, Solus, Exherbo, LilKirbsOS, Fedora, Slackware, and Android
 
-### OSes fully supported:
+### OSes supported:
 - Debian based Linux
 - Ubuntu based Linux
 - Arch based Linux
@@ -65,16 +65,11 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - Gentoo Linux
 - Exherbo Linux
 - Solus Linux
-- Slackware Linux*
-- macOS 10.x
-- macOS 11
-
-### OSes partially supported:
+- Slackware Linux\*
+- macOS 10.x + 11.x
 - Android
-- \*BSD
 
 ### Known issues:
-- No username and no app count in Android
-- No hostname, no uptime and no package count in \*BSD
+- No app count in Android (instead counts `apt` if installed)
+- No hostname, no uptime and no package count in BSD
 - \*In Slackware Linux, make sure to have /usr/sbin in PATH
-
