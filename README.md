@@ -63,6 +63,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - Void Linux
 - Gentoo Linux
 - Exherbo Linux
+- NixOS Linux
 - Solus Linux
 - yiffOS Linux
 - Slackware Linux\*
