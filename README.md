@@ -47,7 +47,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - Package manager and package count detection across many OSes
 - Support across all nerdfonts
 - Uptime detection that is actually good
-- Unlike neofetch, it uses almost no resources
+- Unlike neofetch, it uses almost no resources and runs instantly
 - Portable
 - POSIX compliant
 
