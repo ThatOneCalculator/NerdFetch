@@ -64,6 +64,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - Gentoo Linux
 - Exherbo Linux
 - Solus Linux
+- yiffOS Linux
 - Slackware Linux\*
 - macOS 10.x + 11.x
 - Android
