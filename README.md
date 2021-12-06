@@ -12,12 +12,17 @@
 
 ### To install and run:
 
-#### [Automatically (Arch Linux via the AUR)](https://aur.archlinux.org/packages/nerdfetch/):
+#### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
 
-```shell
+```sh
 yay -S nerdfetch
 ```
 Make sure to replace `yay` with whatever AUR helper you use. 
+
+#### [yiffOS](https://git.yiffos.gay/Packaging/packages/src/branch/main/nerdfetch):
+```sh
+bulge install nerdfetch
+```
 
 #### Manually:
 
