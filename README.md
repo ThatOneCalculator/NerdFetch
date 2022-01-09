@@ -29,15 +29,8 @@ bulge install nerdfetch
 Copy-paste this into your terminal:
 
 ```sh
-# clone and go into repo
-git clone https://github.com/ThatOneCalculator/NerdFetch.git
-cd NerdFetch/
-# install
-sudo install -m755 nerdfetch /usr/bin/nerdfetch
-# go back and remove the download
-cd ..
-rm -rf NerdFetch/
-# run
+sudo curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch -o /usr/bin/nerdfetch
+sudo chmod +x /usr/bin/nerdfetch
 nerdfetch
 ```
 
