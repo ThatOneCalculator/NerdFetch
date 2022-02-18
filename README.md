@@ -16,12 +16,16 @@
 
 ```sh
 yay -S nerdfetch
+nerdfetch
 ```
+
 Make sure to replace `yay` with whatever AUR helper you use. 
 
 #### [yiffOS](https://git.yiffos.gay/Packaging/packages/src/branch/main/nerdfetch):
+
 ```sh
 bulge install nerdfetch
+nerdfetch
 ```
 
 #### Manually:
@@ -39,6 +43,16 @@ nerdfetch
 Note that this will not install the program.
 ```sh
 curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch | sh
+```
+
+#### Android with Termux:
+
+Copy-paste this into Termux:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch -o /data/data/com.termux/files/usr/bin/nerdfetch
+chmod a+x /data/data/com.termux/files/usr/bin/nerdfetch
+nerdfetch
 ```
 
 ### Features:
