@@ -38,9 +38,9 @@ sudo chmod +x /usr/bin/nerdfetch
 nerdfetch
 ```
 
-#### Run once (curl):
+#### Run once:
 
-Note that this will not install the program.
+Note that this will ***not*** install the program.
 ```sh
 curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch | sh
 ```
