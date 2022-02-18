@@ -69,7 +69,9 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - Android\*\*
 
 ### Known issues:
-- No app count in Android (instead counts `apt` if installed)
-- No hostname, no uptime and no package count in BSD
+#### Android:
+- No app count (instead counts `apt` if installed)
+- `zsh` has to be installed (`pkg install zsh`) in order to see the username
+### Other:
 - \*In Slackware Linux, make sure to have `/usr/sbin` in PATH
-- \*\*In Android, you have to install `zsh` (`pkg install zsh`)
+- No hostname, no uptime and no package count in BSD
