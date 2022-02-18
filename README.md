@@ -66,7 +66,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - yiffOS Linux
 - Slackware Linux\*
 - macOS 10.x + 11.x
-- Android\*\*
+- Android
 
 ### Known issues:
 #### Android:
