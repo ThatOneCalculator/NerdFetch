@@ -66,9 +66,10 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - yiffOS Linux
 - Slackware Linux\*
 - macOS 10.x + 11.x
-- Android
+- Android\*\*
 
 ### Known issues:
 - No app count in Android (instead counts `apt` if installed)
 - No hostname, no uptime and no package count in BSD
 - \*In Slackware Linux, make sure to have `/usr/sbin` in PATH
+- \*\*In Android, you have to install `zsh` (`pkg install zsh`)
