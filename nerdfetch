@@ -4,17 +4,16 @@
 
 ostype="$(uname)"
 
+linuxtype=none
 if command -v getprop > /dev/null; then
-	linuxtype=android
-else
-	linuxtype=none
+	linuxtype=android	
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	"Linux"*)
 		if [ $linuxtype = android ]; then
 			host="$(hostname)"
-			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")} # Stolen from neofetch
+			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
 			os="Android $(getprop ro.build.version.release)"
 		else
 			host="$(cat /proc/sys/kernel/hostname)"
