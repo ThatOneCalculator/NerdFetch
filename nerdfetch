@@ -58,7 +58,8 @@ case $manager in
 	paru) packages="$(paru -Q | wc -l)";;
 	pacstall) packages="$(pacstall -L | wc -l)";;
 	kiss) packages="$(kiss list | wc -l)";;
-	pkg|emerge) packages="$(qlist -I | wc -l)";;
+	emerge) packages="$(qlist -I | wc -l)";;
+	pkg) packages="$(pkg info | wc -l | tr -d ' ')"
 	cave) packages="$(cave show installed-slots | wc -l)";;
 	xbps-query) packages="$(xbps-query -l | wc -l)";;
 	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
