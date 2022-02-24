@@ -55,12 +55,10 @@ nerdfetch
 ```
 
 ### Features:
-- Package manager and package count detection across many OSes
-- Support across all nerdfonts
-- Uptime detection that is actually good
-- Unlike neofetch, it uses almost no resources and runs instantly
+- Strong cross-OS compatability
+- Not bloated
 - Portable
-- POSIX compliant
+- POSIX
 
 ### OSes supported:
 - Debian based Linux
