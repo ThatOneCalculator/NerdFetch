@@ -37,13 +37,6 @@ sudo chmod +x /usr/bin/nerdfetch
 nerdfetch
 ```
 
-#### Run once:
-
-Note that this will ***not*** install the program.
-```sh
-curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch | sh
-```
-
 #### Android with Termux:
 
 Copy-paste this into Termux:
@@ -52,6 +45,13 @@ Copy-paste this into Termux:
 curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch -o /data/data/com.termux/files/usr/bin/nerdfetch
 chmod a+x /data/data/com.termux/files/usr/bin/nerdfetch
 nerdfetch
+```
+
+#### Run once:
+
+Note that this will ***not*** install the program.
+```sh
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch | sh
 ```
 
 ### Features:
