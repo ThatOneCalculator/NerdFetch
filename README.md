@@ -7,8 +7,7 @@
 ### Dependencies:
 
 - [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
-- bc (optional, but most systems already have this)
-- Pretty much any Linux distro/macOS
+- Linux/macOS/FreeBSD
 
 ### To install and run:
 
