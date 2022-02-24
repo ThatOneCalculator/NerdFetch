@@ -85,4 +85,5 @@ nerdfetch
 ### Known issues:
 - \*In Slackware Linux, make sure to have `/usr/sbin` in PATH
 - In Android, no app count (instead counts `apt` if installed)
-- In \*BSD, no hostname, no uptime and no package count
+- In FreeBSD, no hostname and no uptime
+- In OpenBSD, no hostname and no uptime, and no package count
