@@ -42,7 +42,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
+manager=$(which nix-env pkg yum zypper dnf rpm apt brew port yay pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge paru pacstall cpm pmm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
