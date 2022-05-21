@@ -143,6 +143,7 @@ memstat="${mem_used}/${mem_full} MB"
 if which expr > /dev/null 2>&1; then
 	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full} ))%)"
 fi
+
 ## DEFINE COLORS
 
 bold='[1m'
