@@ -20,7 +20,7 @@ nerdfetch
 
 Make sure to replace `yay` with whatever AUR helper you use. 
 
-#### [yiffOS](https://git.yiffos.gay/Packaging/packages/src/branch/main/nerdfetch):
+#### [yiffOS](https://packages.yiffos.gay/nerdfetch):
 
 ```sh
 bulge install nerdfetch
