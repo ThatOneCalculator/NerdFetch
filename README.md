@@ -2,7 +2,7 @@
  A POSIX \*nix (Linux, macOS, Android, \*BSD, etc) fetch script using Nerdfonts
 
 <!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
-![Screenshot](https://linus-sex.tips/YaceZlOLdx.png)
+![Screenshot](https://pool.jortage.com/voringme/misskey/e333eea0-f17d-4246-8e25-8330736ad79f.png)
 
 ### Dependencies:
 
