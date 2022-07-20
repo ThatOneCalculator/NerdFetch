@@ -42,13 +42,14 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
+manager=$(which nix-env pkg yum zypper dnf rpm apt nala brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
 	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
 	port) packages="$(port installed | wc -l)";;
 	apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
+	nala) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
 	rpm) packages="$(rpm -qa --last| wc -l)";;
 	yum) packages="$(yum list installed | wc -l)";;
 	dnf) packages="$(dnf list installed | wc -l)";;
