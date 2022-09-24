@@ -1,8 +1,7 @@
 # NerdFetch
  A POSIX \*nix (Linux, macOS, Android, \*BSD, etc) fetch script using Nerdfonts
 
-<!-- ![Screenshot](https://i.imgur.com/and9kuQ.png) -->
-![Screenshot](https://linus-sex.tips/YaceZlOLdx.png)
+![Screenshot](https://i.imgur.com/and9kuQ.png)
 
 ### Dependencies:
 
