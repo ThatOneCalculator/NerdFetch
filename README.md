@@ -61,11 +61,11 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/
 - POSIX
 
 ### OSes supported:
-- Debian based Linux
-- Ubuntu based Linux
-- Arch based Linux
-- RedHat based Linux
-- SUSE based Linux
+- Debian-based Linux
+- Ubuntu-based Linux
+- Arch-based Linux
+- RedHat-based Linux
+- SUSE-based Linux
 - Bedrock Linux
 - Alpine Linux
 - KISS Linux
