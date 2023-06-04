@@ -42,7 +42,7 @@ nerdfetch
 Copy-paste this into Termux:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch -o /data/data/com.termux/files/usr/bin/nerdfetch
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/master/nerdfetch.termux -o /data/data/com.termux/files/usr/bin/nerdfetch
 chmod a+x /data/data/com.termux/files/usr/bin/nerdfetch
 nerdfetch
 ```
