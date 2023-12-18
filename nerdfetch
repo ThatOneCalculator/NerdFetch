@@ -10,7 +10,7 @@ if command -v getprop > /dev/null; then
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
-	"Linux"*)
+	*"Linux"*)
 		if [ $linuxtype = android ]; then
 			host="$(hostname)"
 			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
@@ -25,7 +25,7 @@ case $ostype in
 			fi
 		fi
 		shell=${SHELL##*/};;
-	"Darwin"*)
+	*"Darwin"*)
 		host="$(hostname -f | sed -e 's/^[^.]*\.//')"
 		while IFS='<>' read -r _ _ line _; do
 			case $line in
@@ -42,14 +42,13 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env pkg yum zypper dnf rpm apt brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall nala cpm pmm eopkg 2>/dev/null)
+manager=$(which nix-env pkg yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
 manager=${manager##*/}
 case $manager in
 	cpm) packages="$(cpm C)";;
 	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
 	port) packages="$(port installed | wc -l)";;
-	apt) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
-	nala) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
+	dpkg-query) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
 	rpm) packages="$(rpm -qa --last| wc -l)";;
 	yum) packages="$(yum list installed | wc -l)";;
 	dnf) packages="$(dnf list installed | wc -l)";;
@@ -80,7 +79,7 @@ if [ $linuxtype = android ]; then
     uptime="$(echo $(uptime -p) | cut -c 4-)"
 else
     case $ostype in
-        "Linux")
+        *"Linux"*)
             IFS=. read -r s _ < /proc/uptime;;
         *) 
             s=$(sysctl -n kern.boottime)
@@ -112,7 +111,7 @@ fi
 ## RAM DETECTION
 
 case $ostype in
-	"Linux")
+	*"Linux"*)
 		while IFS=':k '  read -r key val _; do
 			case $key in
 				MemTotal)
@@ -124,7 +123,7 @@ case $ostype in
 		done < /proc/meminfo
 		mem_used=$((mem_used / 1024)) 
 		mem_full=$((mem_full / 1024));;
-	"Darwin"*)
+	*"Darwin"*)
 		mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
 		while IFS=:. read -r key val; do
 			case $key in
