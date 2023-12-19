@@ -3,18 +3,20 @@
 ## OS/ENVIRONMENT INFO DETECTION
 
 ostype="$(uname)"
+osi=""
 
-linuxtype=none
+distrotype=none
 if command -v getprop > /dev/null; then
-	linuxtype=android	
+	distrotype=android
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
 case $ostype in
 	*"Linux"*)
-		if [ $linuxtype = android ]; then
+		if [ $distrotype = android ]; then
 			host="$(hostname)"
 			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
 			os="Android $(getprop ro.build.version.release)"
+			osi="󰀲"
 		else
 			host="$(cat /proc/sys/kernel/hostname)"
 			. /etc/os-release
@@ -22,6 +24,34 @@ case $ostype in
 				os="$(brl version)"
 			else
 				os="${PRETTY_NAME}"
+				case $(echo $ID | sed 's/ .*//') in
+					debian) osi="";;
+					arch) osi="󰣇";;
+					endeavouros) osi="";;
+					fedora) osi="";;
+					gentoo) osi="";;
+					rhel) osi="";;
+					slackware) osi="";;
+					void) osi="";;
+					alpine) osi="";;
+					nixos) osi="󱄅";;
+					artix) osi="";;
+					exherbo) osi="󰆚";;
+					mageia) osi="";;
+					manjaro) osi="";;
+					opensuse) osi="";;
+					solus) osi="";;
+					ubuntu) osi="";;
+					mint) osi="󰣭";;
+					trisquel) osi="";;
+					puppy) osi="";;
+					coreos) osi="";;
+					mx) osi="";;
+					vanilla) osi="";;
+					pop_os) osi="";;
+					raspbian) osi="";;
+					*) osi="";;
+				esac
 			fi
 		fi
 		shell=${SHELL##*/};;
@@ -34,7 +64,18 @@ case $ostype in
 					break;;
 			esac
 		done < /System/Library/CoreServices/SystemVersion.plist
-		os="macOS ${mac_version}";;
+		os="macOS ${mac_version}"
+		osi="";;
+	*"FreeBSD"*)
+		host="$(hostname)"
+		distrotype=bsd
+		os="FreeBSD $(freebsd-version | sed 's/-.*//')"
+		osi="";;
+	*"OpenBSD"*)
+		host="$(hostname)"
+		distrotype=bsd
+		os="OpenBSD $(uname -r)"
+		osi="";;
 	*)
 		os="Idk"
 		host="host"
@@ -68,15 +109,20 @@ case $manager in
 	eopkg) packages="$(eopkg li | wc -l)";;
 	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
 	bulge) packages="$(bulge list | wc -l)";;
+	pkg_info) packages="$(pkg_info -A | wc -l)";;
 	*)
 		packages="$(ls /usr/bin | wc -l)"
 		manager="bin";;
 esac
 
+manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
+
 ## UPTIME DETECTION
 
-if [ $linuxtype = android ]; then
+if [ $distrotype = android ]; then
     uptime="$(echo $(uptime -p) | cut -c 4-)"
+elif [ $distrotype = bsd ]; then
+	uptime="$(uptime | sed -e 's/.* up //; s/, [0-9]* user.*//')"
 else
     case $ostype in
         *"Linux"*)
@@ -135,11 +181,15 @@ case $ostype in
 						EOF
 
 			mem_used=$((mem_used * 4 / 1024));;
+	*"BSD"*)
+		mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
+		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+		mem_used=$((mem_full - mem_free));;
 	*)
 		mem_full="idk"
 		mem_used="idk"
 esac
-memstat="${mem_used}/${mem_full} MB"
+memstat="${mem_used}/${mem_full} MiB"
 if which expr > /dev/null 2>&1; then
 	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full} ))%)"
 fi
@@ -173,7 +223,7 @@ c2="${reset}${yellow}"          # third color
 cat <<EOF
 
 ${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
-${c0}     (${c1}.. ${c0}\    ${lc}  ${ic}${os}${reset}
+${c0}     (${c1}.. ${c0}\    ${lc}${osi}  ${ic}${os}${reset}
 ${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}󰍛  ${ic}${RAM}${memstat} ${mempercent}
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}󰏔  ${ic}${packages} (${manager})${reset}

@@ -3,12 +3,12 @@
 
 ![Screenshot](https://bunnyt1c.s3.us-east-005.backblazeb2.com/calckeysoc/a987b0b2-9cf4-4147-ac01-1753afcd62a3.png)
 
-### Dependencies:
+### Dependencies
 
-- [Any nerdfonts font](https://www.nerdfonts.com/font-downloads)
+- [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads)
 - Anything but Windows
 
-### To install and run:
+### To install and run
 
 #### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
 
@@ -17,16 +17,16 @@ yay -S nerdfetch
 nerdfetch
 ```
 
-Make sure to replace `yay` with whatever AUR helper you use. 
+Make sure to replace `yay` with whatever AUR helper you use.
 
-#### [yiffOS](https://packages.yiffos.gay/nerdfetch):
+#### [yiffOS](https://packages.yiffos.gay/nerdfetch)
 
 ```sh
 bulge install nerdfetch
 nerdfetch
 ```
 
-#### Manually:
+#### Manually
 
 Copy-paste this into your terminal:
 
@@ -36,7 +36,7 @@ sudo chmod +x /usr/bin/nerdfetch
 nerdfetch
 ```
 
-#### Android with Termux:
+#### Android with Termux
 
 Copy-paste this into Termux:
 
@@ -46,20 +46,23 @@ chmod a+x /data/data/com.termux/files/usr/bin/nerdfetch
 nerdfetch
 ```
 
-#### Run once:
+#### Run once
 
 Note that this will ***not*** install the program.
+
 ```sh
 curl -fsSL https://codeberg.org/thatonecalculator/NerdFetch/raw/branch/master/nerdfetch | sh
 ```
 
-### Features:
+### Features
+
 - Strong cross-OS compatability
 - Not bloated
 - Portable
 - POSIX
 
-### OSes supported:
+### OSes supported
+
 - Debian based Linux
 - Ubuntu based Linux
 - Arch based Linux
@@ -76,9 +79,10 @@ curl -fsSL https://codeberg.org/thatonecalculator/NerdFetch/raw/branch/master/ne
 - yiffOS Linux
 - Slackware Linux\*
 - macOS 10.x + 11.x
+- FreeBSD
+- OpenBSD
 - Android
 
-### Known issues:
+### Known issue(s)
+
 - \*In Slackware Linux, make sure to have `/usr/sbin` in PATH
-- In FreeBSD, no hostname and no uptime
-- In OpenBSD, no hostname and no uptime, and no package count
