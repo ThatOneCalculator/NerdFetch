@@ -31,7 +31,7 @@ nerdfetch
 Copy-paste this into your terminal:
 
 ```sh
-sudo curl -fsSL https://codeberg.org/thatonecalculator/NerdFetch/raw/branch/master/nerdfetch -o /usr/bin/nerdfetch
+sudo curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/nerdfetch -o /usr/bin/nerdfetch
 sudo chmod +x /usr/bin/nerdfetch
 nerdfetch
 ```
@@ -41,7 +41,7 @@ nerdfetch
 Copy-paste this into Termux:
 
 ```sh
-curl -fsSL https://codeberg.org/thatonecalculator/NerdFetch/raw/branch/master/nerdfetch -o /data/data/com.termux/files/usr/bin/nerdfetch
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/nerdfetch -o /data/data/com.termux/files/usr/bin/nerdfetch
 chmod a+x /data/data/com.termux/files/usr/bin/nerdfetch
 nerdfetch
 ```
@@ -51,7 +51,7 @@ nerdfetch
 Note that this will ***not*** install the program.
 
 ```sh
-curl -fsSL https://codeberg.org/thatonecalculator/NerdFetch/raw/branch/master/nerdfetch | sh
+curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/nerdfetch | sh
 ```
 
 ### Features
