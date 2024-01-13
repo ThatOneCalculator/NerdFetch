@@ -131,7 +131,7 @@ port) packages="$(port installed | wc -l)";;
 		manager="pkg";;
 	getprop)
 		packages="$(ls /data/data/com.termux/files/usr/bin/ | wc -l)"
-		manager="termux";
+		manager="termux";;
 	*)
 		packages="$(ls /usr/bin | wc -l)"
 		manager="bin";;
