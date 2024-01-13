@@ -50,6 +50,11 @@ case $ostype in
 					vanilla) osi="";;
 					pop_os) osi="";;
 					raspbian) osi="";;
+					deepin) osi="";;
+					almalinux) osi="";;
+					garuda) osi="";;
+					centos) osi="";;
+					rocky) osi="";;
 					*) osi="";;
 				esac
 			fi
@@ -76,6 +81,11 @@ case $ostype in
 		distrotype=bsd
 		os="OpenBSD $(uname -r)"
 		osi="";;
+	*"NetBSD"*)
+		host="$(hostname)"
+		distrotype=bsd
+		os="NetBSD $(uname -r)"
+		osi="🚩";;
 	*)
 		os="Unix-like"
 		host="host"
