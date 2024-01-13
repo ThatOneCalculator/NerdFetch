@@ -6,7 +6,8 @@ ostype="$(uname)"
 osi=""
 
 distrotype=none
-if command -v getprop > /dev/null; then
+
+if command -v getprop &> /dev/null; then
 	distrotype=android
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"

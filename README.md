@@ -72,28 +72,18 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - Portable
 - POSIX
 
-### POSIX-compliant shells tested
-
-- bash ✅
-- zsh ✅
-- ksh ✅
-- dash ✅
-- yash ✅
-- oil (osh)\* ⚠️
-- nsh ❌ (see https://github.com/ThatOneCalculator/NerdFetch/issues/46)
-
 ### OSes tested
 
 - Debian based Linux
 - Ubuntu based Linux
 - Arch based Linux
+- Gentoo based Linux
 - RedHat based Linux
-- SUSE based Linux
+- OpenSUSE based Linux
 - Bedrock Linux
 - Alpine Linux
 - KISS Linux
 - Void Linux
-- Gentoo Linux
 - Exherbo Linux
 - NixOS Linux
 - Solus Linux
@@ -103,8 +93,9 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - FreeBSD
 - OpenBSD
 - Android
+- NetBSD\*
 
 ### Known issue(s)
 
-- \* With oil, a warning `getprop: not found` is thrown
-- NetBSD is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/39)
+- `nsh` is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/46)
+- \*NetBSD currently doesn't show memory usage or packages installed (https://github.com/ThatOneCalculator/NerdFetch/issues/39)
