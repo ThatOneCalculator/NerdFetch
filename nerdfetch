@@ -128,16 +128,18 @@ case $manager in
 	pkg_info-netbsd)
 		packages="$(pkg_info -a | wc -l)"
 		manager="pkg";;
-	getprop)
-		packages="$(ls /data/data/com.termux/files/usr/bin/ | wc -l)"
-		manager="termux";;
 	*)
 		packages="$(ls /usr/bin | wc -l)"
 		manager="bin";;
 esac
 
-manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
+if [ $distrotype = android ]; then
+	packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)"
+	manager="dpkg"
+fi
+
 packages="${packages#"${packages%%[![:space:]]*}"}"
+manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
 
 ## UPTIME DETECTION
 
