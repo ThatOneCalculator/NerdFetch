@@ -116,6 +116,7 @@ case $manager in
 esac
 
 manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
+packages="${packages#"${packages%%[![:space:]]*}"}"
 
 ## UPTIME DETECTION
 
