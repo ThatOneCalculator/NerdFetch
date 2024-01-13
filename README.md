@@ -90,7 +90,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - NixOS Linux
 - Solus Linux
 - yiffOS Linux
-- Slackware Linux\*\*
+- Slackware Linux
 - macOS 10.x + 11.x
 - FreeBSD
 - OpenBSD
@@ -99,5 +99,4 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 ### Known issue(s)
 
 - \* With oil, a warning `getprop: not found` is thrown
-- \*\*In Slackware Linux, make sure to have `/usr/sbin` in PATH
 - NetBSD is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/39)
