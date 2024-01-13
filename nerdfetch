@@ -63,14 +63,9 @@ case $ostype in
 		shell=$(basename "$SHELL");;
 	*"Darwin"*)
 		host="$(hostname -f | sed -e 's/^[^.]*\.//')"
-		while IFS='<>' read -r _ _ line _; do
-			case $line in
-				ProductVersion)
-					IFS='<>' read -r _ _ mac_version _
-					break;;
-			esac
-		done < /System/Library/CoreServices/SystemVersion.plist
-		os="macOS ${mac_version}"
+		mac_product="$(/usr/libexec/PlistBuddy -c "Print:ProductName" /System/Library/CoreServices/SystemVersion.plist)"
+		mac_version="$(/usr/libexec/PlistBuddy -c "Print:ProductVersion" /System/Library/CoreServices/SystemVersion.plist)"
+		os="${mac_product} ${mac_version}"
 		osi="";;
 	*"FreeBSD"*)
 		host="$(hostname)"
