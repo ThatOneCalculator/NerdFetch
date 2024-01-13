@@ -6,6 +6,7 @@
 ### Dependencies
 
 - [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads)
+- POSIX-compliant shell
 - Anything but Windows
 
 ### To install and run
@@ -61,7 +62,19 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - Portable
 - POSIX
 
-### OSes supported
+### POSIX-compliant shells tested
+
+*All tested on Arch Linux*
+
+- bash ✅
+- zsh ✅
+- ksh ✅
+- dash ✅
+- yash ✅
+- oil (osh)\* ⚠️
+- nsh ❌ (see https://github.com/ThatOneCalculator/NerdFetch/issues/46)
+
+### OSes tested
 
 - Debian based Linux
 - Ubuntu based Linux
@@ -77,7 +90,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - NixOS Linux
 - Solus Linux
 - yiffOS Linux
-- Slackware Linux\*
+- Slackware Linux\*\*
 - macOS 10.x + 11.x
 - FreeBSD
 - OpenBSD
@@ -85,4 +98,6 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 
 ### Known issue(s)
 
-- \*In Slackware Linux, make sure to have `/usr/sbin` in PATH
+- \* With oil, a warning `getprop: not found` is thrown
+- \*\*In Slackware Linux, make sure to have `/usr/sbin` in PATH
+- NetBSD is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/39)

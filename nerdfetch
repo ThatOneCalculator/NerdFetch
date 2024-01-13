@@ -54,7 +54,7 @@ case $ostype in
 				esac
 			fi
 		fi
-		shell=${SHELL##*/};;
+		shell=$(basename "$SHELL");;
 	*"Darwin"*)
 		host="$(hostname -f | sed -e 's/^[^.]*\.//')"
 		while IFS='<>' read -r _ _ line _; do
@@ -77,14 +77,14 @@ case $ostype in
 		os="OpenBSD $(uname -r)"
 		osi="";;
 	*)
-		os="Idk"
+		os="Unix-like"
 		host="host"
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-manager=$(which nix-env pkg yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
-manager=${manager##*/}
+MANAGER=$(which nix-env pkg yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
+manager=$(basename "$MANAGER")
 case $manager in
 	cpm) packages="$(cpm C)";;
 	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
