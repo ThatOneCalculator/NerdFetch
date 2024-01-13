@@ -93,18 +93,17 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-MANAGER=$(which nix-env pkg yum zypper dnf rpm apt dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
+MANAGER=$(which nix-env pkg yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg getprop 2>/dev/null)
 manager=$(basename "$MANAGER")
 if [ $osi = "󰉀" ]; then
 	manager="pkg_info-netbsd"
 fi
 case $manager in
 	cpm) packages="$(cpm C)";;
-	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
+	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l)";;
 	port) packages="$(port installed | wc -l)";;
 port) packages="$(port installed | wc -l)";;
 	dpkg-query) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
-	apt) packages="$(apt list | wc -l)";;
 	rpm) packages="$(rpm -qa --last| wc -l)";;
 	yum) packages="$(yum list installed | wc -l)";;
 	dnf) packages="$(dnf list installed | wc -l)";;
@@ -124,8 +123,15 @@ port) packages="$(port installed | wc -l)";;
 	eopkg) packages="$(eopkg li | wc -l)";;
 	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
 	bulge) packages="$(bulge list | wc -l)";;
-	pkg_info) packages="$(pkg_info -A | wc -l)";;
-	pkg_info-netbsd) packages="$(pkg_info -A | wc -l)";;
+	pkg_info
+		packages="$(pkg_info -A | wc -l)"
+		manager="pkg";;
+	pkg_info-netbsd)
+		packages="$(pkg_info -A | wc -l)"
+		manager="pkg";;
+	getprop)
+		packages="$(ls /data/data/com.termux/files/usr/bin/ | wc -l)"
+		manager="termux";
 	*)
 		packages="$(ls /usr/bin | wc -l)"
 		manager="bin";;
