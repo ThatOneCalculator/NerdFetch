@@ -11,6 +11,8 @@
 
 ### To install and run
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/nerdfetch.svg)](https://repology.org/project/nerdfetch/versions)
+
 #### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
 
 ```sh
