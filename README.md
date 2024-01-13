@@ -22,6 +22,14 @@ nerdfetch
 
 Make sure to replace `yay` with whatever AUR helper you use.
 
+### [Gentoo](https://gpo.zugaina.org/Overlays/guru/app-misc/nerdfetch)/[LiGurOS](https://gitlab.com/liguros/liguros-repo/-/tree/stable/app-misc/nerdfetch)
+
+Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users> (*Not needed for LiGurOS*)
+
+```sh
+emerge nerdfetch
+```
+
 #### [yiffOS](https://packages.yiffos.gay/nerdfetch)
 
 ```sh
