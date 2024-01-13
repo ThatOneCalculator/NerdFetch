@@ -205,8 +205,8 @@ case $ostype in
 		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
 		mem_used=$((mem_full - mem_free));;
 	*)
-		mem_full="idk"
-		mem_used="idk"
+		mem_full=0
+		mem_used=0
 esac
 memstat="${mem_used}/${mem_full} MiB"
 if which expr > /dev/null 2>&1; then
