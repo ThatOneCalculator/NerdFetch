@@ -129,14 +129,14 @@ case $manager in
 		packages="$(pkg_info -a | wc -l)"
 		manager="pkg";;
 	*)
-		packages="$(ls /usr/bin | wc -l)"
-		manager="bin";;
+		if [ $distrotype = android ]; then
+			packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)"
+			manager="dpkg"
+		else
+			packages="$(ls /usr/bin | wc -l)"
+			manager="bin"
+		fi;;
 esac
-
-if [ $distrotype = android ]; then
-	packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)"
-	manager="dpkg"
-fi
 
 packages="${packages#"${packages%%[![:space:]]*}"}"
 manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
