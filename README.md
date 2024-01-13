@@ -7,6 +7,7 @@
 
 - [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads)
 - POSIX-compliant shell
+- `which`
 - Anything but Windows
 
 ### To install and run
