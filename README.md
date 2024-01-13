@@ -1,7 +1,7 @@
 # NerdFetch
- A POSIX \*nix (Linux, macOS, Android, \*BSD, etc) fetch script using Nerdfonts
+ A POSIX \*nix (Linux, macOS, Android, BSD, etc) fetch script using Nerdfonts
 
-![Screenshot](https://bunnyt1c.s3.us-east-005.backblazeb2.com/calckeysoc/a987b0b2-9cf4-4147-ac01-1753afcd62a3.png)
+![Screenshot](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/0bc8872f-70b0-485f-a5f5-cc45bb2dac79)
 
 ### Dependencies
 
