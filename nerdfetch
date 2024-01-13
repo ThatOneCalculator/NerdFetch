@@ -95,6 +95,9 @@ esac
 
 MANAGER=$(which nix-env pkg yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg 2>/dev/null)
 manager=$(basename "$MANAGER")
+if [ $osi = "󰉀" ]; then
+	manager="pkg_info-netbsd"
+fi
 case $manager in
 	cpm) packages="$(cpm C)";;
 	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l | tr -d '[:space:]')";;
@@ -120,6 +123,7 @@ case $manager in
 	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
 	bulge) packages="$(bulge list | wc -l)";;
 	pkg_info) packages="$(pkg_info -A | wc -l)";;
+	pkg_info-netbsd) packages="$(pkg_info -A | wc -l)";;
 	*)
 		packages="$(ls /usr/bin | wc -l)"
 		manager="bin";;
@@ -192,6 +196,10 @@ case $ostype in
 						EOF
 
 			mem_used=$((mem_used * 4 / 1024));;
+	*"NetBSD"*)
+		mem_full=$(($(/sbin/sysctl -n hw.physmem) / 1024 / 1024))
+		mem_free=$(($(/sbin/sysctl -n vm.stats.vm.v_free_count) * $(/sbin/sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+		mem_used=$((mem_full - mem_free));;
 	*"BSD"*)
 		mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
 		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
