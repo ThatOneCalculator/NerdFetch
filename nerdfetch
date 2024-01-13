@@ -85,7 +85,7 @@ case $ostype in
 		host="$(hostname)"
 		distrotype=bsd
 		os="NetBSD $(uname -r)"
-		osi="🚩";;
+		osi="󰉀";;
 	*)
 		os="Unix-like"
 		host="host"
