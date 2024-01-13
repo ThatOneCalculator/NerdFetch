@@ -102,7 +102,6 @@ case $manager in
 	cpm) packages="$(cpm C)";;
 	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l)";;
 	port) packages="$(port installed | wc -l)";;
-port) packages="$(port installed | wc -l)";;
 	dpkg-query) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
 	rpm) packages="$(rpm -qa --last| wc -l)";;
 	yum) packages="$(yum list installed | wc -l)";;
