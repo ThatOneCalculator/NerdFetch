@@ -74,8 +74,6 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 
 ### POSIX-compliant shells tested
 
-*All tested on Arch Linux*
-
 - bash ✅
 - zsh ✅
 - ksh ✅
@@ -101,7 +99,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - Solus Linux
 - yiffOS Linux
 - Slackware Linux
-- macOS 10.x + 11.x
+- macOS
 - FreeBSD
 - OpenBSD
 - Android
