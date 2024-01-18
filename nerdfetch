@@ -7,7 +7,7 @@ osi=""
 
 distrotype=none
 
-if command -v getprop &> /dev/null; then
+if command -v getprop 1> /dev/null; then
 	distrotype=android
 fi
 kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
@@ -15,7 +15,7 @@ case $ostype in
 	*"Linux"*)
 		if [ $distrotype = android ]; then
 			host="$(hostname)"
-			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
+			USER="$(whoami)"
 			os="Android $(getprop ro.build.version.release)"
 			osi="󰀲"
 		else
@@ -208,7 +208,7 @@ case $ostype in
 			mem_used=$((mem_used * 4 / 1024));;
 	*"NetBSD"*)
 		mem_full=$(($(/sbin/sysctl -n hw.physmem) / 1024 / 1024))
-		mem_free=$(($(/sbin/sysctl -n vm.stats.vm.v_free_count) * $(/sbin/sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+	        mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
 		mem_used=$((mem_full - mem_free));;
 	*"BSD"*)
 		mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
