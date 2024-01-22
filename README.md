@@ -29,6 +29,7 @@
 - Nerdfonts is used by default
 - Use `-c` for Cozette
 - Use `-p` for Phosphor
+- Use `-e` for Emojis
 
 #### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
 
