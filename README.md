@@ -112,7 +112,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - FreeBSD
 - OpenBSD
 - Android
-- NetBSD\*
+- NetBSD
 
 ### Known issue(s)
 
