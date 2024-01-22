@@ -2,10 +2,12 @@
  A POSIX \*nix (Linux, macOS, Android, BSD, etc) fetch script using Nerdfonts
 
 ![Screenshot](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/0bc8872f-70b0-485f-a5f5-cc45bb2dac79)
+![Phosphor](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/fa620df5-af93-4145-adbf-d2c0be279851)
+![Cozette](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/f7999fb1-53c3-4427-91cc-5aa3e42aeb41)
 
 ### Dependencies
 
-- [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads)
+- [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads), [Cozette](https://github.com/slavfox/Cozette), or [Phosphor](https://github.com/phosphor-icons/homepage/releases/tag/v2.0.0)
 - POSIX-compliant shell
 - `which`
 - Anything but Windows
@@ -13,6 +15,12 @@
 ### To install and run
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/nerdfetch.svg)](https://repology.org/project/nerdfetch/versions)
+
+#### How to switch fonts
+
+- Nerdfonts is used by default
+- Use `-c` for Cozette
+- Use `-p` for Phosphor
 
 #### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
 

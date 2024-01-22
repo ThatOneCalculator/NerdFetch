@@ -3,9 +3,38 @@
 ## OS/ENVIRONMENT INFO DETECTION
 
 ostype="$(uname)"
-osi=""
 
+version=8.0.0
+font=nerd
 distrotype=none
+osi=""
+ki=""
+ri="󰍛"
+pi="󰏔"
+ui="󰅶"
+ci=""
+
+case $1 in
+	"-p")
+		font=phosphor;
+		osi="";
+		ki=""
+		ri=""
+		pi=""
+		ui=""
+		ci="";;
+	"-c")
+		font=cozette
+		ki="♥"
+		ri=""
+		pi=""
+		ui=""
+		ci="";;
+	"-v") echo "NerdFetch $version"; exit;;
+	"-h") echo "-p: Phosphor font
+-c: Cozette font
+-v: Version"; exit;;
+esac
 
 if command -v getprop 1> /dev/null; then
 	distrotype=android
@@ -17,7 +46,11 @@ case $ostype in
 			host="$(hostname)"
 			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
 			os="Android $(getprop ro.build.version.release)"
-			osi="󰀲"
+			if [ $font = phosphor ]; then
+				osi=""
+			else
+				osi="󰀲"
+			fi
 		else
 			host="$(cat /proc/sys/kernel/hostname)"
 			. /etc/os-release
@@ -25,39 +58,58 @@ case $ostype in
 				os="$(brl version)"
 			else
 				os="${PRETTY_NAME}"
-				case $(echo $ID | sed 's/ .*//') in
-					debian) osi="";;
-					arch) osi="󰣇";;
-					endeavouros) osi="";;
-					fedora) osi="";;
-					gentoo) osi="";;
-					rhel) osi="";;
-					slackware) osi="";;
-					void) osi="";;
-					alpine) osi="";;
-					nixos) osi="󱄅";;
-					artix) osi="";;
-					exherbo) osi="󰆚";;
-					mageia) osi="";;
-					manjaro) osi="";;
-					opensuse) osi="";;
-					solus) osi="";;
-					ubuntu) osi="";;
-					mint) osi="󰣭";;
-					trisquel) osi="";;
-					puppy) osi="";;
-					coreos) osi="";;
-					mx) osi="";;
-					vanilla) osi="";;
-					pop_os) osi="";;
-					raspbian) osi="";;
-					deepin) osi="";;
-					almalinux) osi="";;
-					garuda) osi="";;
-					centos) osi="";;
-					rocky) osi="";;
-					*) osi="";;
-				esac
+				if [ $font = nerd ]; then
+					case $(echo $ID | sed 's/ .*//') in
+						debian) osi="";;
+						arch) osi="󰣇";;
+						endeavouros) osi="";;
+						fedora) osi="";;
+						gentoo) osi="";;
+						rhel) osi="";;
+						slackware) osi="";;
+						void) osi="";;
+						alpine) osi="";;
+						nixos) osi="󱄅";;
+						artix) osi="";;
+						exherbo) osi="󰆚";;
+						mageia) osi="";;
+						manjaro) osi="";;
+						opensuse) osi="";;
+						solus) osi="";;
+						ubuntu) osi="";;
+						mint) osi="󰣭";;
+						trisquel) osi="";;
+						puppy) osi="";;
+						coreos) osi="";;
+						mx) osi="";;
+						vanilla) osi="";;
+						pop_os) osi="";;
+						raspbian) osi="";;
+						deepin) osi="";;
+						almalinux) osi="";;
+						garuda) osi="";;
+						centos) osi="";;
+						rocky) osi="";;
+					esac
+				elif [ $font = cozette ]; then
+					case $(echo $ID | sed 's/ .*//') in
+						debian) osi="";;
+						arch) osi="";;
+						fedora) osi="";;
+						gentoo) osi="";;
+						slackware) osi="";;
+						void) osi="";;
+						alpine) osi="";;
+						nixos) osi="";;
+						mageia) osi="";;
+						manjaro) osi="";;
+						opensuse) osi="";;
+						ubuntu) osi="";;
+						mint) osi="";;
+						coreos) osi="";;
+						centos) osi="";;
+					esac
+				fi
 			fi
 		fi
 		shell=$(basename "$SHELL");;
@@ -66,22 +118,38 @@ case $ostype in
 		mac_product="$(/usr/libexec/PlistBuddy -c "Print:ProductName" /System/Library/CoreServices/SystemVersion.plist)"
 		mac_version="$(/usr/libexec/PlistBuddy -c "Print:ProductVersion" /System/Library/CoreServices/SystemVersion.plist)"
 		os="${mac_product} ${mac_version}"
-		osi="";;
+		case $font in
+			nerd) osi="";;
+			phosphor) osi="";;
+			cozette) osi="";;
+		esac;;
 	*"FreeBSD"*)
 		host="$(hostname)"
 		distrotype=bsd
 		os="FreeBSD $(freebsd-version | sed 's/-.*//')"
-		osi="";;
+		case $font in
+			nerd) osi="";;
+			phosphor) osi="";;
+			cozette) osi="";;
+		esac;;
 	*"OpenBSD"*)
 		host="$(hostname)"
 		distrotype=bsd
 		os="OpenBSD $(uname -r)"
-		osi="";;
+		case $font in
+			nerd) osi="";;
+			phosphor) osi="";;
+			cozette) osi="⌘";;
+		esac;;
 	*"NetBSD"*)
 		host="$(hostname)"
-		distrotype=bsd
+		distrotype=netbsd
 		os="NetBSD $(uname -r)"
-		osi="󰉀";;
+		case $font in
+			nerd) osi="󰉀";;
+			phosphor) osi="";;
+			cozette) osi="";;
+		esac;;
 	*)
 		os="Unix-like"
 		host="host"
@@ -91,7 +159,7 @@ esac
 
 MANAGER=$(which nix-env pkg yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge yay paru pacstall cpm pmm eopkg getprop 2>/dev/null)
 manager=$(basename "$MANAGER")
-if [ $osi = "󰉀" ]; then
+if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
 fi
 case $manager in
@@ -140,43 +208,43 @@ manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
 ## UPTIME DETECTION
 
 if [ $distrotype = android ]; then
-    uptime="$(echo $(uptime -p) | cut -c 4-)"
-elif [ $distrotype = bsd ]; then
+	uptime="$(echo $(uptime -p) | cut -c 4-)"
+elif [ $distrotype = bsd ] || [ $distrotype = netbsd ]; then
 	uptime="$(uptime | sed -e 's/.* up //; s/, [0-9]* user.*//')"
 else
-    case $ostype in
-        *"Linux"*)
-            IFS=. read -r s _ < /proc/uptime;;
-        *"NetBSD"*)
-            s=$(/sbin/sysctl -n kern.boottime)
-            s=${s#*=}
-            s=${s%,*}
-            s=$(($(date +%s) - s));;
-        *) 
-            s=$(sysctl -n kern.boottime)
-            s=${s#*=}
-            s=${s%,*}
-            s=$(($(date +%s) - s));;
-    esac
-    d="$((s / 60 / 60 / 24))"
-    h="$((s / 60 / 60 % 24))"
-    m="$((s / 60 % 60))"
-    # Plurals
-    [ "$d" -gt 1 ] && dp=s
-    [ "$h" -gt 1 ] && hp=s
-    [ "$m" -gt 1 ] && mp=s
-    [ "$s" -gt 1 ] && sp=s
-    # Hide empty fields.
-    [ "$d" = 0 ] && d=
-    [ "$h" = 0 ] && h=
-    [ "$m" = 0 ] && m=
-    [ "$m" != "" ] && s=
-    # Make the output of uptime smaller.
-    [ "$d" ] && uptime="$d day$dp, "
-    [ "$h" ] && uptime="$uptime$h hour$hp, "
-    [ "$m" ] && uptime="$uptime$m min$mp"
-    [ "$s" ] && uptime="$uptime$s sec$sp"
-    uptime=${uptime%, }
+	case $ostype in
+		*"Linux"*)
+			IFS=. read -r s _ < /proc/uptime;;
+		*"NetBSD"*)
+			s=$(/sbin/sysctl -n kern.boottime)
+			s=${s#*=}
+			s=${s%,*}
+			s=$(($(date +%s) - s));;
+		*)
+			s=$(sysctl -n kern.boottime)
+			s=${s#*=}
+			s=${s%,*}
+			s=$(($(date +%s) - s));;
+	esac
+	d="$((s / 60 / 60 / 24))"
+	h="$((s / 60 / 60 % 24))"
+	m="$((s / 60 % 60))"
+	# Plurals
+	[ "$d" -gt 1 ] && dp=s
+	[ "$h" -gt 1 ] && hp=s
+	[ "$m" -gt 1 ] && mp=s
+	[ "$s" -gt 1 ] && sp=s
+	# Hide empty fields.
+	[ "$d" = 0 ] && d=
+	[ "$h" = 0 ] && h=
+	[ "$m" = 0 ] && m=
+	[ "$m" != "" ] && s=
+	# Make the output of uptime smaller.
+	[ "$d" ] && uptime="$d day$dp, "
+	[ "$h" ] && uptime="$uptime$h hour$hp, "
+	[ "$m" ] && uptime="$uptime$m min$mp"
+	[ "$s" ] && uptime="$uptime$s sec$sp"
+	uptime=${uptime%, }
 fi
 
 ## RAM DETECTION
@@ -253,9 +321,9 @@ cat <<EOF
 
 ${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
 ${c0}     (${c1}.. ${c0}\    ${lc}${osi}  ${ic}${os}${reset}
-${c0}     (${c2}<> ${c0}|    ${lc}  ${ic}${kernel}${reset}
-${c0}    /${c1}/  \\ ${c0}\\   ${lc}󰍛  ${ic}${RAM}${memstat} ${mempercent}
-${c0}   ( ${c1}|  | ${c0}/|  ${lc}󰏔  ${ic}${packages} (${manager})${reset}
-${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}󰅶  ${ic}${uptime}${reset}
-${c2}  \/${c0}-____${c2}\/${reset}   ${lc}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+${c0}     (${c2}<> ${c0}|    ${lc}${ki}  ${ic}${kernel}${reset}
+${c0}    /${c1}/  \\ ${c0}\\   ${lc}${ri}  ${ic}${RAM}${memstat} ${mempercent}
+${c0}   ( ${c1}|  | ${c0}/|  ${lc}${pi}  ${ic}${packages} (${manager})${reset}
+${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}${ui}  ${ic}${uptime}${reset}
+${c2}  \/${c0}-____${c2}\/${reset}   ${lc}${ci}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
