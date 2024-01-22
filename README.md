@@ -108,4 +108,4 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 ### Known issue(s)
 
 - `nsh` is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/46)
-- \*NetBSD currently doesn't show memory usage or packages installed (https://github.com/ThatOneCalculator/NerdFetch/issues/39)
+- \*NetBSD currently doesn't show memory usage (https://github.com/ThatOneCalculator/NerdFetch/issues/39)

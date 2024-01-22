@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.0.0
+version=8.1.0
 font=nerd
 distrotype=none
 osi=""
@@ -30,9 +30,19 @@ case $1 in
 		pi=""
 		ui=""
 		ci="";;
+	"-e")
+		font=emoji
+		osi="🐧"
+		ki="💓"
+		ri="🐐"
+		pi="📦"
+		ui="☕"
+		ci="🎨";;
 	"-v") echo "NerdFetch $version"; exit;;
-	"-h") echo "-p: Phosphor font
+	"-h") echo "Flags:
 -c: Cozette font
+-p: Phosphor font
+-e: Emoji font
 -v: Version"; exit;;
 esac
 
@@ -46,11 +56,11 @@ case $ostype in
 			host="$(hostname)"
 			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
 			os="Android $(getprop ro.build.version.release)"
-			if [ $font = phosphor ]; then
-				osi=""
-			else
-				osi="󰀲"
-			fi
+			case $font in
+				phosphor) osi="";;
+				emoji) osi="🤖";;
+				*) osi="󰀲";;
+			esac
 		else
 			host="$(cat /proc/sys/kernel/hostname)"
 			. /etc/os-release
@@ -122,6 +132,7 @@ case $ostype in
 			nerd) osi="";;
 			phosphor) osi="";;
 			cozette) osi="";;
+			emoji) osi="🍎";;
 		esac;;
 	*"FreeBSD"*)
 		host="$(hostname)"
@@ -131,6 +142,7 @@ case $ostype in
 			nerd) osi="";;
 			phosphor) osi="";;
 			cozette) osi="";;
+			emoji) osi="😈";;
 		esac;;
 	*"OpenBSD"*)
 		host="$(hostname)"
@@ -140,6 +152,7 @@ case $ostype in
 			nerd) osi="";;
 			phosphor) osi="";;
 			cozette) osi="⌘";;
+			emoji) osi="🐡";;
 		esac;;
 	*"NetBSD"*)
 		host="$(hostname)"
@@ -149,6 +162,7 @@ case $ostype in
 			nerd) osi="󰉀";;
 			phosphor) osi="";;
 			cozette) osi="";;
+			emoji) osi="🚩";;
 		esac;;
 	*)
 		os="Unix-like"
