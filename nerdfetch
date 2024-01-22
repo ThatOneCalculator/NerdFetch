@@ -54,7 +54,7 @@ case $ostype in
 	*"Linux"*)
 		if [ $distrotype = android ]; then
 			host="$(hostname)"
-			USER=${USER:-$(id -un || printf %s "${HOME/*\/}")}
+			USER="$(whoami)"
 			os="Android $(getprop ro.build.version.release)"
 			case $font in
 				phosphor) osi="";;
@@ -288,16 +288,16 @@ case $ostype in
 						EOF
 
 			mem_used=$((mem_used * 4 / 1024));;
-	*"NetBSD"*)
-		mem_full=$(($(/sbin/sysctl -n hw.physmem) / 1024 / 1024))
-		mem_free=$(($(/sbin/sysctl -n vm.stats.vm.v_free_count) * $(/sbin/sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
-		mem_used=$((mem_full - mem_free));;
 	*"BSD"*)
 		mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
-		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+		if [ $distrotype = netbsd ]; then
+			mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
+		else
+			mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+		fi
 		mem_used=$((mem_full - mem_free));;
 	*)
-		mem_full=0
+		mem_full=1
 		mem_used=0
 esac
 memstat="${mem_used}/${mem_full} MiB"
