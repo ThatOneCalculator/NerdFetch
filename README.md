@@ -3,7 +3,7 @@
 
 ![Screenshot](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/0bc8872f-70b0-485f-a5f5-cc45bb2dac79)
 ![Phosphor](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/fa620df5-af93-4145-adbf-d2c0be279851)
-![Cozette](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/f7999fb1-53c3-4427-91cc-5aa3e42aeb41)
+![Cozette](https://github.com/ThatOneCalculator/NerdFetch/assets/44733677/574e8417-adee-45cd-9a4e-68661240f458)
 
 ### Dependencies
 
