@@ -166,7 +166,7 @@ case $ostype in
 		esac;;
 	*)
 		os="Unix-like"
-		host="host"
+		host="host";;
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
@@ -298,7 +298,7 @@ case $ostype in
 		mem_used=$((mem_full - mem_free));;
 	*)
 		mem_full=1
-		mem_used=0
+		mem_used=0;;
 esac
 memstat="${mem_used}/${mem_full} MiB"
 if which expr > /dev/null 2>&1; then
