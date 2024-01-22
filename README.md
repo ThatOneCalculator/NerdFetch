@@ -29,6 +29,7 @@ Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for
 
 ```sh
 emerge nerdfetch
+nerdfetch
 ```
 
 #### [yiffOS](https://packages.yiffos.gay/nerdfetch)
