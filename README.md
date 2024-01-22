@@ -34,7 +34,7 @@
 #### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
 
 ```sh
-yay -S nerdfetch
+yay -S nerdfetch # -git
 nerdfetch
 ```
 
