@@ -56,6 +56,13 @@ bulge install nerdfetch
 nerdfetch
 ```
 
+#### [BirbOS](https://github.com/birb-linux/BirbOS-packages/tree/dev/nerdfetch)
+
+```sh
+sudo birb nerdfetch
+nerdfetch
+```
+
 #### Manually
 
 Copy-paste this into your terminal:
@@ -108,10 +115,11 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - Solus Linux
 - yiffOS Linux
 - Slackware Linux
+- BirbOS Linux
 - macOS
+- Android
 - FreeBSD
 - OpenBSD
-- Android
 - NetBSD
 
 ### Known issue(s)
