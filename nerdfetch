@@ -231,11 +231,6 @@ else
 	case $ostype in
 		*"Linux"*)
 			IFS=. read -r s _ < /proc/uptime;;
-		*"NetBSD"*)
-			s=$(/sbin/sysctl -n kern.boottime)
-			s=${s#*=}
-			s=${s%,*}
-			s=$(($(date +%s) - s));;
 		*)
 			s=$(sysctl -n kern.boottime)
 			s=${s#*=}
