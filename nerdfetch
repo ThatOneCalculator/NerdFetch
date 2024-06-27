@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.1.1
+version=8.1.2
 font=nerd
 distrotype=none
 osi=""
@@ -210,8 +210,8 @@ case $manager in
 		manager="pkg";;
 	*)
 		if [ $distrotype = android ]; then
-			packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)"
-			manager="dpkg"
+			packages="$(pkg list-installed | wc -l)"
+			manager="pkg"
 		else
 			packages="$(ls /usr/bin | wc -l)"
 			manager="bin"
