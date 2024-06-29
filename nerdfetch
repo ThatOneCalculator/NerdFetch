@@ -171,7 +171,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-MANAGER=$(which nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb yay paru pacstall cpm pmm eopkg getprop 2>/dev/null)
+MANAGER=$(which nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb yay paru pacstall cpm pmm eopkg opkg getprop 2>/dev/null)
 manager=$(basename "$MANAGER")
 if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
@@ -199,6 +199,7 @@ case $manager in
 	apk) packages="$(apk list --installed | wc -l)";;
 	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
 	eopkg) packages="$(eopkg li | wc -l)";;
+	opkg) packages="$(opkg list-installed | wc -l)";;
 	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
 	bulge) packages="$(bulge list | wc -l)";;
 	birb) packages="$(birb --list-installed | wc -l)";;
