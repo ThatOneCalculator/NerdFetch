@@ -15,14 +15,14 @@ ui="󰅶"
 ci=""
 
 case $1 in
-	"-p")
-		font=phosphor;
-		osi="";
-		ki=""
-		ri=""
-		pi=""
-		ui=""
-		ci="";;
+        "-p")
+                font=phosphor;
+                osi="";
+                ki=""
+                ri=""
+                pi=""
+                ui=""
+                ci="";;
 	"-c")
 		font=cozette
 		ki="♥"
