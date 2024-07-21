@@ -121,6 +121,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - FreeBSD
 - OpenBSD
 - NetBSD
+- OpenWrt
 
 ### Known issue(s)
 
