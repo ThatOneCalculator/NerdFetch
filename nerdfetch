@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.1.2
+version=8.1.3
 font=nerd
 distrotype=none
 osi=""
@@ -15,158 +15,173 @@ ui="󰅶"
 ci=""
 
 case $1 in
-        "-p")
-                font=phosphor;
-                osi="";
-                ki=""
-                ri=""
-                pi=""
-                ui=""
-                ci="";;
-	"-c")
-		font=cozette
-		ki="♥"
-		ri=""
-		pi=""
-		ui=""
-		ci="";;
-	"-e")
-		font=emoji
-		osi="🐧"
-		ki="💓"
-		ri="🐐"
-		pi="📦"
-		ui="☕"
-		ci="🎨";;
-	"-v") echo "NerdFetch $version"; exit;;
-	"-h") echo "Flags:
+"-p")
+	font=phosphor
+	osi=""
+	ki=""
+	ri=""
+	pi=""
+	ui=""
+	ci=""
+	;;
+"-c")
+	font=cozette
+	ki="♥"
+	ri=""
+	pi=""
+	ui=""
+	ci=""
+	;;
+"-e")
+	font=emoji
+	osi="🐧"
+	ki="💓"
+	ri="🐐"
+	pi="📦"
+	ui="☕"
+	ci="🎨"
+	;;
+"-v")
+	echo "NerdFetch $version"
+	exit
+	;;
+"-h")
+	echo "Flags:
 -c: Cozette font
 -p: Phosphor font
 -e: Emoji font
--v: Version"; exit;;
+-v: Version"
+	exit
+	;;
 esac
 
-if command -v getprop 1> /dev/null; then
+if command -v getprop 1>/dev/null; then
 	distrotype=android
 fi
-kernel="$(echo $(uname -r) | cut -d'-'  -f1-1)"
+kernel="$(echo $(uname -r) | cut -d'-' -f1-1)"
 case $ostype in
-	*"Linux"*)
-		if [ $distrotype = android ]; then
-			host="$(hostname)"
-			USER="$(whoami)"
-			os="Android $(getprop ro.build.version.release)"
-			case $font in
-				phosphor) osi="";;
-				emoji) osi="🤖";;
-				*) osi="󰀲";;
-			esac
+*"Linux"*)
+	if [ $distrotype = android ]; then
+		host="$(hostname)"
+		USER="$(whoami)"
+		os="Android $(getprop ro.build.version.release)"
+		case $font in
+		phosphor) osi="" ;;
+		emoji) osi="🤖" ;;
+		*) osi="󰀲" ;;
+		esac
+	else
+		host="$(cat /proc/sys/kernel/hostname)"
+		. /etc/os-release
+		if [ -f /bedrock/etc/bedrock-release ]; then
+			os="$(brl version)"
 		else
-			host="$(cat /proc/sys/kernel/hostname)"
-			. /etc/os-release
-			if [ -f /bedrock/etc/bedrock-release ]; then
-				os="$(brl version)"
-			else
-				os="${PRETTY_NAME}"
-				if [ $font = nerd ]; then
-					case $(echo $ID | sed 's/ .*//') in
-						debian) osi="";;
-						arch) osi="󰣇";;
-						endeavouros) osi="";;
-						fedora) osi="";;
-						gentoo) osi="";;
-						rhel) osi="";;
-						slackware) osi="";;
-						void) osi="";;
-						alpine) osi="";;
-						nixos) osi="󱄅";;
-						artix) osi="";;
-						exherbo) osi="󰆚";;
-						mageia) osi="";;
-						manjaro) osi="";;
-						opensuse) osi="";;
-						solus) osi="";;
-						ubuntu) osi="";;
-						mint) osi="󰣭";;
-						trisquel) osi="";;
-						puppy) osi="";;
-						coreos) osi="";;
-						mx) osi="";;
-						vanilla) osi="";;
-						pop_os) osi="";;
-						raspbian) osi="";;
-						deepin) osi="";;
-						almalinux) osi="";;
-						garuda) osi="";;
-						centos) osi="";;
-						rocky) osi="";;
-					esac
-				elif [ $font = cozette ]; then
-					case $(echo $ID | sed 's/ .*//') in
-						debian) osi="";;
-						arch) osi="";;
-						fedora) osi="";;
-						gentoo) osi="";;
-						slackware) osi="";;
-						void) osi="";;
-						alpine) osi="";;
-						nixos) osi="";;
-						mageia) osi="";;
-						manjaro) osi="";;
-						opensuse) osi="";;
-						ubuntu) osi="";;
-						mint) osi="";;
-						coreos) osi="";;
-						centos) osi="";;
-					esac
-				fi
+			os="${PRETTY_NAME}"
+			if [ $font = nerd ]; then
+				case $(echo $ID | sed 's/ .*//') in
+				debian) osi="" ;;
+				arch) osi="󰣇" ;;
+				endeavouros) osi="" ;;
+				fedora) osi="" ;;
+				gentoo) osi="" ;;
+				rhel) osi="" ;;
+				slackware) osi="" ;;
+				void) osi="" ;;
+				alpine) osi="" ;;
+				nixos) osi="󱄅" ;;
+				artix) osi="" ;;
+				exherbo) osi="󰆚" ;;
+				mageia) osi="" ;;
+				manjaro) osi="" ;;
+				opensuse) osi="" ;;
+				solus) osi="" ;;
+				ubuntu) osi="" ;;
+				mint) osi="󰣭" ;;
+				trisquel) osi="" ;;
+				puppy) osi="" ;;
+				coreos) osi="" ;;
+				mx) osi="" ;;
+				vanilla) osi="" ;;
+				pop_os) osi="" ;;
+				raspbian) osi="" ;;
+				deepin) osi="" ;;
+				almalinux) osi="" ;;
+				garuda) osi="" ;;
+				centos) osi="" ;;
+				rocky) osi="" ;;
+				esac
+			elif [ $font = cozette ]; then
+				case $(echo $ID | sed 's/ .*//') in
+				debian) osi="" ;;
+				arch) osi="" ;;
+				fedora) osi="" ;;
+				gentoo) osi="" ;;
+				slackware) osi="" ;;
+				void) osi="" ;;
+				alpine) osi="" ;;
+				nixos) osi="" ;;
+				mageia) osi="" ;;
+				manjaro) osi="" ;;
+				opensuse) osi="" ;;
+				ubuntu) osi="" ;;
+				mint) osi="" ;;
+				coreos) osi="" ;;
+				centos) osi="" ;;
+				esac
 			fi
 		fi
-		shell=$(basename "$SHELL");;
-	*"Darwin"*)
-		host="$(hostname -f | sed -e 's/^[^.]*\.//')"
-		mac_product="$(/usr/libexec/PlistBuddy -c "Print:ProductName" /System/Library/CoreServices/SystemVersion.plist)"
-		mac_version="$(/usr/libexec/PlistBuddy -c "Print:ProductVersion" /System/Library/CoreServices/SystemVersion.plist)"
-		os="${mac_product} ${mac_version}"
-		case $font in
-			nerd) osi="";;
-			phosphor) osi="";;
-			cozette) osi="";;
-			emoji) osi="🍎";;
-		esac;;
-	*"FreeBSD"*)
-		host="$(hostname)"
-		distrotype=bsd
-		os="FreeBSD $(freebsd-version | sed 's/-.*//')"
-		case $font in
-			nerd) osi="";;
-			phosphor) osi="";;
-			cozette) osi="";;
-			emoji) osi="😈";;
-		esac;;
-	*"OpenBSD"*)
-		host="$(hostname)"
-		distrotype=bsd
-		os="OpenBSD $(uname -r)"
-		case $font in
-			nerd) osi="";;
-			phosphor) osi="";;
-			cozette) osi="⌘";;
-			emoji) osi="🐡";;
-		esac;;
-	*"NetBSD"*)
-		host="$(hostname)"
-		distrotype=netbsd
-		os="NetBSD $(uname -r)"
-		case $font in
-			nerd) osi="󰉀";;
-			phosphor) osi="";;
-			cozette) osi="";;
-			emoji) osi="🚩";;
-		esac;;
-	*)
-		os="Unix-like"
-		host="host";;
+	fi
+	shell=$(basename "$SHELL")
+	;;
+*"Darwin"*)
+	host="$(hostname -f | sed -e 's/^[^.]*\.//')"
+	mac_product="$(/usr/libexec/PlistBuddy -c "Print:ProductName" /System/Library/CoreServices/SystemVersion.plist)"
+	mac_version="$(/usr/libexec/PlistBuddy -c "Print:ProductVersion" /System/Library/CoreServices/SystemVersion.plist)"
+	os="${mac_product} ${mac_version}"
+	case $font in
+	nerd) osi="" ;;
+	phosphor) osi="" ;;
+	cozette) osi="" ;;
+	emoji) osi="🍎" ;;
+	esac
+	;;
+*"FreeBSD"*)
+	host="$(hostname)"
+	distrotype=bsd
+	os="FreeBSD $(freebsd-version | sed 's/-.*//')"
+	case $font in
+	nerd) osi="" ;;
+	phosphor) osi="" ;;
+	cozette) osi="" ;;
+	emoji) osi="😈" ;;
+	esac
+	;;
+*"OpenBSD"*)
+	host="$(hostname)"
+	distrotype=bsd
+	os="OpenBSD $(uname -r)"
+	case $font in
+	nerd) osi="" ;;
+	phosphor) osi="" ;;
+	cozette) osi="⌘" ;;
+	emoji) osi="🐡" ;;
+	esac
+	;;
+*"NetBSD"*)
+	host="$(hostname)"
+	distrotype=netbsd
+	os="NetBSD $(uname -r)"
+	case $font in
+	nerd) osi="󰉀" ;;
+	phosphor) osi="" ;;
+	cozette) osi="" ;;
+	emoji) osi="🚩" ;;
+	esac
+	;;
+*)
+	os="Unix-like"
+	host="host"
+	;;
 esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
@@ -177,45 +192,48 @@ if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
 fi
 case $manager in
-	cpm) packages="$(cpm C)";;
-	flatpak) packages="$(flatpak list --app | wc -l)";;
-	brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l)";;
-	port) packages="$(($(port installed | wc -l) - 1))";;
-	dpkg-query) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)";;
-	rpm) packages="$(rpm -qa --last| wc -l)";;
-	yum) packages="$(yum list installed | wc -l)";;
-	dnf) packages="$(dnf list installed | wc -l)";;
-	zypper) packages="$(zypper se | wc -l)";;
-	pacman) packages="$(pacman -Q | wc -l)";;
-	yay) packages="$(yay -Q | wc -l)";;
-	paru) packages="$(paru -Q | wc -l)";;
-	pacstall) packages="$(pacstall -L | wc -l)";;
-	kiss) packages="$(kiss list | wc -l)";;
-	emerge) packages="$(qlist -I | wc -l)";;
-	pkg) packages="$(pkg info | wc -l | tr -d ' ')";;
-	cave) packages="$(cave show installed-slots | wc -l)";;
-	xbps-query) packages="$(xbps-query -l | wc -l)";;
-	nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
-	apk) packages="$(apk list --installed | wc -l)";;
-	pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
-	eopkg) packages="$(eopkg li | wc -l)";;
-	/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
-	bulge) packages="$(bulge list | wc -l)";;
-	birb) packages="$(birb --list-installed | wc -l)";;
-	pkg_info)
-		packages="$(pkg_info -A | wc -l)"
-		manager="pkg";;
-	pkg_info-netbsd)
-		packages="$(pkg_info -a | wc -l)"
-		manager="pkg";;
-	*)
-		if [ $distrotype = android ]; then
-			packages="$(pkg list-installed | wc -l)"
-			manager="pkg"
-		else
-			packages="$(ls /usr/bin | wc -l)"
-			manager="bin"
-		fi;;
+cpm) packages="$(cpm C)" ;;
+flatpak) packages="$(flatpak list --app | wc -l)" ;;
+brew) packages="$(printf '%s\n' "$(brew --cellar)/"* | wc -l)" ;;
+port) packages="$(($(port installed | wc -l) - 1))" ;;
+dpkg-query) packages="$(dpkg-query -f '${binary:Package}\n' -W | wc -l)" ;;
+rpm) packages="$(rpm -qa --last | wc -l)" ;;
+yum) packages="$(yum list installed | wc -l)" ;;
+dnf) packages="$(dnf list installed | wc -l)" ;;
+zypper) packages="$(zypper se | wc -l)" ;;
+pacman) packages="$(pacman -Q | wc -l)" ;;
+yay) packages="$(yay -Q | wc -l)" ;;
+paru) packages="$(paru -Q | wc -l)" ;;
+pacstall) packages="$(pacstall -L | wc -l)" ;;
+kiss) packages="$(kiss list | wc -l)" ;;
+emerge) packages="$(qlist -I | wc -l)" ;;
+pkg) packages="$(pkg info | wc -l | tr -d ' ')" ;;
+cave) packages="$(cave show installed-slots | wc -l)" ;;
+xbps-query) packages="$(xbps-query -l | wc -l)" ;;
+nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)" ;;
+apk) packages="$(apk list --installed | wc -l)" ;;
+pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l)" ;;
+eopkg) packages="$(eopkg li | wc -l)" ;;
+/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)" ;;
+bulge) packages="$(bulge list | wc -l)" ;;
+birb) packages="$(birb --list-installed | wc -l)" ;;
+pkg_info)
+	packages="$(pkg_info -A | wc -l)"
+	manager="pkg"
+	;;
+pkg_info-netbsd)
+	packages="$(pkg_info -a | wc -l)"
+	manager="pkg"
+	;;
+*)
+	if [ $distrotype = android ]; then
+		packages="$(pkg list-installed | wc -l)"
+		manager="pkg"
+	else
+		packages="$(ls /usr/bin | wc -l)"
+		manager="bin"
+	fi
+	;;
 esac
 
 packages="${packages#"${packages%%[![:space:]]*}"}"
@@ -229,13 +247,15 @@ elif [ $distrotype = bsd ] || [ $distrotype = netbsd ]; then
 	uptime="$(uptime | sed -e 's/.* up //; s/, [0-9]* user.*//')"
 else
 	case $ostype in
-		*"Linux"*)
-			IFS=. read -r s _ < /proc/uptime;;
-		*)
-			s=$(sysctl -n kern.boottime)
-			s=${s#*=}
-			s=${s%,*}
-			s=$(($(date +%s) - s));;
+	*"Linux"*)
+		IFS=. read -r s _ </proc/uptime
+		;;
+	*)
+		s=$(sysctl -n kern.boottime)
+		s=${s#*=}
+		s=${s%,*}
+		s=$(($(date +%s) - s))
+		;;
 	esac
 	d="$((s / 60 / 60 / 24))"
 	h="$((s / 60 / 60 % 24))"
@@ -261,45 +281,51 @@ fi
 ## RAM DETECTION
 
 case $ostype in
-	*"Linux"*)
-		while IFS=':k '  read -r key val _; do
-			case $key in
-				MemTotal)
-					mem_used=$((mem_used + val))
-					mem_full=$val;;
-				Shmem) mem_used=$((mem_used + val));;
-				MemFree|Buffers|Cached|SReclaimable) mem_used=$((mem_used - val));;
-			esac
-		done < /proc/meminfo
-		mem_used=$((mem_used / 1024)) 
-		mem_full=$((mem_full / 1024));;
-	*"Darwin"*)
-		mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
-		while IFS=:. read -r key val; do
-			case $key in
-				*' wired'*|*' active'*|*' occupied'*)
-					mem_used=$((mem_used + ${val:-0}));;
-			esac
-			done <<-EOF
-				$(vm_stat)
-						EOF
+*"Linux"*)
+	while IFS=':k ' read -r key val _; do
+		case $key in
+		MemTotal)
+			mem_used=$((mem_used + val))
+			mem_full=$val
+			;;
+		Shmem) mem_used=$((mem_used + val)) ;;
+		MemFree | Buffers | Cached | SReclaimable) mem_used=$((mem_used - val)) ;;
+		esac
+	done </proc/meminfo
+	mem_used=$((mem_used / 1024))
+	mem_full=$((mem_full / 1024))
+	;;
+*"Darwin"*)
+	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
+	while IFS=:. read -r key val; do
+		case $key in
+		*' wired'* | *' active'* | *' occupied'*)
+			mem_used=$((mem_used + ${val:-0}))
+			;;
+		esac
+	done <<-EOF
+		$(vm_stat)
+	EOF
 
-			mem_used=$((mem_used * 4 / 1024));;
-	*"BSD"*)
-		mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
-		if [ $distrotype = netbsd ]; then
-			mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
-		else
-			mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
-		fi
-		mem_used=$((mem_full - mem_free));;
-	*)
-		mem_full=1
-		mem_used=0;;
+	mem_used=$((mem_used * 4 / 1024))
+	;;
+*"BSD"*)
+	mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
+	if [ $distrotype = netbsd ]; then
+		mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
+	else
+		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+	fi
+	mem_used=$((mem_full - mem_free))
+	;;
+*)
+	mem_full=1
+	mem_used=0
+	;;
 esac
 memstat="${mem_used}/${mem_full} MiB"
-if which expr > /dev/null 2>&1; then
-	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full} ))%)"
+if which expr >/dev/null 2>&1; then
+	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full}))%)"
 fi
 
 ## DEFINE COLORS
@@ -318,13 +344,13 @@ reset='[0m'
 
 ## USER VARIABLES -- YOU CAN CHANGE THESE
 
-lc="${reset}${bold}${magenta}"  # labels
-nc="${reset}${bold}${yellow}"   # user
-hn="${reset}${bold}${blue}"     # hostname
-ic="${reset}${green}"           # info
-c0="${reset}${grey}"            # first color
-c1="${reset}${white}"           # second color
-c2="${reset}${yellow}"          # third color
+lc="${reset}${bold}${magenta}" # labels
+nc="${reset}${bold}${yellow}"  # user
+hn="${reset}${bold}${blue}"    # hostname
+ic="${reset}${green}"          # info
+c0="${reset}${grey}"           # first color
+c1="${reset}${white}"          # second color
+c2="${reset}${yellow}"         # third color
 
 ## OUTPUT
 
