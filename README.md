@@ -31,16 +31,29 @@
 - Use `-p` for Phosphor
 - Use `-e` for Emojis
 
-#### [Arch Linux](https://aur.archlinux.org/packages/nerdfetch/):
+#### [Arch Linux (AUR)](https://aur.archlinux.org/packages/nerdfetch/):
 
 ```sh
 yay -S nerdfetch # -git
 nerdfetch
 ```
-
 Make sure to replace `yay` with whatever AUR helper you use.
 
-#### [Gentoo](https://gpo.zugaina.org/Overlays/guru/app-misc/nerdfetch)/[LiGurOS](https://gitlab.com/liguros/liguros-repo/-/tree/stable/app-misc/nerdfetch)
+#### [macOS (homebrew)](https://formulae.brew.sh/formula/nerdfetch)
+
+```sh
+brew install nerdfetch
+nerdfetch
+```
+
+#### [Nix](https://search.nixos.org/packages?show=nerdfetch)
+
+```sh
+nix-shell -p nerdfetch
+nerdfetch
+``` 
+
+#### [Gentoo (GURU)](https://gpo.zugaina.org/Overlays/guru/app-misc/nerdfetch)/[LiGurOS](https://gitlab.com/liguros/liguros-repo/-/tree/stable/app-misc/nerdfetch)
 
 Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users> (*Not needed for LiGurOS*)
 
@@ -48,7 +61,6 @@ Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for
 emerge nerdfetch
 nerdfetch
 ```
-
 #### [yiffOS](https://packages.yiffos.gay/nerdfetch)
 
 ```sh
