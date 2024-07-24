@@ -31,7 +31,7 @@
 - Use `-p` for Phosphor
 - Use `-e` for Emojis
 
-#### [Arch Linux (AUR)](https://aur.archlinux.org/packages/nerdfetch/):
+#### [Arch Linux (AUR)](https://aur.archlinux.org/packages/nerdfetch/)
 
 ```sh
 yay -S nerdfetch # -git
