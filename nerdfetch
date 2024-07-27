@@ -96,7 +96,7 @@ case $ostype in
 				opensuse) osi="" ;;
 				solus) osi="" ;;
 				ubuntu) osi="" ;;
-				mint) osi="󰣭" ;;
+				linuxmint) osi="󰣭" ;;
 				trisquel) osi="" ;;
 				puppy) osi="" ;;
 				coreos) osi="" ;;
@@ -124,7 +124,7 @@ case $ostype in
 				manjaro) osi="" ;;
 				opensuse) osi="" ;;
 				ubuntu) osi="" ;;
-				mint) osi="" ;;
+				linuxmint) osi="" ;;
 				coreos) osi="" ;;
 				centos) osi="" ;;
 				esac
