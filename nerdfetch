@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.2.0
+version=8.2.1
 font=nerd
 distrotype=none
 osi=""
