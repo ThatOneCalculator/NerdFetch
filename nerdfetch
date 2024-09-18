@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.2.1
+version=8.3.0
 font=nerd
 distrotype=none
 osi=""
@@ -186,7 +186,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-MANAGER=$(which nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb yay paru pacstall cpm pmm opkg eopkg getprop 2>/dev/null)
+MANAGER=$(command -v nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb yay paru pacstall cpm pmm opkg eopkg getprop 2>/dev/null)
 manager=$(basename "$MANAGER")
 if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
@@ -325,7 +325,7 @@ case $ostype in
 	;;
 esac
 memstat="${mem_used}/${mem_full} MiB"
-if which expr >/dev/null 2>&1; then
+if command -v expr 1>/dev/null; then
 	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full}))%)"
 fi
 
