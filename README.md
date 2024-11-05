@@ -17,7 +17,6 @@
 
 - [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads), [Cozette](https://github.com/slavfox/Cozette), or [Phosphor](https://github.com/phosphor-icons/homepage/releases/tag/v2.0.0)
 - POSIX-compliant shell
-- `which`
 - Anything but Windows
 
 ### To install and run
