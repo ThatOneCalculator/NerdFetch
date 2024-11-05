@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.3.0
+version=8.3.1
 font=nerd
 distrotype=none
 osi=""
@@ -228,7 +228,7 @@ pkg_info-netbsd)
 	;;
 *)
 	if [ $distrotype = android ]; then
-		packages="$(pkg list-installed | wc -l)"
+		packages="$(pkg list-installed 2>/dev/null | wc -l)"
 		manager="pkg"
 	else
 		packages="$(ls /usr/bin | wc -l)"
