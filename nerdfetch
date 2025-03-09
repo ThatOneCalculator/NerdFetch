@@ -39,7 +39,9 @@ case $1 in
 	ri="🐐"
 	pi="📦"
 	ui="☕"
+        ipi="🌐"
 	ci="🎨"
+
 	;;
 "-v")
 	echo "NerdFetch $version"
@@ -329,6 +331,11 @@ if command -v expr 1>/dev/null; then
 	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full}))%)"
 fi
 
+## Wireless IP 
+ip=`ip a|grep -i wlp3s0|cut -d ' ' -f 6|tail -1`
+
+
+
 ## DEFINE COLORS
 
 bold='[1m'
@@ -362,6 +369,7 @@ ${c0}     (${c1}.. ${c0}\    ${lc}${osi}  ${ic}${os}${reset}
 ${c0}     (${c2}<> ${c0}|    ${lc}${ki}  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}${ri}  ${ic}${RAM}${memstat} ${mempercent}
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}${pi}  ${ic}${packages} (${manager})${reset}
+${c0}   ( ${c1}|  | ${c0}/|  ${lc}${ipi}  ${ic}${ip}${reset}
 ${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}${ui}  ${ic}${uptime}${reset}
 ${c2}  \/${c0}-____${c2}\/${reset}   ${lc}${ci}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
