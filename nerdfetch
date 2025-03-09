@@ -12,6 +12,7 @@ ki=""
 ri="󰍛"
 pi="󰏔"
 ui="󰅶"
+ipi="󰅶"
 ci=""
 
 case $1 in
@@ -23,6 +24,8 @@ case $1 in
 	pi=""
 	ui=""
 	ci=""
+        ipi="󰅶"
+
 	;;
 "-c")
 	font=cozette
@@ -31,6 +34,8 @@ case $1 in
 	pi=""
 	ui=""
 	ci=""
+        ipi="󰅶"
+
 	;;
 "-e")
 	font=emoji
