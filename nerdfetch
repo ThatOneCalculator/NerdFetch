@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.3.1
+version=8.3.2
 font=nerd
 distrotype=none
 osi=""
@@ -13,6 +13,7 @@ ri="󰍛"
 pi="󰏔"
 ui="󰅶"
 ci=""
+sa="󱛡"
 
 case $1 in
 "-p")
@@ -23,6 +24,7 @@ case $1 in
 	pi=""
 	ui=""
 	ci=""
+	sa=""
 	;;
 "-c")
 	font=cozette
@@ -31,6 +33,7 @@ case $1 in
 	pi=""
 	ui=""
 	ci=""
+	sa=""
 	;;
 "-e")
 	font=emoji
@@ -40,6 +43,7 @@ case $1 in
 	pi="📦"
 	ui="☕"
 	ci="🎨"
+	sa="🗓️"
 	;;
 "-v")
 	echo "NerdFetch $version"
@@ -329,6 +333,11 @@ if command -v expr 1>/dev/null; then
 	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full}))%)"
 fi
 
+## SYSTEM AGE DETECTION
+
+install_date=$(date -d $(stat / | awk '/Birth: /{print $2 " " substr($1,0,0)}') +%s)
+system_age="$(( ( $(date +%s) - $install_date )  / 86400 )) days"
+
 ## DEFINE COLORS
 
 bold='[1m'
@@ -363,5 +372,6 @@ ${c0}     (${c2}<> ${c0}|    ${lc}${ki}  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}${ri}  ${ic}${RAM}${memstat} ${mempercent}
 ${c0}   ( ${c1}|  | ${c0}/|  ${lc}${pi}  ${ic}${packages} (${manager})${reset}
 ${c2}  _${c0}/\\ ${c1}__)${c0}/${c2}_${c0})  ${lc}${ui}  ${ic}${uptime}${reset}
-${c2}  \/${c0}-____${c2}\/${reset}   ${lc}${ci}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
+${c2}  \/${c0}-____${c2}\/${reset}   ${lc}${sa}  ${ic}${system_age}
+	      ${lc}${ci}  ${red}███${green}███${yellow}███${blue}███${magenta}███${cyan}███${reset}
 EOF
