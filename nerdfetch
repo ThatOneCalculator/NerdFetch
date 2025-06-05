@@ -270,7 +270,7 @@ else
 	[ "$d" = 0 ] && d=
 	[ "$h" = 0 ] && h=
 	[ "$m" = 0 ] && m=
-	[ "$m" != "" ] && s=
+	[ "$d$h$m" != "" ] && s=
 	# Make the output of uptime smaller.
 	[ "$d" ] && uptime="$d day$dp, "
 	[ "$h" ] && uptime="$uptime$h hour$hp, "
