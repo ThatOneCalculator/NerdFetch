@@ -300,15 +300,18 @@ case $ostype in
 	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
 	while IFS=:. read -r key val; do
 		case $key in
-		*' wired'* | *' active'* | *' occupied'*)
+		'Anonymous '*|*' wired'* | *' occupied'*)
 			mem_used=$((mem_used + ${val:-0}))
+			;;
+		*' purgeable'*)
+			mem_used=$((mem_used - ${val:-0}))
 			;;
 		esac
 	done <<-EOF
 		$(vm_stat)
 	EOF
 
-	mem_used=$((mem_used * 4 / 1024))
+	mem_used=$((mem_used * $(sysctl -n vm.pagesize) / 1024 / 1024))
 	;;
 *"BSD"*)
 	mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
