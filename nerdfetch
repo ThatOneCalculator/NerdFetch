@@ -215,7 +215,7 @@ apk) packages="$(apk list --installed | wc -l)" ;;
 pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l)" ;;
 opkg) packages="$(opkg list-installed | wc -l)" ;;
 eopkg) packages="$(eopkg li | wc -l)" ;;
-/usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)" ;;
+slackpkg) packages="$(ls /var/log/packages | wc -l)" ;;
 bulge) packages="$(bulge list | wc -l)" ;;
 birb) packages="$(birb --list-installed | wc -l)" ;;
 pkg_info)
