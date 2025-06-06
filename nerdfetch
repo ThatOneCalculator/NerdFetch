@@ -298,7 +298,7 @@ case $ostype in
 	;;
 *"Darwin"*)
 	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
-	while IFS=:. read -r key val; do
+	while IFS=:. read -r key val _; do
 		case $key in
 		'Anonymous '*|*' wired'* | *' occupied'*)
 			mem_used=$((mem_used + ${val:-0}))
