@@ -55,7 +55,7 @@ case $1 in
 	;;
 esac
 
-if command -v getprop 1>/dev/null; then
+if command -v getprop 1>/dev/null 2>&1; then
 	distrotype=android
 fi
 kernel="$(echo $(uname -r) | cut -d'-' -f1-1)"
