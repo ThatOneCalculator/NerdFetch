@@ -298,6 +298,7 @@ case $ostype in
 	;;
 *"Darwin"*)
 	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
+	[ $mem_full -gt 0 ] || mem_full=$(expr $(sysctl -n hw.memsize) / 1024 / 1024)
 	while IFS=:. read -r key val _; do
 		case $key in
 		'Anonymous '*|*' wired'* | *' occupied'*)
@@ -311,14 +312,15 @@ case $ostype in
 		$(vm_stat)
 	EOF
 
-	mem_used=$((mem_used * $(sysctl -n vm.pagesize) / 1024 / 1024))
+	mem_used=$((mem_used * ( $(sysctl -n vm.pagesize) / 1024 ) / 1024))
 	;;
 *"BSD"*)
 	mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
+	[ $mem_full -gt 0 ] || mem_full=$(expr $(sysctl -n hw.physmem) / 1024 / 1024)
 	if [ $distrotype = netbsd ]; then
 		mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
 	else
-		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * ( $(sysctl -n vm.stats.vm.v_page_size) / 1024 ) / 1024))
 	fi
 	mem_used=$((mem_full - mem_free))
 	;;
