@@ -238,7 +238,7 @@ pkg_info-netbsd)
 esac
 
 packages="${packages#"${packages%%[![:space:]]*}"}"
-manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
+manager=${manager%-query}
 
 ## UPTIME DETECTION
 
