@@ -55,10 +55,11 @@ case $1 in
 	;;
 esac
 
-if command -v getprop 1>/dev/null; then
+if command -v getprop 1>/dev/null 2>&1; then
 	distrotype=android
 fi
-kernel="$(echo $(uname -r) | cut -d'-' -f1-1)"
+kernel=$(uname -r)
+kernel=${kernel%%-*}
 case $ostype in
 *"Linux"*)
 	if [ $distrotype = android ]; then
@@ -78,7 +79,7 @@ case $ostype in
 		else
 			os="${PRETTY_NAME}"
 			if [ $font = nerd ]; then
-				case $(echo $ID | sed 's/ .*//') in
+				case ${ID%% *} in
 				debian) osi="" ;;
 				arch) osi="󰣇" ;;
 				endeavouros) osi="" ;;
@@ -111,7 +112,7 @@ case $ostype in
 				rocky) osi="" ;;
 				esac
 			elif [ $font = cozette ]; then
-				case $(echo $ID | sed 's/ .*//') in
+				case ${ID%% *} in
 				debian) osi="" ;;
 				arch) osi="" ;;
 				fedora) osi="" ;;
@@ -131,7 +132,6 @@ case $ostype in
 			fi
 		fi
 	fi
-	shell=$(basename "$SHELL")
 	;;
 *"Darwin"*)
 	host="$(hostname -f | sed -e 's/^[^.]*\.//')"
@@ -187,7 +187,7 @@ esac
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
 MANAGER=$(for x in nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb yay paru pacstall cpm pmm opkg eopkg getprop; do command -v $x; done 2>/dev/null)
-manager=$(basename "$MANAGER")
+manager=${MANAGER##*/}
 if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
 fi
@@ -238,12 +238,12 @@ pkg_info-netbsd)
 esac
 
 packages="${packages#"${packages%%[![:space:]]*}"}"
-manager=$(echo $manager | sed "s/-query//; s/\/usr\/.*\///")
+manager=${manager%-query}
 
 ## UPTIME DETECTION
 
 if [ $distrotype = android ]; then
-	uptime="$(echo $(uptime -p) | cut -c 4-)"
+	uptime="$(uptime -p | cut -c 4-)"
 elif [ $distrotype = bsd ] || [ $distrotype = netbsd ]; then
 	uptime="$(uptime | sed -e 's/.* up //; s/, [0-9]* user.*//')"
 else
@@ -298,7 +298,8 @@ case $ostype in
 	;;
 *"Darwin"*)
 	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
-	while IFS=:. read -r key val; do
+	[ $mem_full -gt 0 ] || mem_full=$(expr $(sysctl -n hw.memsize) / 1024 / 1024)
+	while IFS=:. read -r key val _; do
 		case $key in
 		'Anonymous '*|*' wired'* | *' occupied'*)
 			mem_used=$((mem_used + ${val:-0}))
@@ -311,14 +312,15 @@ case $ostype in
 		$(vm_stat)
 	EOF
 
-	mem_used=$((mem_used * $(sysctl -n vm.pagesize) / 1024 / 1024))
+	mem_used=$((mem_used * ( $(sysctl -n vm.pagesize) / 1024 ) / 1024))
 	;;
 *"BSD"*)
 	mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
+	[ $mem_full -gt 0 ] || mem_full=$(expr $(sysctl -n hw.physmem) / 1024 / 1024)
 	if [ $distrotype = netbsd ]; then
 		mem_free=$(($(vmstat | awk 'NR==3 {print $4}') / 1024))
 	else
-		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * $(sysctl -n vm.stats.vm.v_page_size) / 1024 / 1024))
+		mem_free=$(($(sysctl -n vm.stats.vm.v_free_count) * ( $(sysctl -n vm.stats.vm.v_page_size) / 1024 ) / 1024))
 	fi
 	mem_used=$((mem_full - mem_free))
 	;;
@@ -328,9 +330,7 @@ case $ostype in
 	;;
 esac
 memstat="${mem_used}/${mem_full} MiB"
-if command -v expr 1>/dev/null; then
-	mempercent="($(expr $(expr ${mem_used} \* 100 / ${mem_full}))%)"
-fi
+mempercent='('$((mem_used * 100 / mem_full))'%)'
 
 ## DEFINE COLORS
 
