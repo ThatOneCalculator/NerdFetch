@@ -134,6 +134,15 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - NetBSD
 - OpenWrt
 
+### Shells tested
+
+- Bourne Again Shell (`bash`)
+- Z Shell (`zsh`)
+- Almquist Shell (`ash`), Debian Almquist Shell (`dash`)  
+- KornShell (`ksk`), MirBSD KornShell (`mksh`)
+- Oil Shell (`osh`)
+- Yet Another Shell (`yash`)
+
 ### Known issue(s)
 
 - `nsh` is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/46)
