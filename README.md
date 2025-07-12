@@ -139,7 +139,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - Bourne Again Shell (`bash`)
 - Z Shell (`zsh`)
 - Almquist Shell (`ash`), Debian Almquist Shell (`dash`)  
-- KornShell (`ksk`), MirBSD KornShell (`mksh`)
+- KornShell (`ksh`), MirBSD KornShell (`mksh`)
 - Oil Shell (`osh`)
 - Yet Another Shell (`yash`)
 
