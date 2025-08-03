@@ -45,12 +45,13 @@ case $1 in
 	echo "NerdFetch $version"
 	exit
 	;;
-"-h")
+"-"[a-z]*)
 	echo "Flags:
 -c: Cozette font
 -p: Phosphor font
 -e: Emoji font
--v: Version"
+-v: Version
+-h: Display help menu"
 	exit
 	;;
 esac
