@@ -45,7 +45,7 @@ case $1 in
 	echo "NerdFetch $version"
 	exit
 	;;
-"-"[a-z]*)
+"-"[a-z]* | "--"[a-z]*)
 	echo "Flags:
 -c: Cozette font
 -p: Phosphor font
