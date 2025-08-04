@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.4.0
+version=8.4.1
 font=nerd
 distrotype=none
 osi=""
@@ -45,7 +45,7 @@ case $1 in
 	echo "NerdFetch $version"
 	exit
 	;;
-"-h")
+"-h"|"--help")
 	echo "Flags:
 -c: Cozette font
 -p: Phosphor font
