@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.4.1
+version=8.4.2
 font=nerd
 distrotype=none
 osi=""
@@ -12,7 +12,7 @@ ki=""
 ri="󰍛"
 pi="󰏔"
 ui="󰅶"
-ci=""
+ci=""
 
 case $1 in
 "-p")
