@@ -16,7 +16,7 @@
 ### Dependencies
 
 - [Any Nerdfonts font](https://www.nerdfonts.com/font-downloads), [Cozette](https://github.com/slavfox/Cozette), or [Phosphor](https://github.com/phosphor-icons/homepage/releases/tag/v2.0.0)
-- [POSIX.1-2017 compliant shell](#shells-tested)
+- [POSIX.1-2001 or higher compliant shell](#shells-tested)
 - [Anything but Windows](#oses-tested)
 
 ### To install and run

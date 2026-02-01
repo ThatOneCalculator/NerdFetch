@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.4.2
+version=8.5.0
 font=nerd
 distrotype=none
 osi=""
@@ -237,7 +237,7 @@ pkg_info-netbsd)
 	;;
 esac
 
-packages="${packages#"${packages%%[![:space:]]*}"}"
+packages=$(printf '%s' "$packages" | sed 's/^[[:space:]]*//')
 manager=${manager%-query}
 
 ## UPTIME DETECTION
@@ -249,7 +249,8 @@ elif [ $distrotype = bsd ] || [ $distrotype = netbsd ]; then
 else
 	case $ostype in
 	*"Linux"*)
-		IFS=. read -r s _ </proc/uptime
+		s=$(cat /proc/uptime)
+		s=${s%%.*}
 		;;
 	*)
 		s=$(sysctl -n kern.boottime)
@@ -283,36 +284,30 @@ fi
 
 case $ostype in
 *"Linux"*)
-	while IFS=':k ' read -r key val _; do
-		case $key in
-		MemTotal)
-			mem_used=$((mem_used + val))
-			mem_full=$val
-			;;
-		Shmem) mem_used=$((mem_used + val)) ;;
-		MemFree | Buffers | Cached | SReclaimable) mem_used=$((mem_used - val)) ;;
-		esac
-	done </proc/meminfo
-	mem_used=$((mem_used / 1024))
+	eval $(awk -F': +' '
+		/^MemTotal:/     {print "mem_full=" int($2)}
+		/^MemFree:/      {print "mem_free=" int($2)}
+		/^Buffers:/      {print "mem_buffers=" int($2)}
+		/^Cached:/       {print "mem_cached=" int($2)}
+		/^Shmem:/        {print "mem_shmem=" int($2)}
+		/^SReclaimable:/ {print "mem_sreclaimable=" int($2)}
+	' /proc/meminfo)
+	mem_used=$(( (mem_full + mem_shmem - mem_free - mem_buffers - mem_cached - mem_sreclaimable) / 1024 ))
 	mem_full=$((mem_full / 1024))
 	;;
 *"Darwin"*)
 	mem_full=$(($(sysctl -n hw.memsize) / 1024 / 1024))
 	[ $mem_full -gt 0 ] || mem_full=$(expr $(sysctl -n hw.memsize) / 1024 / 1024)
-	while IFS=:. read -r key val _; do
-		case $key in
-		'Anonymous '*|*' wired'* | *' occupied'*)
-			mem_used=$((mem_used + ${val:-0}))
-			;;
-		*' purgeable'*)
-			mem_used=$((mem_used - ${val:-0}))
-			;;
-		esac
-	done <<-EOF
-		$(vm_stat)
-	EOF
-
-	mem_used=$((mem_used * ( $(sysctl -n vm.pagesize) / 1024 ) / 1024))
+	eval $(vm_stat | awk -F': +' '
+		/Anonymous/      {anon += int($2)}
+		/wired/          {wired += int($2)}
+		/occupied/       {occupied += int($2)}
+		/purgeable/      {purgeable += int($2)}
+		END {
+			print "mem_pages=" (anon + wired + occupied - purgeable)
+		}
+	')
+	mem_used=$((mem_pages * $(sysctl -n vm.pagesize) / 1024 / 1024))
 	;;
 *"BSD"*)
 	mem_full=$(($(sysctl -n hw.physmem) / 1024 / 1024))
@@ -360,7 +355,7 @@ c2="${reset}${yellow}"         # third color
 
 cat <<EOF
 
-${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset} 
+${c0}      ___     ${nc}${USER}${red}@${reset}${hn}${host}${reset}
 ${c0}     (${c1}.. ${c0}\    ${lc}${osi}  ${ic}${os}${reset}
 ${c0}     (${c2}<> ${c0}|    ${lc}${ki}  ${ic}${kernel}${reset}
 ${c0}    /${c1}/  \\ ${c0}\\   ${lc}${ri}  ${ic}${RAM}${memstat} ${mempercent}
