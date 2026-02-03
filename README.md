@@ -1,5 +1,5 @@
 # NerdFetch
- A POSIX \*nix (Linux, macOS, Android, BSD, etc) fetch script using Nerdfonts (and others)
+ A POSIX.1-2001 \*nix (Linux<sub>≥2.6</sub>, macOS/OS X, Android, BSD, etc) fetch script using Nerdfonts (and others)
 
 *Nerdfont*
 
