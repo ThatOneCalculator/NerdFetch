@@ -19,16 +19,16 @@
 - [POSIX.1-2001 or higher compliant shell](#shells-tested)
 - [Anything but Windows](#oses-tested)
 
-### To install and run
-
-[![Packaging status](https://repology.org/badge/vertical-allrepos/nerdfetch.svg)](https://repology.org/project/nerdfetch/versions)
-
 #### How to switch fonts
 
 - Nerdfonts is used by default
 - Use `-c` for Cozette
 - Use `-p` for Phosphor
 - Use `-e` for Emojis
+
+### To install and run
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/nerdfetch.svg)](https://repology.org/project/nerdfetch/versions)
 
 #### [Arch Linux (AUR)](https://aur.archlinux.org/packages/nerdfetch/)
 
@@ -58,19 +58,6 @@ Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for
 
 ```sh
 emerge nerdfetch
-nerdfetch
-```
-#### [yiffOS](https://packages.yiffos.gay/nerdfetch)
-
-```sh
-bulge install nerdfetch
-nerdfetch
-```
-
-#### [BirbOS](https://github.com/birb-linux/BirbOS-packages/tree/dev/nerdfetch)
-
-```sh
-sudo birb nerdfetch
 nerdfetch
 ```
 
@@ -106,8 +93,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 
 - Strong cross-OS compatability
 - Not bloated
-- Portable
-- POSIX
+- Portable (POSIX-1.2001 shell)
 
 ### OSes tested
 
