@@ -127,6 +127,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - yiffOS Linux
 - Slackware Linux
 - BirbOS Linux
+- CRUX Linux
 - Clear Linux
 - Tiny Core Linux
 - NuTyX Linux

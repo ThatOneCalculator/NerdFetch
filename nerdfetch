@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.5.1
+version=8.5.2
 font=nerd
 distrotype=none
 osi=""
@@ -186,7 +186,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-MANAGER=$(for x in nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb swupd cards tce-status yay paru pacstall cpm pmm opkg eopkg getprop; do command -v $x; done 2>/dev/null)
+MANAGER=$(for x in nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb swupd cards tce-status prt-get yay paru pacstall cpm pmm opkg eopkg getprop; do command -v $x; done 2>/dev/null)
 manager=${MANAGER##*/}
 if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
@@ -221,6 +221,7 @@ birb) packages="$(birb --list-installed | wc -l)" ;;
 swupd) packages="$(swupd bundle-list | tail -n +4 | wc -l)" ;;
 cards) packages="$(cards list | wc -l)" ;;
 tce-status) packages="$(tce-status -i | wc -l)" ;;
+prt-get) packages="$(prt-get listinst | wc -l)" ;;
 pkg_info)
 	packages="$(pkg_info -A | wc -l)"
 	manager="pkg"
