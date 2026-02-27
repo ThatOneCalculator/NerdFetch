@@ -136,5 +136,5 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 
 ### Known issue(s)
 
-- `brush` has spacing issue (https://github.com/reubeno/brush/issues/1028)
+- `brush` has spacing issue on main branch, with unreleased fix (https://github.com/reubeno/brush/issues/1028)
 - `nsh` is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/46)
