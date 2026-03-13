@@ -1,5 +1,5 @@
 # NerdFetch
- A POSIX.1-2001 \*nix (Linux<sub>≥2.6</sub>, macOS/OS X, Android, BSD, etc) fetch script using Nerdfonts (and others)
+ A POSIX.1-2001 \*nix (Linux<sub>≥2.6</sub>, macOS/OS X, Android, BSDs, etc) fetch script using Nerdfonts (and others)
 
 *Nerdfont*
 
@@ -19,16 +19,16 @@
 - [POSIX.1-2001 or higher compliant shell](#shells-tested)
 - [Anything but Windows](#oses-tested)
 
-### To install and run
-
-[![Packaging status](https://repology.org/badge/vertical-allrepos/nerdfetch.svg)](https://repology.org/project/nerdfetch/versions)
-
 #### How to switch fonts
 
 - Nerdfonts is used by default
 - Use `-c` for Cozette
 - Use `-p` for Phosphor
 - Use `-e` for Emojis
+
+### To install and run
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/nerdfetch.svg)](https://repology.org/project/nerdfetch/versions)
 
 #### [Arch Linux (AUR)](https://aur.archlinux.org/packages/nerdfetch/)
 
@@ -58,19 +58,6 @@ Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for
 
 ```sh
 emerge nerdfetch
-nerdfetch
-```
-#### [yiffOS](https://packages.yiffos.gay/nerdfetch)
-
-```sh
-bulge install nerdfetch
-nerdfetch
-```
-
-#### [BirbOS](https://github.com/birb-linux/BirbOS-packages/tree/dev/nerdfetch)
-
-```sh
-sudo birb nerdfetch
 nerdfetch
 ```
 
@@ -106,8 +93,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 
 - Strong cross-OS compatability
 - Not bloated
-- Portable
-- POSIX
+- Portable (POSIX-1.2001 shell)
 
 ### OSes tested
 
@@ -146,7 +132,9 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - KornShell (`ksh`), MirBSD KornShell (`mksh`)
 - Oil Shell (`osh`)
 - Yet Another Shell (`yash`)
+- Bourne RUsty SHell (`brush`)
 
 ### Known issue(s)
 
+- `brush` has spacing issue on main branch, with unreleased fix (https://github.com/reubeno/brush/issues/1028)
 - `nsh` is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/46)
