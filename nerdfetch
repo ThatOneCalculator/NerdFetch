@@ -4,7 +4,7 @@
 
 ostype="$(uname)"
 
-version=8.5.2
+version=8.5.3
 font=nerd
 distrotype=none
 osi=""
@@ -57,6 +57,8 @@ esac
 
 if command -v getprop 1>/dev/null 2>&1; then
 	distrotype=android
+elif [ -f /etc/nixos/configuration.nix ]; then
+    distrotype=nixos
 fi
 kernel=$(uname -r)
 kernel=${kernel%%-*}
@@ -190,6 +192,8 @@ MANAGER=$(for x in nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port p
 manager=${MANAGER##*/}
 if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
+elif [ $distrotype = nixos ]; then
+	manager="nix-env"
 fi
 case $manager in
 cpm) packages="$(cpm C)" ;;
