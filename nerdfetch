@@ -57,7 +57,7 @@ esac
 
 if command -v getprop 1>/dev/null 2>&1; then
 	distrotype=android
-elif [ -f /etc/nixos/configuration.nix ]; then
+elif [ -f /etc/NIXOS ]; then
     distrotype=nixos
 fi
 kernel=$(uname -r)
