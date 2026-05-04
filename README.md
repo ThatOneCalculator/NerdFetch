@@ -1,5 +1,5 @@
 # NerdFetch
- A POSIX.1-2001 \*nix (Linux<sub>≥2.6</sub>, macOS/OS X, Android, BSDs, etc) fetch script using Nerdfonts (and others)
+ A POSIX.1-2001 \*nix (Linux<sub>≥2.6</sub>, macOS/OSX, Android, BSDs, etc) fetch script using Nerdfonts (and others)
 
 *Nerdfont*
 
@@ -117,8 +117,8 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - Clear Linux
 - Tiny Core Linux
 - NuTyX Linux
-- macOS
-- Android
+- macOS/Mac OSX
+- Android (Termux)
 - FreeBSD
 - OpenBSD
 - NetBSD
