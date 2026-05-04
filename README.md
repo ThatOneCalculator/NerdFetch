@@ -126,15 +126,14 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 
 ### Shells tested
 
-- Bourne Again Shell (`bash`)
+- Bourne Again SHell (`bash`)
 - Z Shell (`zsh`)
 - Almquist Shell (`ash`), Debian Almquist Shell (`dash`)  
 - KornShell (`ksh`), MirBSD KornShell (`mksh`)
 - Oil Shell (`osh`)
 - Yet Another Shell (`yash`)
-- Bourne RUsty SHell (`brush`)
+- Bourne RUsty SHell (`brush`) <sub>≥v0.4.0</sub>
 
 ### Known issue(s)
 
-- `brush` has spacing issue on main branch, with unreleased fix (https://github.com/reubeno/brush/issues/1028)
 - `nsh` is currently unsupported (https://github.com/ThatOneCalculator/NerdFetch/issues/46)
