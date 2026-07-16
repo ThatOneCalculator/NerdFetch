@@ -75,11 +75,16 @@ case $ostype in
 		esac
 	else
 		host="$(cat /proc/sys/kernel/hostname)"
-		. /etc/os-release
+		if [ -r /etc/os-release ]; then
+			. /etc/os-release
+		else
+			PRETTY_NAME="Linux"
+			ID="linux"
+		fi
 		if [ -f /bedrock/etc/bedrock-release ]; then
 			os="$(brl version)"
 		else
-			os="${PRETTY_NAME}"
+			os="${PRETTY_NAME:-Unknown Linux}"
 			if [ $font = nerd ]; then
 				case ${ID%% *} in
 				debian) osi="" ;;
