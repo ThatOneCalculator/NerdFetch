@@ -75,10 +75,10 @@ case $ostype in
 		esac
 	else
 		host="$(cat /proc/sys/kernel/hostname)"
-		if [ -f /etc/os-release ]; then
+		if [ -r /etc/os-release ]; then
 			. /etc/os-release
 		else
-			PRETTY_NAME="Unknown Linux"
+			PRETTY_NAME="Linux"
 			ID="linux"
 		fi
 		if [ -f /bedrock/etc/bedrock-release ]; then
