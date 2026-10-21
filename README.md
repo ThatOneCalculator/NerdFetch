@@ -52,6 +52,13 @@ nix-shell -p nerdfetch
 nerdfetch
 ``` 
 
+#### [Vylen Linux](https://vylen.gitlab.io/packages/#nerdfetch)
+
+```sh
+emerald install nerdfetch
+nerdfetch
+```
+
 #### [Gentoo (GURU)](https://gpo.zugaina.org/Overlays/guru/app-misc/nerdfetch)/[LiGurOS](https://gitlab.com/liguros/liguros-repo/-/tree/stable/app-misc/nerdfetch)
 
 Add the GURU overlay: <https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users> (*Not needed for LiGurOS*)
@@ -123,6 +130,7 @@ curl -fsSL https://raw.githubusercontent.com/ThatOneCalculator/NerdFetch/main/ne
 - OpenBSD
 - NetBSD
 - OpenWrt
+- Vylen GNU/Linux
 
 ### Shells tested
 

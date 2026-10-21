@@ -193,7 +193,7 @@ esac
 
 ## PACKAGE MANAGER AND PACKAGES DETECTION
 
-MANAGER=$(for x in nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb swupd cards tce-status prt-get yay paru pacstall cpm pmm opkg eopkg getprop; do command -v $x; done 2>/dev/null)
+MANAGER=$(for x in nix-env pkg flatpak yum zypper dnf rpm dpkg-query brew port pacman xbps-query emerald emerge cave apk kiss pmm /usr/sbin/slackpkg bulge birb swupd cards tce-status prt-get yay paru pacstall cpm pmm opkg eopkg getprop; do command -v $x; done 2>/dev/null)
 manager=${MANAGER##*/}
 if [ $distrotype = netbsd ]; then
 	manager="pkg_info-netbsd"
@@ -215,6 +215,7 @@ yay) packages="$(yay -Q | wc -l)" ;;
 paru) packages="$(paru -Q | wc -l)" ;;
 pacstall) packages="$(pacstall -L | wc -l)" ;;
 kiss) packages="$(kiss list | wc -l)" ;;
+emerald) packages="$(ls /var/lib/emerald/db | wc -l)" ;;
 emerge) packages="$(qlist -I | wc -l)" ;;
 pkg) packages="$(pkg info | wc -l | tr -d ' ')" ;;
 cave) packages="$(cave show installed-slots | wc -l)" ;;
